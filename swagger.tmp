@@ -1,0 +1,284 @@
+openapi: 3.0.4
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    Bornholm on the rocks climbing competition 2025 app Server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). This API describes how the application interacts with the flask backend. the flask app works together with forms and HTMX elements in the frontend to provide functionality for the climbing competition interface.
+
+    Some useful links:
+    - [The Bornholm on the rocks official page](https://bornholmonthe.rocks/)
+    
+  termsOfService: https://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.12
+externalDocs:
+  description: Find out more about Swagger
+  url: https://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: login
+    description: Page for handeling user/climber logins
+    externalDocs:
+      description: Simple login page.
+      url: https://[IP]/login
+paths:
+  /login:
+    post:
+      tags:
+        - login
+      summary: Send login info
+      description: Simple login, takes username and passowrd. These are pre generated and then loaded into the database using the admin page. Also the default page redirects to either here or routes depending on if sessions is active.
+      operationId: addPet
+      requestBody:
+        description: Create a new pet in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - login
+      summary: Get login page.
+      description: Just gets the login page.
+      operationId: findPetsByStatus
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid status value
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /logout:
+    get:
+      tags:
+        - logout
+      summary: Clear session.
+      description: Clears the current session
+      operationId: findPetsByTags
+      parameters:
+        - name: tags
+          in: query
+          description: Tags to filter by
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid tag value
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /routes:
+    get:
+      tags:
+        - routes
+      summary: Gets all routes
+      description: Returns routes for the current climber, uses uuid in session to retrive the info from the db
+      operationId: getPetById
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /climber_id:
+    post:
+      tags:
+        - climber_id
+      summary: Uploads an image.
+      description: Handle changes to climber info. uses the uuid in the session to determine what to update in the database. If the user does nto exsist then a new user is created. Sent via HTMX
+      operationId: updateClimber
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: No file uploaded
+        '404':
+          description: Pet not found
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /route_post:
+    post:
+      tags:
+        - route_post
+      summary: Send updates to routes and climber info
+      description: Handles upadtes to the routes updates are psoted via htmx when the users change anything in the routes table. Uses HTMX to send updates from the page.
+      operationId: getInventory
+      responses:
+        '200':
+          description: successful operation
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /admin:
+    post:
+      tags:
+        - admin
+      summary: Place an order for a pet.
+      description: Place a new order in the store.
+      operationId: placeOrder
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Admin_post'
+      responses:
+        '200':
+          description: successful operation
+        '422':
+          description: Validation exception
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /get_sqlite:
+    get:
+      tags:
+        - admin
+      summary: Exports sqlite database as file
+      description: Exports sqlite database as file
+      operationId: exportDb
+      responses:
+        '200':
+          description: successful operation
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /delete_db:
+    get:
+      tags:
+        - admin
+      summary: Deletes the current database, and creates a new blank one
+      description: Deletes the current database, and creates a new blank one
+      operationId: deleteDb
+      responses:
+        '200':
+          description: successful operation
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /export_results:
+    get:
+      tags:
+        - admin
+      summary: Creates file with competition results.
+      description: Creates list of competition results and exporst as csv
+      operationId: exportResults
+      responses:
+        '200':
+          description: Successful operation, returns csv
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /generate_user_file:
+    get:
+      tags:
+        - admin
+      summary: Generate file with random usernames and passwords
+      description: Generate file with random usernames and passwords, presents file as csv
+      operationId: generateUserFile
+      responses:
+        '200':
+          description: successful operation
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          format: string
+          example: UGIA
+        password:
+          type: string
+          format: string
+          example: 198772
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    Admin_post:
+      type: object
+      properties:
+        route:
+          type: string
+          format: csv
+          example: "4;tester;Difficault;4a;5"
+        users:
+          type: string
+          format: csv
+          example: "username;password"
+ 

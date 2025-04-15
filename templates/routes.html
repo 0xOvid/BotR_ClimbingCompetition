@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotR Competition</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+
+
+    <style>
+        .button {
+            background-color: #0077b6;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            /* Align text to the left */
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Header Styles */
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        /* Row Styles */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e1f5fe;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+                width: 100%;
+                margin: 0;
+            }
+
+            th {
+                display: none;
+                /* Hide header in mobile view */
+            }
+
+            td {
+                padding: 10px;
+                display: block;
+                text-align: left;
+                /* Ensure text remains left-aligned */
+                position: relative;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                color: #3498db;
+            }
+
+            tr {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(20, 130, 25, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            z-index: 1000;
+            border-top: 2px solid #fff;
+        }
+
+        .modal-content {
+            background-color: #00d816;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #EDEDE9;
+        }
+
+        /* Navbar Container */
+        .navbar {
+            background-color: #d6ccc2;
+            padding: 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navbar List */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            /* Centers the items horizontally */
+            padding: 0;
+        }
+
+        /* Navbar List Items */
+        .nav-list li {
+            margin: 0 10px;
+            /* Adds space between the items */
+        }
+
+        /* Navbar Links */
+        .nav-link {
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+
+        /* Logout Button Styling */
+        .logout {
+            background-color: #00b4d8;
+            /* Red color for logout */
+            border-radius: 5px;
+        }
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            .nav-list {
+                flex-direction: row;
+                /* Stacks the items vertically */
+                align-items: center;
+            }
+
+            .nav-link {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+
+            .logout {
+                margin-top: 10px;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <b class="nav-link logout" style="background-color: #edede9;">Bornholm on the rocks: Climbing competition</b>
+        <ul class="nav-list">
+            <li><a href="#ruter" class="nav-link">Ruter</a></li>
+            <li><a href="#regler" class="nav-link">Rules</a></li>
+            <li><a href="/logout" class="nav-link logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div style="padding: 1vh;">
+
+        <details style="background-color: #ade8f4; padding: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <summary role="button" class="secondary" name="info">Deltager Info</summary>
+            <label>Navn</label>
+            <input id="navn" name="navn" hx-post="/climber_id" hx-trigger="change" hx-vals="js:{
+                navn: document.getElementById('navn').value, 
+                gender: document.getElementById('team_name').value, 
+                gender: document.getElementById('max_flash').value, 
+                gender: document.getElementById('dage_i_moselykken').value, 
+                gender: document.getElementById('gender').value}" value="{{ user_info.1 }}"><br>
+            <label>Team Navn</label>
+            <input id="team_name" name="team_name" hx-post="/climber_id" hx-trigger="change"
+                value="{{ user_info.3 }}" /><br>
+            <label>Max flash</label>
+            <input id="max_flash" name="max_flash" hx-post="/climber_id" hx-trigger="change"
+                value="{{ user_info.4 }}" /><br>
+            <label>Klatre dage i Moselykken</label>
+            <input id="dage_i_moselykken" name="dage_i_moselykken" hx-post="/climber_id" hx-trigger="change"
+                value="{{ user_info.5 }}" /><br>
+            <label>Køn</label>
+            <select hx-post="/climber_id" hx-trigger="change" name="gender" id="gender">
+                <option value="{{ user_info.2 }}" selected>{{ user_info.2 }}</option>
+                <option value="M">M</option>
+                <option value="K">K</option>
+            </select>
+        </details>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Resultat opdateret</h2>
+        </div>
+    </div>
+
+    <div style="padding: 1vh; overflow-x:auto;" id="ruter">
+        <h3>Ruter:</h3>
+        <table>
+            <tr>
+                <th>Område</th>
+                <th>Rute</th>
+                <th>Grad</th>
+                <th>Resultat</th>
+            </tr>
+            {% for route in routes %}
+            <tr id="{{ route.0 }}">
+                <td> <i>Område:</i> {{ route.4 }}</td>
+                <td> <i>Route:</i> {{ route.2 }}</td>
+                <td> <i>Grade:</i> {{ route.5 }}</td>
+                <td> <i>Score:</i>
+                    <select id="slynger" class="slynger" hx-post="/route_post?uuid={{ route.0 }}" hx-trigger="change"
+                        hx-vals="js:{row: document.getElementById('{{ route.0 }}').getElementsByTagName('select')[0].value}">
+                        <option value="{{ route.6}}" selected>{{ route.6}}</option>
+                        <option value="-">-</option>
+                        {% for s in range (1, route.3) %}
+                        <option value="{{ s }}">{{ s }}</option>
+                        {% endfor %}
+                        <option value="t">Top</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script>
+        // Get the dropdown and modal elements
+        const dropdowns = document.querySelectorAll(".slynger");;
+        const modal = document.getElementById('modal');
+
+        // Function to show the modal
+        function showModal() {
+            modal.style.display = 'block';  // Show the modal
+            setTimeout(closeModal, 2000);  // Close the modal after 5 seconds
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = 'none';  // Hide the modal
+        }
+
+        // JavaScript
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('change', showModal);
+        });
+
+    </script>
+
+    <div style="padding: 1vh;" id="regler">
+
+        <details style="background-color: rgb(162, 196, 173); padding: 10px">
+            <summary role="button" class="secondary">Regler:</summary>
+
+            <img src="/static/moselykken_map.png" alt="Moselykken map" width="500" height="600">
+            <p>
+                Der klatres i teams af to. <b> Angiv dit navn, dit køn og jeres team navn i toppen af scorearket.</b>
+                Ruterne skal føres. Topreb er ikke tilladt. Alle klatrere skal bære hjelm under konkurrencen.
+                Du/I vælger selv hvilke ruter, du/I vil klatre – Generelt, jo flere ruter, jo flere point – Dog tæller
+                kun de to højst scorende på hver gradering. Begge klatrere i teamet behøver ikke at klatre de samme
+                ruter. Scoren udregnes for hver enkelt klatrer.
+                Du får point for enten at toppe en rute, eller at klippe 2. slynge eller højere på ruten. I scorearket
+                skal du derfor enten klippe ud for ruten med O-løbs tang i toppen af ruten, eller notere det antal
+                slynger, du nåede at klippe, inden du faldt af. Falder du på ruten, skal du fires helt ned og føre ruten
+                forfra. Du må prøve ruten så mange gange du vil, men skal om bag i køen, hvis der er andre der står i kø
+                til at klatre ruten. Notér kun dit bedste resultat på ruten.
+                Det antal point du får for en rute, afhænger af dit ”handicap”. Jo bedre klatrer du er, jo færre point
+                giver en rute. Til gengæld giver sværere ruter flere point. Angiv dit max flash på klippe indenfor de
+                sidste to år. En dygtig klatrer kan vinde konkurrencen ved at klatre de svære ruter, mens en begynder
+                kan vinde ved at prøve at klatre nogen af de ruter, der er lidt svære end det, vedkommende normalt
+                klatrer, også selvom ruterne ikke toppes.
+                Har du klatret meget i Moseløkken Stenbrud før denne konkurrence, så vil du højst sandsynligt have
+                prøvet nogle af konkurrenceruterne før. For at udjævne den fordel skal du Angive antal af klatredage i
+                Moseløkken før starten på dette års Bornholm on the Rocks. Antallet af dage vil have en betydning for
+                din samlede point score.
+                ”Brug af belay slave betaler sig ikke”. Hvis den ene af de to klatrere i teamet klatrer 3 eller flere
+                ruter mere end den anden klatrer, vil det have en negativ betydning for begge klatreres samlede point
+                score.
+                Baseret på dit handicap giver ruterne flere eller færre point - se nedenstående tabel. Et eksempel. Er
+                dit bedste flash på klippe indenfor de sidste 2 år f.eks. 6a, og du nu topper en 6a konkurrencerute
+                (antal forsøg er underordnet), da vil du få 1,1*rutens top point 29,7 (27*1,1). Topper du en 5a rute, da
+                får du 0,8*rutens top point 19,8 (24*0,8). Topper du en 7a rute, da får du 1,7* rutens top point 56,1
+                (33*1,7). Du får dog ikke kun point for at toppe en rute. Klipper du minimum 2. bolt på ruten giver det
+                et forholdsmæssigt point. F.eks. på en 6c rute, hvor der er 4 bolte (under ankeret), og du klipper 2.
+                bolt, da får du 2/4 dele af 80% af rutens point (de sidste 20% opnås kun ved at toppe ruten), hvilket
+                giver 18,6 point (31*1,5*0,80/4*2). I alt for de fire ruter har du nu fået 123,6 point. Men da du har
+                været i Moseløkken før, f.eks. 7 dage, korrigeres dit resultat med 0,98, og hvis din klatremakker har
+                klatret 7 ruter – tre mere end dig - korrigeres med yderligere 0,95, hvorved dit endelige resultat
+                bliver 115,07.
+            </p>
+            <img src="/static/regler.png" alt="Moselykken map" width="500" height="600">
+            <p>
+                <b>Husk at klatre PETZL ruten.</b> Rutens gradering er hemmelig, men den tæller dobbelt i konkurrencen.
+                <b>Husk at klatre Speed ruten og få noteret dit hurtigste forsøg. </b>Ruten tæller ikke med i
+                hovedkonkurrencen, men der er særskilt præmie til BotR’s hurtigste kvinde og mand.
+                Den første klatrer, der klatrer en rute, sætter slynger på ruten og lader dem hænge. Fra kl. 15.00, skal
+                den sidste klatrer i køen til ruten tage slyngerne med ned og aflevere dem ved dommerbordet.
+                Konkurrencen slutter kl. 16. Påbegyndt klatrerute må klatres færdig indtil top eller fald.
+                Kl. 18.00 forventes de endelige resultater at foreligge. Hvis der er nogen, der har indsigelser til egne
+                eller andres resultater, herunder observeret snyd, skal de indleveres til dommerne inden kl. 19.00.
+                Der er præmier til de tre bedste kvinder og de tre bedste mænd.
+                Evt. anvisninger fra dommerne skal følges. Tvivlsspørgsmål til fortolkning af reglerne kan rettes til -
+                og afgøres alene af – dommerne. Overdommer: Laust Højmark, tlf. 23957119. Meddommere: Thomas Rosenberg,
+                tlf. 51393023 og Yula Dalberg tlf. 20853055
+            </p>
+        </details>
+    </div>
+    <!-- Modal example -->
+    <dialog id="modal-example">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" data-target="modal-example" onclick="toggleModal(event)"></button>
+                <h3>Confirm your action!</h3>
+            </header>
+            <p>
+                Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus
+                pellentesque. Nullam finibus risus non semper euismod.
+            </p>
+            <footer>
+                <button role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">
+                    Cancel</button><button autofocus data-target="modal-example" onclick="toggleModal(event)">
+                    Confirm
+                </button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ Modal example -->
+
+</body>

@@ -108,7 +108,7 @@ def login_post():
     conn = connect_to_db()
     cursor = conn.cursor()
     if request.form.get("username") and request.form.get("password"):
-        cLog("[+] User attempting login: username", request.form.get("username"), "|| Password:", request.form.get("password"))
+        cLog(("[+] User attempting login: username", request.form.get("username"), "|| Password:", request.form.get("password")))
         h = str(request.form.get("password"))
         md5_hash = hashlib.md5()
         # Update the hash object with the input string encoded to bytes
@@ -371,7 +371,7 @@ def admin_page():
                     grade = line[3]
                     max_score = line[4]
                     cLog(line)
-                    cLog(line[1].encode("latin-1").decode("utf-8"))
+                    #cLog(line[1].encode("latin-1").decode("utf-8"))
                     cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
                                 (uuid.uuid4().hex, nr, name, max_score, area, grade))
                 
@@ -541,7 +541,7 @@ def generate_users_file():
     usernames_and_passwords = []
     usernames = []
     cLog("[+] Generating usernames and passwords")
-    cLog("\t |- Generating n:", request.form.get("n"))
+    cLog(("\t |- Generating n:", request.form.get("n")))
     for i in range(int(request.form.get("n"))):
         # We need to make sure that the userneme is unique
         while True:

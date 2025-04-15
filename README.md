@@ -6,6 +6,21 @@ Its created in flask and uses templates for displaying and updating contents for
 Please refer to the swagger or the admin page for more info on the functioning of the app or how endpoints are layed out.
 ## Running the application
 
+Github
+```
+git clone https://github.com/0xOvid/BotR_ClimbingCompetition
+cd BotR_ClimbingCompetition/
+
+pip install virtualenv
+python3 -m venv botr
+
+source botr/bin/activate
+pip install -r ./requirements.txt
+
+flask run
+```
+
+Local build
 ```
 # On the build endpoint
 .\build.ps1
@@ -14,6 +29,7 @@ Please refer to the swagger or the admin page for more info on the functioning o
 unzip botr_app.zip
 # setup everything 
 cd botr_app
+
 pip install virtualenv
 python3 -m venv botr
 

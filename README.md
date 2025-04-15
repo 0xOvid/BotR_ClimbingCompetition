@@ -15,7 +15,9 @@ pip install virtualenv
 python3 -m venv botr
 
 source botr/bin/activate
-pip install -r ./requirements.txt
+pip install flask
+pip install Flask-BasicAuth
+pip install flask-htmx
 
 flask run
 ```
@@ -34,7 +36,9 @@ pip install virtualenv
 python3 -m venv botr
 
 source botr/bin/activate
-pip install -r ./requirements.txt
+pip install flask
+pip install Flask-BasicAuth
+pip install flask-htmx
 
 flask run
 ```

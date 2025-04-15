@@ -19,7 +19,7 @@ pip install flask
 pip install Flask-BasicAuth
 pip install flask-htmx
 
-flask run
+flask run --host=0.0.0.0
 ```
 
 Local build
@@ -40,7 +40,7 @@ pip install flask
 pip install Flask-BasicAuth
 pip install flask-htmx
 
-flask run
+flask run --host=0.0.0.0
 ```
 
 # .:: TODO ::.

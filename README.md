@@ -11,7 +11,7 @@ Github
 git clone https://github.com/0xOvid/BotR_ClimbingCompetition
 cd BotR_ClimbingCompetition/
 
-pip install virtualenv
+apt install python3.12-venv
 python3 -m venv botr
 
 source botr/bin/activate

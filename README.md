@@ -21,6 +21,7 @@ pip install flask-htmx
 
 flask run --host=0.0.0.0
 ```
+For deployment we can just run it via screen!: https://devhints.io/screen
 
 Local build
 ```

@@ -383,8 +383,9 @@ def admin_page():
                 # Close the connection
                 conn.close()
                 return redirect("/admin", code=302)
-        except:
+        except Exception as error:
             cLog("[!] Invalid post /routes", "err")
+            cLog(error, "err")
         
         """
         :: Users ::

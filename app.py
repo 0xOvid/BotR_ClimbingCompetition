@@ -370,7 +370,10 @@ def admin_page():
                     name = line[2].replace('Ã¦','æ').replace('Ã¸','ø').replace('Ã¥','å')
                     grade = line[3]
                     max_score = line[4]
-                    cLog(line)
+                    try:
+                        cLog(line)
+                    except:
+                        print("logging failed")
                     #cLog(line[1].encode("latin-1").decode("utf-8"))
                     cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
                                 (uuid.uuid4().hex, nr, name, max_score, area, grade))
@@ -409,6 +412,11 @@ def admin_page():
                     md5_hash.update(h.encode('utf-8'))
                     user_uuid = uuid.uuid4().hex
                     # Return the hexadecimal representation of the hash
+                    try:
+                        msg = "\tExecuting: INSERT INTO users (uuid, username, password) VALUES (", user_uuid, line[0], md5_hash.hexdigest(), ")"
+                        cLog(msg)
+                    except:
+                        print("logging failed")
                     cursor.execute('''INSERT INTO users (uuid, username, password) VALUES (?, ?, ?)''', 
                                 (user_uuid, line[0], md5_hash.hexdigest()))
                     # create user id - maybe we need to delete users from the comp db as well? 
@@ -417,8 +425,10 @@ def admin_page():
                 conn.commit()
                 conn.close()
                 return redirect("/admin", code=302)
-        except:
+        except Exception as error:
             cLog("[!] Err post /users", "err")
+            cLog(error, "err")
+
     log = open("record.log").read()
     return render_template('admin.html', users=users, routes=routes, comp=comp, log=log)
 

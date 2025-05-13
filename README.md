@@ -21,27 +21,16 @@ pip install flask-htmx
 
 flask run --host=0.0.0.0
 ```
-For deployment we can just run it via screen!: https://devhints.io/screen
+For deployment we can just run it via screen!: 
+https://devhints.io/screen
 
-Local build
+
 ```
-# On the build endpoint
-.\build.ps1
-
-# On the server
-unzip botr_app.zip
-# setup everything 
-cd botr_app
-
-pip install virtualenv
-python3 -m venv botr
-
-source botr/bin/activate
-pip install flask
-pip install Flask-BasicAuth
-pip install flask-htmx
-
-flask run --host=0.0.0.0
+screen -S botr
+[when we want to exit we can just:]
+ctrl+a and ctrl+d
+screen -ls
+screen -r botr
 ```
 
 # .:: TODO ::.
@@ -50,7 +39,6 @@ flask run --host=0.0.0.0
 - lav en intro side hvis det er første gang folk logger ind
 
 - find udaf deployment
-- fiks æøå i uploads
 - create unittests and integration tests for everything
 - ?? when uploading new file make it so that the database deletes itself and creates a new one
 - lav det så at databasen ikke bliver slettet men at den bliver rykket til en .bak fil med tidspunkt
@@ -58,11 +46,38 @@ flask run --host=0.0.0.0
 - implementer state management?
 - maybe setup traefik
 
+### TESTING ::.
+Since its a very self contained system we can create the following test:
+- upload users and routes to database
+    * different encoding styles
+    * check the database after uploads
+- login as user
+    * just generate a samll database
+- update user info
+    * check database and maybe also competition export
+- update varions competition stats
+    * check exports
+- change user name
+    * check export
+- login as another user
+- do the same
+    * again check the exported file
+- as admin export the results
+- check if everything is as expected
+
+
+
+2025-05-09 - test
+- Måske drop Down boks på gradering og antal dag kan minimere fejl indtastninger…. Men det er total nice-2-have
+
+
+
 - færdiggør
 
 - Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
 - opdater tekst på login page 
 - måske gør så tablkes ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
+
 
 # .:: DONE ::.
 - tjek om man kan få fil download til at virke for både windows og linux
@@ -86,3 +101,14 @@ flask run --host=0.0.0.0
     * then uploading to digital ocean
     * pip install everything
     * start server
+2025-05-13
+- uploads af filer er mærkelig og virker ikke ens hver gang
+    * lav tests
+    * bedre errors
+    * fejlfind
+    * fix
+- gør admin pannel mere mobile friendly
+- fix at man kun kan melde 2 slings eller der over (ikke 1)
+- Der står 2 i upload filen, hvilke betyder, at der er to slynger før topankeret, Tænker det kan være en systematisk del, at du har sat top i stedet for det tal der er i upload filen. Ja det er en systematisk ting. Glæder også Borte med Blæsten”, hvor der skal være mulighed for 2-6 slynger og et t
+- æåø i bruger info
+- fiks æøå i uploads

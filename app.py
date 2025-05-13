@@ -77,12 +77,14 @@ def load_routes_from_csv(filename):
     4;Skolevæggen;Difficault;4a;5
     """
     cLog("[+] Loading routes from csv: route.csv")
-    # Clean utf chars from file
-    os.system("iconv -f utf-8 -t utf-8 -c tmpRoutes.csv")
+    # Clean file by converting from nordic iso-8859 to standard UTF8 - static for now, should probabpy be done dyn>
+    os.system("iconv --from-code=ISO-8859-1 --to-code=UTF-8 ./"+filename+" > ./tmp"+filename)
+    os.system("cat tmp"+filename+" > "+filename)
     lines = []
     with open(filename,'r') as data:
         for line in csv.reader(data, delimiter=';'):
             lines.append(line)
+    cLog("\t|- Csv parsed")
     return lines
 
 @app.route('/')

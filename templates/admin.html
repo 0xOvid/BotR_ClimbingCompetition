@@ -9,54 +9,107 @@
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
     <style>
+        /* Custom button styling */
         .button {
-            font: bold 20px Arial;
+            font: bold 16px Arial;
             text-decoration: none;
             background-color: #2e60a1;
             color: #ffffff;
-            padding: 4px 4px 4px 4px;
-            border: 0;
-            height: 100%;
-            width: 100%;
-            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
         }
 
+        .button:hover {
+            background-color: #1e4973;
+        }
+
+        /* Side navigation styling */
         .sidenav {
-            height: 100%;
-            width: 220px;
+            background-color: rgba(20, 130, 25, 0.7);
+            padding-top: 20px;
             position: fixed;
-            z-index: 1;
             top: 0;
             left: 0;
-            background-color: rgba(20, 130, 25, 0.7);
+            width: 220px;
+            height: 100%;
+            z-index: 100;
             overflow-x: hidden;
-            padding-top: 20px;
-          }
-          
-          .sidenav a {
-            padding: 4px 4px 4px 18px;
-            text-decoration: none;
-            font-size: 20px;
+        }
+
+        .sidenav a {
             color: #ece2e2;
+            text-decoration: none;
+            padding: 12px 16px;
+            font-size: 18px;
             display: block;
-          }
-          
-          .sidenav a:hover {
+            transition: background-color 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: #333;
             color: #f1f1f1;
-          }
-          
-          .main {
-            margin-left: 220px; /* Same as the width of the sidenav */
-          }
-          
-          @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 12px;}
-          }
+        }
+
+        .main {
+            margin-left: 240px;
+            padding: 20px;
+            max-width: 100%;
+        }
+
+        .section {
+            padding: 15px;
+            background-color: aliceblue;
+            border-radius: 8px;
+            box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .sidenav {
+                width: 100%;
+                position: relative;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .sidenav a {
+                font-size: 16px;
+            }
+
+            .button {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!--
     <div class="sidenav">
         <a href="#top">TOP</a>
         <hr>
@@ -69,8 +122,8 @@
         <a href="#log">LOG FILE</a>
         <hr>
         <a href="#docs">DOCS</a>
-      </div>
-    <div class="main" style="padding: 5vh;" id="top">
+      </div>-->
+    <div class="main" id="top">
         <h1>Welcome to the Admin page</h1>
         <p>This page is meant for the amdinistration of the climbing contest Bornholm on the rocks.</p>
         <p><b>Note that uploading to a database will automatically delete the previous content of the database, this

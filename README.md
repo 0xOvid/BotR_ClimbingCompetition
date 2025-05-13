@@ -18,6 +18,7 @@ source botr/bin/activate
 pip install flask
 pip install Flask-BasicAuth
 pip install flask-htmx
+pip install unidecode
 
 flask run --host=0.0.0.0
 ```

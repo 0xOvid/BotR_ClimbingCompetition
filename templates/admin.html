@@ -75,7 +75,8 @@
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
             border: 1px solid #ddd;
@@ -109,28 +110,24 @@
 </head>
 
 <body>
-    <!--
-    <div class="sidenav">
-        <a href="#top">TOP</a>
-        <hr>
-        <a href="#server_func">SERVER FUNCTIONS</a>
-        <hr>
-        <a href="#db_func">DATABASE FUNCTIONS</a>
-        <hr>
-        <a href="#comp">COMPETITION</a>
-        <hr>
-        <a href="#log">LOG FILE</a>
-        <hr>
-        <a href="#docs">DOCS</a>
-      </div>-->
+
     <div class="main" id="top">
         <h1>Welcome to the Admin page</h1>
         <p>This page is meant for the amdinistration of the climbing contest Bornholm on the rocks.</p>
         <p><b>Note that uploading to a database will automatically delete the previous content of the database, this
                 might lead to issues with how they relate due to uuids. Therefore this will break things if done in
                 production. If this does break during the competition the logfile can be used to retrive the original
-                uuids of people, just dont count on it</b></p>
-        <div style="padding: 10px;background-color: aliceblue; box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);" id="server_func">
+                uuids of people, just dont count on it
+            </b></p>
+
+        <h3>.:: COMPETITION MODE ::.</h3>
+        <p>When competition mode is enablet, no users or routes can be uploaded to the database, also the database
+            cannot be deleted from the web app. I.e everything is locked down and read for action.</p>
+        <label>Competition mode:
+            <input type="checkbox"></label>
+
+        <div style="padding: 10px;background-color: aliceblue; box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);"
+            id="server_func">
             <h3>.:: SERVER FUNCTIONS ::.</h3>
             <p>The following seciton contains verions server functions, please be carefull.</p>
 
@@ -146,24 +143,15 @@
                         performed on the server.</td>
                 </tr>
                 <tr>
-                    <td><a href="/delete_db" class="button">Delete full database contents</a></td>
-                    <td>Deletes the full database. This will permanently delete all contents from the database of the
-                        application.</td>
-                </tr>
-                <tr>
                     <td><a href="/export_results" class="button">Export competition results</a></td>
                     <td>Exports the results of the competition as a .csv file, The first couple of columns are the
                         general user info, the rest are the different routs. One user will have one row.</td>
                 </tr>
-                <tr>
-                    <td><a href="/delete_app" class="button">Delete applicaiton</a></td>
-                    <td>This deletes the database and all local files, this will perform a full reset of the
-                        application.</td>
-                </tr>
             </table>
 
             <h4>Create users file</h4>
-            <p>The following function generates a users file for use with the database, a manual file can be used as
+            <p>The following function generates a users file for use with the database, a manual file can be used as.
+                THE FILE IS NOT AUTOMATICALLY UPLOADED TO THE DATABASE.
                 well.</p>
             <form action="/generate_users_file" method="post">
                 <label for="fname">number of users to generate:</label>
@@ -272,6 +260,25 @@
             <pre style="height: 30vh;">
         {{log}}
         </pre>
+        </div>
+        <br>
+        <div style="padding: 10px;background-color: aliceblue; box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);"
+            id="server_func">
+            <h3>.:: Destructive SERVER FUNCTIONS ::.</h3>
+            <p>The following seciton contains verions server functions, please be carefull.</p>
+
+            <table>
+                <tr>
+                    <td><a href="/delete_db" class="button">Delete full database contents</a></td>
+                    <td>Deletes the full database. This will permanently delete all contents from the database of the
+                        application.</td>
+                </tr>
+                <tr>
+                    <td><a href="/delete_app" class="button">Delete applicaiton</a></td>
+                    <td>This deletes the database and all local files, this will perform a full reset of the
+                        application.</td>
+                </tr>
+            </table>
         </div>
     </div>
 

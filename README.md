@@ -33,6 +33,8 @@ flask run --host=0.0.0.0
 For deployment we can just run it via screen!: 
 https://devhints.io/screen
 
+Idea: have one screen running the competition applicaiton
+Have another doing backups of the database every 10 minutes and putting these in a seperate place for safe storage
 
 ```
 screen -S botr

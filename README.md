@@ -21,6 +21,11 @@ pip install Flask-BasicAuth
 pip install flask-htmx
 pip install pytest
 pip install requests
+python -m pytest
+rm ./comp_exp.csv
+rm ./record.log
+rm ./tmptmpRoutes.csv
+rm ./tmptmpUsers.csv
 
 flask run --host=0.0.0.0
 ```

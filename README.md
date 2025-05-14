@@ -6,6 +6,7 @@ Its created in flask and uses templates for displaying and updating contents for
 Please refer to the swagger or the admin page for more info on the functioning of the app or how endpoints are layed out.
 ## Running the application
 
+### Git clone
 Github
 ```
 git clone https://github.com/0xOvid/BotR_ClimbingCompetition
@@ -21,6 +22,7 @@ pip install flask-htmx
 
 flask run --host=0.0.0.0
 ```
+### Deployment
 For deployment we can just run it via screen!: 
 https://devhints.io/screen
 
@@ -32,6 +34,14 @@ ctrl+a and ctrl+d
 screen -ls
 screen -r botr
 ```
+
+### testing
+to test the application run the following
+```
+python -m pytest
+```
+
+
 
 # .:: TODO ::.
 - fix login issues 

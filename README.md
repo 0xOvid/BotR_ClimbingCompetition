@@ -48,49 +48,19 @@ to test the application run the following
 python -m pytest
 ```
 
-
-
 # .:: TODO ::.
-- fix login issues 
-- fix authentication
 - lav en intro side hvis det er første gang folk logger ind
 
 - find udaf deployment
-- create unittests and integration tests for everything
 - ?? when uploading new file make it so that the database deletes itself and creates a new one
 - lav det så at databasen ikke bliver slettet men at den bliver rykket til en .bak fil med tidspunkt
 - hosting er lid flaky - kig lige på det
 - implementer state management?
 - maybe setup traefik
 
-### TESTING ::.
-Since its a very self contained system we can create the following test:
-- upload users and routes to database
-    * different encoding styles
-    * check the database after uploads
-- login as user
-    * just generate a samll database
-- update user info
-    * check database and maybe also competition export
-- update varions competition stats
-    * check exports
-- change user name
-    * check export
-- login as another user
-- do the same
-    * again check the exported file
-- as admin export the results
-- check if everything is as expected
-
-
-
 2025-05-09 - test
 - Måske drop Down boks på gradering og antal dag kan minimere fejl indtastninger…. Men det er total nice-2-have
-
-
-
 - færdiggør
-
 - Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
 - opdater tekst på login page 
 - måske gør så tablkes ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
@@ -129,3 +99,27 @@ Since its a very self contained system we can create the following test:
 - Der står 2 i upload filen, hvilke betyder, at der er to slynger før topankeret, Tænker det kan være en systematisk del, at du har sat top i stedet for det tal der er i upload filen. Ja det er en systematisk ting. Glæder også Borte med Blæsten”, hvor der skal være mulighed for 2-6 slynger og et t
 - æåø i bruger info
 - fiks æøå i uploads
+2025-05-14
+Setup full end to end test: where users are created, routs uploaded and competition "held" and the end results are checked
+- create unittests and integration tests for everything
+- TESTING ::.
+Since its a very self contained system we can create the following test:
+- upload users and routes to database
+    * different encoding styles
+    * check the database after uploads
+- login as user
+    * just generate a samll database
+- update user info
+    * check database and maybe also competition export
+- update varions competition stats
+    * check exports
+- change user name
+    * check export
+- login as another user
+- do the same
+    * again check the exported file
+- as admin export the results
+- check if everything is as expected
+N/A?
+- fix login issues 
+- fix authentication

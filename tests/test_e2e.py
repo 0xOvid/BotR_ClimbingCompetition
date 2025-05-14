@@ -96,19 +96,137 @@ def test_add_routes(client):
     assert routes[17][4] == "Store gumbas"
     
     route_csv.close()
-
+    
 # stress test
+import requests
+import os
+import subprocess
+import re
+from dataclasses import dataclass
+
+@dataclass
+class Climber:
+    """ Class representing climber and their info"""
+    username: str
+    password: str
+    name: str
+    teamName: str
+    maxFlash: str
+    days: str
+    gender: str
+
+
+def climber_update_and_comp_post(climber):
+    with requests.Session() as session:
+        conn = connect_to_db()
+        cursor = conn.cursor()
+        # login
+        res = session.post(
+            url="http://127.0.0.1:5000/login",
+            data={"username": climber.username,
+                  "password": climber.password}
+            )
+        # An authorised request.
+        res = session.get('http://127.0.0.1:5000/routes')
+        # check that we are successfully logged in
+        assert res.status_code == 200
+        # update climber info
+        # name
+        res = session.post(
+            url="http://127.0.0.1:5000/climber_id",
+            data={"navn": climber.name,
+                  "gender": "None"}
+            )
+        # team name
+        res = session.post(
+            url="http://127.0.0.1:5000/climber_id",
+            data={"team_name": climber.teamName}
+            )
+        # max flash
+        res = session.post(
+            url="http://127.0.0.1:5000/climber_id",
+            data={"max_flash": climber.maxFlash}
+            )
+        # climbing days
+        res = session.post(
+            url="http://127.0.0.1:5000/climber_id",
+            data={"dage_i_moselykken": climber.days}
+            )
+        # gender
+        res = session.post(
+            url="http://127.0.0.1:5000/climber_id",
+            data={"gender": climber.gender}
+            )
+        # check in db
+        climber_info = cursor.execute("SELECT * FROM climber_id WHERE name = \""+ climber.name+"\"").fetchall()
+        assert climber_info[0][1] == climber.name
+        assert climber_info[0][2] == climber.gender
+        assert climber_info[0][3] == climber.teamName
+        assert climber_info[0][4] == climber.maxFlash
+        assert climber_info[0][5] == climber.days
+        # update climber competition results
+        # get route uuids
+        res = session.get('http://127.0.0.1:5000/routes')
+        routeUuids = re.findall("""id\=\"([a-zA-Z0-9]{32})""", res.text)
+
+        res = session.post(
+            url="http://127.0.0.1:5000/route_post?uuid="+routeUuids[0],
+            data={"row": "Top"}
+            )
+        res = session.post(
+            url="http://127.0.0.1:5000/route_post?uuid="+routeUuids[1],
+            data={"row": "2"}
+            )
+        res = session.post(
+            url="http://127.0.0.1:5000/route_post?uuid="+routeUuids[2],
+            data={"row": "2"}
+            )
+        res = session.post(
+            url="http://127.0.0.1:5000/route_post?uuid="+routeUuids[3],
+            data={"row": "Top"}
+            )
 
 def test_e2e(client):
-    test_add_users(client)
-    test_add_routes(client)
-    # update climber info
-    # check in db
+    flaskServer = subprocess.Popen(["flask","run"])
+    # test for first climber
+    # move to function and define the climber as a dataclass and then pass that to the test function
+    testClimberA = Climber(
+        username = "aaa",
+        password = "aaa",
+        name = "testAaa",
+        teamName= "teamAaa",
+        maxFlash = "9a",
+        days = "32",
+        gender = "M"
+    )
+    climber_update_and_comp_post(testClimberA)
+    testClimberB= Climber(
+        username = "bbb",
+        password = "bbb",
+        name = "testBbb",
+        teamName= "teamBbb",
+        maxFlash = "1a",
+        days = "322",
+        gender = "K"
+    )
+    climber_update_and_comp_post(testClimberB)
+    # export results and check if correct
+    expectedResultsA = "testAaa; M; teamAaa; 9a; 32; Top; 2; 2; Top; - ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;\n"
+    expectedResultsB = "testBbb; K; teamBbb; 1a; 322; Top; 2; 2; Top; - ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;- ;\n"
 
-    # update climber competition results
+    response = client.get('/export_results', headers=admin_auth_header)
     # check rsults
+    with open('comp_exp.csv', 'r') as fin:
+        data = fin.read().splitlines(True)
+
+    assert data[1][34:] == expectedResultsA
+    assert data[2][34:] == expectedResultsB
+
+    flaskServer.terminate()
 
     # delete files
-    # clear database - check results
+    os.remove("Sqlite3.db")
+    os.remove("tmpRoutes.csv")
+    os.remove("tmpUsers.csv")
 
     

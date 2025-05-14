@@ -187,7 +187,7 @@ def climber_update_and_comp_post(climber):
             )
 
 def test_e2e(client):
-    flaskServer = subprocess.Popen(["flask","run"])
+    flaskServer = subprocess.Popen(["flask","run","--host=0.0.0.0"])
     # test for first climber
     # move to function and define the climber as a dataclass and then pass that to the test function
     testClimberA = Climber(

@@ -76,10 +76,19 @@ def load_routes_from_csv(filename):
     I.e:
     4;Skolevæggen;Difficault;4a;5
     """
-    cLog("[+] Loading routes from csv: route.csv")
+    """
+    Take path to csv as input and parse the contents
+    return array/list of list for the items
+    The structure of the data should be:
+    nr; area; name; grade; max_score
+    I.e:
+    4;Skolevæggen;Difficault;4a;5
+    """
+    cLog("[+] Loading routes from csv: " + filename)
     # Clean file by converting from nordic iso-8859 to standard UTF8 - static for now, should probabpy be done dyn>
-    os.system("iconv --from-code=ISO-8859-1 --to-code=UTF-8 ./"+filename+" > ./tmp"+filename)
-    os.system("cat tmp"+filename+" > "+filename)
+    if os.name != 'nt':
+        os.system("iconv --from-code=ISO-8859-1 --to-code=UTF-8 ./"+filename+" > ./tmp"+filename)
+        os.system("cat tmp"+filename+" > "+filename)
     lines = []
     with open(filename,'r') as data:
         for line in csv.reader(data, delimiter=';'):
@@ -370,8 +379,8 @@ def admin_page():
                 for line in lines:
                     # still some issues with special chars
                     nr = line[0]
-                    area = line[1].replace('Ã¦','æ').replace('Ã¸','ø').replace('Ã¥','å')
-                    name = line[2].replace('Ã¦','æ').replace('Ã¸','ø').replace('Ã¥','å')
+                    area = line[1] 
+                    name = line[2] 
                     grade = line[3]
                     max_score = line[4]
                     try:
@@ -433,6 +442,7 @@ def admin_page():
         except Exception as error:
             cLog("[!] Err post /users", "err")
             cLog(error, "err")
+            return redirect("/admin", code=500)
 
     log = open("record.log").read()
     return render_template('admin.html', users=users, routes=routes, comp=comp, log=log)

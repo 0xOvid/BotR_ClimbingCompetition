@@ -54,7 +54,6 @@ python -m pytest
 
 
 # .:: TODO ::.
-- Fix number of slings available for each route to be total_number-1 so the first option is "2"
 - get username in export
 
 - lav en intro side hvis det er første gang folk logger ind
@@ -134,3 +133,4 @@ N/A?
 2025-05-15 test:
 - add 3 and + gradings to dropdown
 - climbing days as dropdown 0-50
+- fixed the number of slings in dropdown by doing some hacky js to remove them from the front end

@@ -513,7 +513,7 @@ def export_results():
     users = cursor.execute("SELECT * FROM climber_id").fetchall()
     routes = cursor.execute("SELECT * FROM routes").fetchall()
     # create header row
-    export = "uuid; navn; køn; team_navn; max_flash; dage_i_moselykken;"
+    export = "uuid; brugernavn; navn; køn; team_navn; max_flash; dage_i_moselykken;"
     # add route uuid to header
     for route in routes:
         export += route[2] + "; "
@@ -521,9 +521,15 @@ def export_results():
     
     for user in users:
         # check if database for competition is empty, if not then continue
-
+        
+        username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
+        # remove: (' ',)
+        username = username.replace("(", "")
+        username = username.replace(")", "")
+        username = username.replace("'", "")
+        username = username.replace(",", "")
         # set user info
-        export += str(user[0]) + "; " + str(user[1]) + "; " + str(user[2]) + "; " + str(user[3]) + "; " + str(user[4])  + "; " + str(user[5]) + "; "
+        export += str(user[0]) + "; " + username + "; " + str(user[1]) + "; " + str(user[2]) + "; " + str(user[3]) + "; " + str(user[4])  + "; " + str(user[5]) + "; "
         # go through routes and check if user has completed route
         # get all routes for user
         user_routes = cursor.execute("SELECT * FROM competition WHERE uuid = \"" + user[0] + "\"").fetchall()

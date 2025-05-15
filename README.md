@@ -54,7 +54,6 @@ python -m pytest
 
 
 # .:: TODO ::.
-- get username in export
 
 - lav en intro side hvis det er første gang folk logger ind
 
@@ -134,3 +133,4 @@ N/A?
 - add 3 and + gradings to dropdown
 - climbing days as dropdown 0-50
 - fixed the number of slings in dropdown by doing some hacky js to remove them from the front end
+- get username in export

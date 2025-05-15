@@ -29,6 +29,7 @@ rm ./tmptmpUsers.csv
 
 flask run --host=0.0.0.0
 ```
+
 ### Deployment
 For deployment we can just run it via screen!: 
 https://devhints.io/screen
@@ -50,6 +51,8 @@ to test the application run the following
 python -m pytest
 ```
 
+
+
 # .:: TODO ::.
 - lav en intro side hvis det er første gang folk logger ind
 
@@ -61,11 +64,9 @@ python -m pytest
 - maybe setup traefik
 
 2025-05-09 - test
-- Måske drop Down boks på gradering og antal dag kan minimere fejl indtastninger…. Men det er total nice-2-have
-- færdiggør
 - Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
 - opdater tekst på login page 
-- måske gør så tablkes ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
+- måske gør så tables ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
 
 
 # .:: DONE ::.
@@ -104,7 +105,7 @@ python -m pytest
 2025-05-14
 Setup full end to end test: where users are created, routs uploaded and competition "held" and the end results are checked
 - create unittests and integration tests for everything
-- TESTING ::.
+- TESTING - IMPLEMENTED::.
 Since its a very self contained system we can create the following test:
 - upload users and routes to database
     * different encoding styles
@@ -125,3 +126,8 @@ Since its a very self contained system we can create the following test:
 N/A?
 - fix login issues 
 - fix authentication
+- Måske drop Down boks på gradering og antal dag kan minimere fejl indtastninger…. Men det er total nice-2-have
+- færdiggør
+2025-05-15 test:
+- add 3 and + gradings to dropdown
+- climbing days as dropdown 0-50

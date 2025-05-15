@@ -187,7 +187,7 @@ def climber_update_and_comp_post(climber):
             )
 
 def test_e2e(client):
-    flaskServer = subprocess.Popen(["flask","run","--host=0.0.0.0"])
+    flaskServer = subprocess.Popen(["flask","run"])
     # test for first climber
     # move to function and define the climber as a dataclass and then pass that to the test function
     testClimberA = Climber(
@@ -219,8 +219,8 @@ def test_e2e(client):
     with open('comp_exp.csv', 'r') as fin:
         data = fin.read().splitlines(True)
 
-    assert data[1][34:] == expectedResultsA
-    assert data[2][34:] == expectedResultsB
+    assert data[1][34+5:] == expectedResultsA
+    assert data[2][34+5:] == expectedResultsB
 
     flaskServer.terminate()
 

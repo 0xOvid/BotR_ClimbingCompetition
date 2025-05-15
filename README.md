@@ -54,6 +54,9 @@ python -m pytest
 
 
 # .:: TODO ::.
+- Fix number of slings available for each route to be total_number-1 so the first option is "2"
+- get username in export
+
 - lav en intro side hvis det er første gang folk logger ind
 
 - find udaf deployment

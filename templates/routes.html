@@ -206,6 +206,10 @@
             <label>Max flash</label>
             <select hx-post="/climber_id" hx-trigger="change" name="max_flash" id="max_flash">
                 <option value="{{ user_info.4 }}" selected>{{ user_info.4 }}</option>
+                <option value="3.a">3.a</option>
+                <option value="3.b">3.b</option>
+                <option value="3.c">3.c</option>
+
                 <option value="4.a">4.a</option>
                 <option value="4.b">4.b</option>
                 <option value="4.c">4.c</option>
@@ -215,25 +219,91 @@
                 <option value="5.c">5.c</option>
 
                 <option value="6.a">6.a</option>
+                <option value="6.a+">6.a+</option>
                 <option value="6.b">6.b</option>
+                <option value="6.b+">6.b</option>
                 <option value="6.c">6.c</option>
+                <option value="6.c+">6.c+</option>
 
                 <option value="7.a">7.a</option>
+                <option value="7.a+">7.a+</option>
                 <option value="7.b">7.b</option>
+                <option value="7.b+">7.b+</option>
                 <option value="7.c">7.c</option>
+                <option value="7.c+">7.c+</option>
 
                 <option value="8.a">8.a</option>
+                <option value="8.a+">8.a+</option>
                 <option value="8.b">8.b</option>
+                <option value="8.b+">8.b+</option>
                 <option value="8.c">8.c</option>
+                <option value="8.c+">8.c+</option>
 
                 <option value="9.a">9.a</option>
+                <option value="9.a+">9.a+</option>
                 <option value="9.b">9.b</option>
+                <option value="9.b+">9.b+</option>
                 <option value="9.c">9.c</option>
+                <option value="9.c+">9.c+</option>
             </select><br>
 
             <label>Klatre dage i Moselykken</label>
-            <input id="dage_i_moselykken" name="dage_i_moselykken" hx-post="/climber_id" hx-trigger="change"
-                value="{{ user_info.5 }}" /><br>
+            
+            <select hx-post="/climber_id" hx-trigger="change" name="dage_i_moselykken" id="dage_i_moselykken">
+                <option value="{{ user_info.5 }}" selected>{{ user_info.5 }}</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="50+">50+</option>
+            </select><br>
 
             <label>Køn</label>
             <select hx-post="/climber_id" hx-trigger="change" name="gender" id="gender">
@@ -280,6 +350,13 @@
             {% endfor %}
         </table>
     </div>
+    <script>
+        // Lazy version for removing the "1" from the list of possible slings
+        const arr = document.getElementsByClassName("slynger")
+        Array.prototype.forEach.call(arr, function(el) {
+            el.remove(2);
+        });
+    </script>
 
     <script>
         // Get the dropdown and modal elements

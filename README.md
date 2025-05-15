@@ -134,3 +134,4 @@ N/A?
 - climbing days as dropdown 0-50
 - fixed the number of slings in dropdown by doing some hacky js to remove them from the front end
 - get username in export
+- fixed number of slings missing last item, likely due to the face that we are removing "1" with js ... dont know ask thomas

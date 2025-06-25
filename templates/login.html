@@ -5,43 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Form</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-<!-- HTMX -->
-<script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.11.22/dist/cdn/beer.min.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.11.22/dist/cdn/beer.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
 </head>
 
-<body>
-<div style="background-color: rgb(255, 255, 255);height: 100vh; width:100vw" >
-    <div class="box" style=" width:90vw; height: 60vh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  box-shadow: 10px 5px 5px rgb(175, 173, 173);
-  background-color:rgb(212, 222, 232); padding: 10px">
-        <h2 class="title">Login</h2>
-        <p style="font-size: larger;">Welcom to the official bornholm on the rocks climbing competition page. 
-            This page will be where you enter your score for the climbing competition. 
-            Please use the provided login to access the page. If you encounter any issues during the competition please report them to the staff.
-            Also please make sure to write down results on your physical competition sheet just in case.
-            GOOD LUCK AND ENJOY!
-            - The Botr competition team
-        </p>
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="username" name="username" placeholder="username" autofocus="">
+<body style="background-color: #f5eee7;">
+    <div class="large-padding" id="blurs">
+        <article class="blur">
+            <h5>Login</h5>
+            <hr>
+            <p style="font-size: large;padding-top: 10px;">Welcome to the official Bornholm on the rocks (BotR) climbing competition page. Please use the provided login info to access your account. After logging in the page will allow you to enter your results and personal info. If you have any issues please contact the staff.
+            </p>
+            <p style="font-size: large;">GOOD LUCK AND ENJOY!</p>
+            <p style="font-size: large;">- The BotR competition team</p>
+            <nav class="left-align">
+                
+        <nav>
+            <form method="POST" action="/login">
+                <div class="field label border">
+                    <input type="username" name="username" autofocus="">
+                    <label>Username</label>
                 </div>
-            </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password">
+                <div class="field label border">
+                    <input type="password" name="password" autofocus="">
+                    <label>Password</label>
                 </div>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
-        </form>
+                <button class="responsive max">Login</button>
+            </form>
+            </nav class="left-align">
+        </article>
     </div>
-</div>
 </body>

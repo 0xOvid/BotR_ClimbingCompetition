@@ -1,605 +1,488 @@
-#!/usr/bin/env python3
-from flask import Flask, render_template, request, redirect, url_for, Blueprint, session, send_file, send_from_directory
-from flask_basicauth import BasicAuth
-from flask_htmx import HTMX
-import csv
-import logging
-import sqlite3
-import uuid
-from datetime import datetime
-import hashlib
-import os
-import random
-import string
+<!DOCTYPE html>
+<html lang="en">
 
-"""
-Setup flask app variables
-"""
-app = Flask(__name__)
-htmx = HTMX(app)
-basic_auth = BasicAuth(app)
-
-"""
-Setup authentication for admin user
-"""
-app.config['BASIC_AUTH_USERNAME'] = 'admin'
-app.config['BASIC_AUTH_PASSWORD'] = 'admin'
-auth = Blueprint('auth', __name__)
-
-"""
-Setup session management
-"""
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-app.secret_key = '327d80059f70423b95f0fcae39bac6ef'
-
-"""
-Setup logging
-"""
-logging.basicConfig(filename='record.log', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
-"""
-Setup database
-"""
-db_file = "Sqlite3.db"
-
-def cLog(msg, level=""):
-    """
-    Function for printing messages to std out and log file
-    """
-    if level == "err":
-        logger.error(msg)
-    else:
-        logger.info(msg)
-    print(msg)
-
-def connect_to_db():
-    """
-    Connect to database and return connection object
-    """
-    try: 
-        conn = sqlite3.connect(db_file) 
-        cLog("[+] Database Sqlite3.db loaded.") 
-    except: 
-        cLog("[!] Database Sqlite3.db not loaded.", "err")
-        quit()
-    return conn
-
-
-def load_routes_from_csv(filename):
-    """
-    Take path to csv as input and parse the contents
-    return array/list of list for the items
-    The structure of the data should be:
-    nr; area; name; grade; max_score
-    I.e:
-    4;Skolevæggen;Difficault;4a;5
-    """
-    """
-    Take path to csv as input and parse the contents
-    return array/list of list for the items
-    The structure of the data should be:
-    nr; area; name; grade; max_score
-    I.e:
-    4;Skolevæggen;Difficault;4a;5
-    """
-    cLog("[+] Loading routes from csv: " + filename)
-    # Clean file by converting from nordic iso-8859 to standard UTF8 - static for now, should probabpy be done dyn>
-    if os.name != 'nt':
-        os.system("iconv --from-code=ISO-8859-1 --to-code=UTF-8 ./"+filename+" > ./tmp"+filename)
-        os.system("cat tmp"+filename+" > "+filename)
-    lines = []
-    with open(filename,'r') as data:
-        for line in csv.reader(data, delimiter=';'):
-            lines.append(line)
-    cLog("\t|- Csv parsed")
-    return lines
-
-@app.route('/')
-def index():
-    """
-    Route for handeling the initial visit to the site
-    """
-    if 'logged_in' in session.keys():
-        return redirect("/login")
-    else:
-        return redirect("/routes")
-
-@app.route('/login')
-def login():
-    """
-    Render login page
-    """
-    return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
-def login_post():
-    """
-    Handle user login, if successfull the session cookie will be set
-    """
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    if request.form.get("username") and request.form.get("password"):
-        cLog(("[+] User attempting login: username", request.form.get("username"), "|| Password:", request.form.get("password")))
-        h = str(request.form.get("password"))
-        md5_hash = hashlib.md5()
-        # Update the hash object with the input string encoded to bytes
-        md5_hash.update(h.encode('utf-8'))
-        user = cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (request.form.get("username"), md5_hash.hexdigest())).fetchall()
-        if not user: 
-            cLog("\t|- Login failed", "err")
-            return redirect("/login")
-        cLog("\t|- Login successfull")
-        session["uuid"] = user[0][0]
-        session["logged_in"] = True
-        return redirect("/routes")
-    # If unsuccessfull then the user is returned to the login page
-    return redirect("/login")
-
-@app.route('/logout')
-def logout():
-    """
-    Clears session on logout
-    """
-    session.clear()
-    return redirect("/login")
-
-@app.route('/routes', methods=['GET', 'POST'])
-def routes():
-    """
-    renders the main page where users can see routes, and enter their progress
-    also users can enter personal information, all this is tied to the user uuid
-    the uuid is set in the session on login, its created when users are added to the 
-    database
-    """
-    # Check if key exists
-    if 'logged_in' in session.keys():
-        if session['logged_in'] == True:
-            conn = connect_to_db()
-            cursor = conn.cursor()
-            
-            # Get and render user info
-            user_info = cursor.execute("SELECT * FROM climber_id WHERE uuid =\"" + session["uuid"] + "\"").fetchall()
-            u_info = []
-            for u in user_info[0]:
-                u_info.append(u)
-
-            # get all routes 
-            routes = cursor.execute("SELECT * FROM routes").fetchall()
-            # Get users routes in db
-            # overwrite ones where user has submitted data
-            # redner user infor and routes after updating
-            climber_comp_routes = cursor.execute("SELECT * FROM competition WHERE uuid =\"" + session["uuid"] + "\"").fetchall()
-            # transform from tuple  to list
-            i = 0
-            routes_list = []
-            for r in routes:
-                route_list = []
-                for item in r:
-                    route_list.append(item)
-                routes_list.append(route_list)
-                # Add an additional point due to hwo the rendering is setup
-                routes_list[i][3] = routes_list[i][3] + 1
-                i = i + 1
-
-            i = 0
-            for r in routes_list:
-                routes_list[i].append("-")
-                for ur in climber_comp_routes:
-                    route_uuid = r[0]
-                    climber_route_uuid = ur[1]
-                    if route_uuid == climber_route_uuid :
-                        # route_uuid, nr, name, max_score, area, grade
-                        #print("Route match, replacing: index: ", i , "| score:", ur[2] )
-                        routes_list[i][6] = ur[2]
-                        continue
-                        #routes[i] = routes[i] + (climber_route_uuid[2])
-                    #else:
-                        #routes_list[i].append("-")
-                        #routes[i] = routes[i] + ("-",)
-                i += 1
-            return render_template('routes.html', user_info=u_info, routes=routes_list)
-    return redirect("/login")
-
-@app.route('/climber_id', methods=['POST'])
-def climber_id():
-    """
-    Handle changes to climber info
-    uses the uuid in the session to determine what to update in the 
-    database.
-    If the user does nto exsist then a new user is created
-    """
-
-    # Check if user exsists in database
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Check if contents record exsists
-    user_exsist = cursor.execute("SELECT * FROM climber_id WHERE uuid = \"" + session["uuid"] + "\"").fetchall()
-    if not user_exsist:
-        # create user
-        cLog("[+] Creating user")
-        cursor.execute('''INSERT INTO climber_id (uuid, name, gender, team_name, dage_i_moselykken, max_flash) VALUES (?, ?, ?, ?, ?, ?)''', 
-                                    (session["uuid"], request.form.get("navn"), request.form.get("gender"), request.form.get("team_navn"), request.form.get("dage_i_moselykken"), request.form.get("max_flash")))
-        print("\t|- Commiting to database")
-        # Save (commit) the changes
-        conn.commit()
-        # Close the connection
-        conn.close()
-    else:
-        # create user depending on what info was entered in the 
-        # web page
-        cLog("[+] Updating user")
-        if request.form.get("navn"):
-            print("\t|- Navn")
-            cursor.execute('''UPDATE climber_id SET 
-                            name = ?
-                        WHERE uuid = ?''', 
-                        (request.form.get("navn"), 
-                        session["uuid"]))
-        if request.form.get("gender"):
-            cLog("\t|- Gender")
-            cursor.execute('''UPDATE climber_id SET 
-                            gender = ?
-                        WHERE uuid = ?''', 
-                        (request.form.get("gender"), 
-                        session["uuid"]))
-        if request.form.get("team_name"):
-            cLog("\t|- team_name")
-            cursor.execute('''UPDATE climber_id SET 
-                            team_name = ?
-                        WHERE uuid = ?''', 
-                        (request.form.get("team_name"), 
-                        session["uuid"]))
-        if request.form.get("dage_i_moselykken"):
-            cLog("\t|- dage_i_moselykken")
-            cursor.execute('''UPDATE climber_id SET 
-                            dage_i_moselykken = ?
-                        WHERE uuid = ?''', 
-                        (request.form.get("dage_i_moselykken"), 
-                        session["uuid"]))
-        if request.form.get("max_flash"):
-            cLog("\t|- max_flash")
-            cursor.execute('''UPDATE climber_id SET 
-                            max_flash = ?
-                        WHERE uuid = ?''', 
-                        (request.form.get("max_flash"), 
-                        session["uuid"]))
-
-        cLog("\t|- Commiting to database")
-        # Save (commit) the changes
-        conn.commit()
-        # Close the connection
-        conn.close()
-    # update user value
-    return  '', 204
-
-@app.route('/route_post', methods=['POST'])
-def routes_post():
-    """
-    Handles upadtes to the routes
-    updates are psoted via htmx when the users change anything
-    iun the routes table
-    """
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Update user in competition database
-    route_uuid = request.args.get('uuid')
-    score = request.form.get("row")
-
-    # Check if contents record exsists
-    record_exsists = cursor.execute("SELECT * FROM competition WHERE uuid = ? AND route_uuid = ?", 
-                                    (session["uuid"], route_uuid)).fetchall()
-    if not record_exsists:
-        cLog("[+] Inserting into competition")
-        now = datetime.now() # current date and time
-        date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-        cursor.execute('''INSERT INTO competition (uuid, route_uuid, score, timestamp) VALUES (?, ?, ?, ?)''', 
-                                    (session["uuid"], route_uuid, score, date_time))
-    else:
-        cLog("[+] Updating in competition")
-        now = datetime.now() # current date and time
-        date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-        cursor.execute('''UPDATE competition SET 
-                            score = ?, 
-                            timestamp = ?
-                       WHERE uuid = ? AND route_uuid = ?''', 
-                                    (score, date_time, session["uuid"], route_uuid))
-
-    cLog("\t|- Commiting to database")
-    # Save (commit) the changes
-    conn.commit()
-    # Close the connection
-    conn.close()
-    return  '', 204
-
-def createDatabase(cursor, conn):
-    """
-    Creates all relevant databases for the project
-    Uses IF NOT EXSISTS to avoid errors and issues
-    Does not return anything
-    """
-    cLog("[+] Creating tables")
-
-    cursor.execute('''CREATE TABLE IF NOT EXISTS users
-             (uuid text, username text, password text)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS competition
-             (uuid text, route_uuid text, score text, timestamp text)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS routes
-             (route_uuid text, nr, name text, max_score int, area text, grade text)''')
-    cursor.execute('''CREATE TABLE IF NOT EXISTS climber_id
-             (uuid text, name text, gender text, team_name text, max_flash text, dage_i_moselykken text)''')
-    # Save (commit) the changes
-    conn.commit()
-
-@app.route('/admin', methods=['GET', 'POST'])
-@basic_auth.required
-def admin_page():
-    """
-    Renders the administrative page of the application
-    in here the database can be managed
-    users and routes can be added
-    also competition results can be retrived
-    """
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotR Competition</title>
     
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Check if db exsists, if not create one
-    try:
-        users = cursor.execute("SELECT * FROM users").fetchall()
-    except:
-        createDatabase(cursor, conn)
-    
-    users = cursor.execute("SELECT * FROM users").fetchall()
-    routes = cursor.execute("SELECT * FROM routes").fetchall()
-    comp = cursor.execute('''SELECT climber_id.name, routes.name, competition.score FROM competition 
-                                JOIN climber_id ON climber_id.uuid = competition.uuid
-                                JOIN routes ON competition.route_uuid = routes.route_uuid ''').fetchall()
-    
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.11.22/dist/cdn/beer.min.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.11.22/dist/cdn/beer.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
 
-    """
-    Code here handles the different files that can be submitted to the database
-    """
-    if request.method == 'POST':
-        """
-        :: Routes :: 
-        Handles when new routes are uploaded
-        deletes the old table and creates a new table fo routes
-        all routes are given a new uuid therefore the routes cannot be reused from
-        previous uploads
-        """
-        try:
-            if request.files['route']:
-                cLog("[+] Recieved routes file")
-                cLog("\t|- Saving routes file")
-                uploaded_file = request.files['route']
-                uploaded_file.save("tmpRoutes.csv")
-                cLog("\t|- Saved as: tmpRoutes")
-                cLog("\t|- Deleting exsisting routes from db")
-                cursor.execute("DELETE FROM routes")
-                lines = load_routes_from_csv("tmpRoutes.csv")
-                cLog("\t|- Loading to db")
-                for line in lines:
-                    # still some issues with special chars
-                    nr = line[0]
-                    area = line[1] 
-                    name = line[2] 
-                    grade = line[3]
-                    max_score = line[4]
-                    try:
-                        cLog(line)
-                    except:
-                        print("logging failed")
-                    #cLog(line[1].encode("latin-1").decode("utf-8"))
-                    cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
-                                (uuid.uuid4().hex, nr, name, max_score, area, grade))
-                
-                # Save (commit) the changes
-                conn.commit()
-                # Close the connection
-                conn.close()
-                return redirect("/admin", code=302)
-        except Exception as error:
-            cLog("[!] Invalid post /routes", "err")
-            cLog(error, "err")
-        
-        """
-        :: Users ::
-        Handles the posting of new user records, the suer records
-        just containe username and password. when these are posted 
-        new users are created and exah user is given a new uuid
-        """
-        try:
-            if request.files['users']:
-                cLog("[+] Recieved users file")
-                cLog("\t|- Saving users file")
-                uploaded_file = request.files['users']
-                uploaded_file.save("tmpUsers.csv")
-                cLog("\t|- Saved as: tmpUsers")
-                cLog("\t|- Deleting exsisting users from db")
-                # All old users need to be deleted since the new users will have different ids
-                cursor.execute("DELETE FROM users")
-                lines = load_routes_from_csv("tmpUsers.csv")
-                cLog("\t|- Loading to db")
-
-                for line in lines:
-                    h = str(line[1])
-                    md5_hash = hashlib.md5()
-                    # Update the hash object with the input string encoded to bytes
-                    md5_hash.update(h.encode('utf-8'))
-                    user_uuid = uuid.uuid4().hex
-                    # Return the hexadecimal representation of the hash
-                    try:
-                        msg = "\tExecuting: INSERT INTO users (uuid, username, password) VALUES (", user_uuid, line[0], md5_hash.hexdigest(), ")"
-                        cLog(msg)
-                    except:
-                        print("logging failed")
-                    cursor.execute('''INSERT INTO users (uuid, username, password) VALUES (?, ?, ?)''', 
-                                (user_uuid, line[0], md5_hash.hexdigest()))
-                    # create user id - maybe we need to delete users from the comp db as well? 
-                    cursor.execute('''INSERT INTO climber_id (uuid) VALUES ("''' + user_uuid + '''")''')
-                
-                conn.commit()
-                conn.close()
-                return redirect("/admin", code=302)
-        except Exception as error:
-            cLog("[!] Err post /users", "err")
-            cLog(error, "err")
-            return redirect("/admin", code=500)
-
-    log = open("record.log").read()
-    return render_template('admin.html', users=users, routes=routes, comp=comp, log=log)
-
-# downloads
-@app.route('/get_sqlite', methods=['GET'])
-@basic_auth.required
-def get_sqlite():
-    """
-    Exports the sqlite database as a single file
-    """
-    try:
-        return send_file(db_file)
-    except Exception as e:
-	    return str(e)
-
-@app.route('/get_log', methods=['GET'])
-@basic_auth.required
-def get_log():
-    """
-    Exports the log for this web app
-    """
-    try:
-        return send_file("record.log")
-    except Exception as e:
-	    return str(e)
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
 
 
-@app.route('/delete_db', methods=['GET'])
-@basic_auth.required
-def delete_db():
-    """
-    Deletes the full database, and after that creates a new one
-    """
-    cLog("[+] Deleting database contents")
-    conn = connect_to_db()
-    # Create a cursor object using the cursor() method
-    cursor = conn.cursor()
-    # Create tables
-    cursor.execute('''DROP TABLE IF EXISTS competition''')
-    cursor.execute('''DROP TABLE IF EXISTS climber_id''')
-    cursor.execute('''DROP TABLE IF EXISTS routes''')
-    cursor.execute('''DROP TABLE IF EXISTS users''')
-    # populate routes
-    conn.commit()
-    createDatabase(cursor, conn)
-    # Close the connection
-    conn.close()
-    return redirect("/admin", code=302)
+    <style>
+        .button {
+            background-color: #0077b6;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
 
-@app.route('/export_results', methods=['GET'])
-@basic_auth.required
-def export_results():
-    """
-    Function exporting the competition results
-    the exported results will be saved in a temporary file and the export will
-    be in the following format:
-    Rows: uuid, team, navn, køn, max flash, klstredage, antal ruter, rute_uuid, score, grade
-    """
-    cLog("[+] Exporting results as csv")
-    # 
-    # do one row pr route
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    # get user info
-    # Check if user exsists in database
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Check if contents record exsists
-    users = cursor.execute("SELECT * FROM climber_id").fetchall()
-    routes = cursor.execute("SELECT * FROM routes").fetchall()
-    # create header row
-    export = "uuid; brugernavn; navn; køn; team_navn; max_flash; dage_i_moselykken;"
-    # add route uuid to header
-    for route in routes:
-        export += route[2] + "; "
-    export += "\n"
-    
-    for user in users:
-        # check if database for competition is empty, if not then continue
-        
-        username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-        # remove: (' ',)
-        username = username.replace("(", "")
-        username = username.replace(")", "")
-        username = username.replace("'", "")
-        username = username.replace(",", "")
-        # set user info
-        export += str(user[0]) + "; " + username + "; " + str(user[1]) + "; " + str(user[2]) + "; " + str(user[3]) + "; " + str(user[4])  + "; " + str(user[5]) + "; "
-        # go through routes and check if user has completed route
-        # get all routes for user
-        user_routes = cursor.execute("SELECT * FROM competition WHERE uuid = \"" + user[0] + "\"").fetchall()
-        # go through all routes
-        user_row = ""
-        for route in routes:
-            # check for routes user has done
-            route_found = False
-            for uRoute in user_routes:
-                # user has done route
-                if uRoute[1] == route[0]:
-                    user_row += uRoute[2] + "; "
-                    route_found = True
-                    break
-            if not route_found:
-                user_row += "- ;"
-        export += user_row + "\n"
-    
-    cLog("[+] Exporting competition results")
-    export_filename = "comp_exp.csv"
-    cLog("\t|- Deleting old files")
-    if os.path.exists(export_filename):
-        os.remove(export_filename)
-    cLog("\t|- Writing new file")
-    f = open(export_filename, "a")
-    f.write(export)
-    f.close()
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            /* Align text to the left */
+            border-bottom: 1px solid #ddd;
+        }
 
-    return  send_from_directory(".", export_filename)
+        /* Header Styles */
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 1.1em;
+        }
 
-@app.route('/generate_users_file', methods=['POST'])
-@basic_auth.required
-def generate_users_file():
-    """
-    Function to generate a csv with random usernames and passwords
-    generates n users and pwd
-    """
-    export_users_file = "users_and_passwords.csv"
-    str_len = 4
-    usernames_and_passwords = []
-    usernames = []
-    cLog("[+] Generating usernames and passwords")
-    cLog(("\t |- Generating n:", request.form.get("n")))
-    for i in range(int(request.form.get("n"))):
-        # We need to make sure that the userneme is unique
-        while True:
-            username = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(str_len))
-            if username not in usernames:
-                break
-            cLog("\t |- Dublicate username found, recreating")
-        usernames.append(username)
-        password = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(str_len))
-        usernames_and_passwords.append(username + ";" + password)
-        #print(username + ";" + password))
-    cLog("[+] Exporting new users file")
-    cLog("\t|- Deleting old files")
-    if os.path.exists(export_users_file):
-        os.remove(export_users_file)
+        /* Row Styles */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
-    cLog("\t|- Writing new file")
-    f = open(export_users_file, "a")
-    for s in usernames_and_passwords:
-        f.write(s+"\n")
-    f.close()
-    return send_from_directory(".", export_users_file)
+        tr:hover {
+            background-color: #e1f5fe;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+                width: 100%;
+                margin: 0;
+            }
+
+            th {
+                display: none;
+                /* Hide header in mobile view */
+            }
+
+            td {
+                padding: 10px;
+                display: block;
+                text-align: left;
+                /* Ensure text remains left-aligned */
+                position: relative;
+            }
+
+            td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                font-weight: bold;
+                color: #3498db;
+            }
+
+            tr {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(20, 130, 25, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            z-index: 1000;
+            border-top: 2px solid #fff;
+        }
+
+        .modal-content {
+            background-color: #00d816;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+            background-color: #EDEDE9;
+        }
+
+        /* Navbar Container */
+        .navbar {
+            background-color: #d6ccc2;
+            padding: 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navbar List */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            /* Centers the items horizontally */
+            padding: 0;
+        }
+
+        /* Navbar List Items */
+        .nav-list li {
+            margin: 0 10px;
+            /* Adds space between the items */
+        }
+
+        /* Navbar Links */
+        .nav-link {
+            text-decoration: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+
+        /* Logout Button Styling */
+        .logout {
+            background-color: #00b4d8;
+            /* Red color for logout */
+            border-radius: 5px;
+        }
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            .nav-list {
+                flex-direction: row;
+                /* Stacks the items vertically */
+                align-items: center;
+                align-content: space-evenly;
+            }
+
+            .nav-link {
+                padding: 12px;
+                font-size: 1em;
+            }
+
+            .logout {
+                margin-top: 10px;
+            }
+        }
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div style="background-color: white;">
+        <div style="padding: 10px">
+            <h3 style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; color: rgb(77, 82, 86);">Bornholm on the rocks:</h3>
+            <h5 style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600;">Climbing competition</h5>
+            </div>
+        <nav class="toolbar max" style="background-color: var(--surface-dim);">
+            <a href="#ruter" class="nav-link">Ruter</a>
+            <a href="#regler" class="nav-link">Regler/Rules</a>
+            <a href="/logout" class="nav-link" style="background-color: var(--inverse-surface); color: white;">Logout</a>
+        </nav>
+    </div>
+    <div style="padding: 1vh;">
+    <details>
+    <summary>
+        <article style="background-color: var(--primary);">
+        <nav>
+            <div class="max" style="color: white;">Climber/deltager Info</div>
+            <i>keyboard_arrow_down</i>
+        </nav>
+        </article>
+    </summary>
+    <div style="background-color: var(--secondary-container);">
+        <div style="padding: 10px">
+            <label style="font-size: larger;">Navn</label>
+            <input style="float: right;font-size: larger;" type="text" id="navn" name="navn" hx-post="/climber_id" hx-trigger="change" hx-vals="js:{
+                navn: document.getElementById('navn').value, 
+                gender: document.getElementById('team_name').value, 
+                gender: document.getElementById('max_flash').value, 
+                gender: document.getElementById('dage_i_moselykken').value, 
+                gender: document.getElementById('gender').value}" value="{{ user_info.1 }}">
+        </div>
+        <div style="padding: 10px">
+            <label style="font-size: larger;">Team Navn</label>
+            <input  style="font-size: larger; float: right;"id="team_name" name="team_name" hx-post="/climber_id" hx-trigger="change"
+                value="{{ user_info.3 }}" />
+        </div>
+        <div style="padding: 10px">
+            <label style="font-size: larger;">Max flash</label>
+            <select style="font-size: larger;float: right;" hx-post="/climber_id" hx-trigger="change" name="max_flash" id="max_flash">
+                <option value="{{ user_info.4 }}" selected>{{ user_info.4 }}</option>
+                <option value="3g">3g</option>
+
+                <option value="4.a">4.a</option>
+                <option value="4.b">4.b</option>
+                <option value="4.c">4.c</option>
+
+                <option value="5.a">5.a</option>
+                <option value="5.b">5.b</option>
+                <option value="5.c">5.c</option>
+
+                <option value="6.a">6.a</option>
+                <option value="6.a+">6.a+</option>
+                <option value="6.b">6.b</option>
+                <option value="6.b+">6.b+</option>
+                <option value="6.c">6.c</option>
+                <option value="6.c+">6.c+</option>
+
+                <option value="7.a">7.a</option>
+                <option value="7.a+">7.a+</option>
+                <option value="7.b">7.b</option>
+                <option value="7.b+">7.b+</option>
+                <option value="7.c">7.c</option>
+                <option value="7.c+">7.c+</option>
+
+                <option value="8.a">8.a</option>
+                <option value="8.a+">8.a+</option>
+                <option value="8.b">8.b</option>
+                <option value="8.b+">8.b+</option>
+                <option value="8.c">8.c</option>
+                <option value="8.c+">8.c+</option>
+            </select>
+        </div>
+        <div style="padding: 10px">
+            <label style="font-size: larger;" >Klatre dage i Moselykken</label>
+                   <select style="font-size: larger;float: right;" hx-post="/climber_id" hx-trigger="change" name="dage_i_moselykken" id="dage_i_moselykken">
+                <option value="{{ user_info.5 }}" selected>{{ user_info.5 }}</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="50+">50+</option>
+            </select>
+        </div>
+        <div style="padding: 10px">
+            <label style="font-size: larger;">Køn</label>
+            <select style="font-size: larger;float: right;" hx-post="/climber_id" hx-trigger="change" name="gender" id="gender">
+                <option value="{{ user_info.2 }}" selected>{{ user_info.2 }}</option>
+                <option value="M">M</option>
+                <option value="K">K</option>
+            </select>
+        </div>
+    </div>
+    </details>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Resultat opdateret</h2>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div style="padding: 1vh; overflow-x:auto;" id="ruter">
+        <h5 style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600;">Ruter/Routes:</h5>
+        <table>
+            <tr>
+                <th>Område</th>
+                <th>Rute</th>
+                <th>Grad</th>
+                <th>Resultat</th>
+            </tr>
+            {% for route in routes %}
+            <tr id="{{ route.0 }}">
+                <td> Område: {{ route.4 }}</td>
+                <td> Route: {{ route.2 }}</td>
+                <td> Grade: {{ route.5 }}</td>
+                <td> Score:
+                    <select id="slynger" class="slynger" hx-post="/route_post?uuid={{ route.0 }}" hx-trigger="change"
+                        hx-vals="js:{row: document.getElementById('{{ route.0 }}').getElementsByTagName('select')[0].value}">
+                        <option value="{{ route.6}}" selected>{{ route.6}}</option>
+                        <option value="-">-</option>
+                        {% for s in range (1, route.3) %}
+                        <option value="{{ s }}">{{ s }}</option>
+                        {% endfor %}
+                        <option value="Top">Top</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script>
+        // Lazy version for removing the "1" from the list of possible slings
+        const arr = document.getElementsByClassName("slynger")
+        Array.prototype.forEach.call(arr, function(el) {
+            el.remove(2);
+        });
+    </script>
+
+    <script>
+        // Get the dropdown and modal elements
+        const dropdowns = document.querySelectorAll(".slynger");;
+        const modal = document.getElementById('modal');
+
+        // Function to show the modal
+        function showModal() {
+            modal.style.display = 'block';  // Show the modal
+            setTimeout(closeModal, 2000);  // Close the modal after 5 seconds
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = 'none';  // Hide the modal
+        }
+
+        // JavaScript
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('change', showModal);
+        });
+
+    </script>
+
+    <div style="padding: 1vh;" id="regler">
+
+    <details>
+        <summary>
+            <article style="background-color: var(--primary);">
+            <nav>
+                <div class="max" style="color: white;">Regler/Rules</div>
+                <i>keyboard_arrow_down</i>
+            </nav>
+            </article>
+        </summary>
+        <div style="background-color: var(--secondary-container);">
+            <img class="responsive" src="/static/moselykken_map.png" alt="Moselykken map">
+            <p>
+                Der klatres i teams af to. <b> Angiv dit navn, dit køn og jeres team navn i toppen af scorearket.</b>
+                Ruterne skal føres. Topreb er ikke tilladt. Alle klatrere skal bære hjelm under konkurrencen.
+                Du/I vælger selv hvilke ruter, du/I vil klatre – Generelt, jo flere ruter, jo flere point – Dog tæller
+                kun de to højst scorende på hver gradering. Begge klatrere i teamet behøver ikke at klatre de samme
+                ruter. Scoren udregnes for hver enkelt klatrer.
+                Du får point for enten at toppe en rute, eller at klippe 2. slynge eller højere på ruten. I scorearket
+                skal du derfor enten klippe ud for ruten med O-løbs tang i toppen af ruten, eller notere det antal
+                slynger, du nåede at klippe, inden du faldt af. Falder du på ruten, skal du fires helt ned og føre ruten
+                forfra. Du må prøve ruten så mange gange du vil, men skal om bag i køen, hvis der er andre der står i kø
+                til at klatre ruten. Notér kun dit bedste resultat på ruten.
+                Det antal point du får for en rute, afhænger af dit ”handicap”. Jo bedre klatrer du er, jo færre point
+                giver en rute. Til gengæld giver sværere ruter flere point. Angiv dit max flash på klippe indenfor de
+                sidste to år. En dygtig klatrer kan vinde konkurrencen ved at klatre de svære ruter, mens en begynder
+                kan vinde ved at prøve at klatre nogen af de ruter, der er lidt svære end det, vedkommende normalt
+                klatrer, også selvom ruterne ikke toppes.
+                Har du klatret meget i Moseløkken Stenbrud før denne konkurrence, så vil du højst sandsynligt have
+                prøvet nogle af konkurrenceruterne før. For at udjævne den fordel skal du Angive antal af klatredage i
+                Moseløkken før starten på dette års Bornholm on the Rocks. Antallet af dage vil have en betydning for
+                din samlede point score.
+                ”Brug af belay slave betaler sig ikke”. Hvis den ene af de to klatrere i teamet klatrer 3 eller flere
+                ruter mere end den anden klatrer, vil det have en negativ betydning for begge klatreres samlede point
+                score.
+                Baseret på dit handicap giver ruterne flere eller færre point - se nedenstående tabel. Et eksempel. Er
+                dit bedste flash på klippe indenfor de sidste 2 år f.eks. 6a, og du nu topper en 6a konkurrencerute
+                (antal forsøg er underordnet), da vil du få 1,1*rutens top point 29,7 (27*1,1). Topper du en 5a rute, da
+                får du 0,8*rutens top point 19,8 (24*0,8). Topper du en 7a rute, da får du 1,7* rutens top point 56,1
+                (33*1,7). Du får dog ikke kun point for at toppe en rute. Klipper du minimum 2. bolt på ruten giver det
+                et forholdsmæssigt point. F.eks. på en 6c rute, hvor der er 4 bolte (under ankeret), og du klipper 2.
+                bolt, da får du 2/4 dele af 80% af rutens point (de sidste 20% opnås kun ved at toppe ruten), hvilket
+                giver 18,6 point (31*1,5*0,80/4*2). I alt for de fire ruter har du nu fået 123,6 point. Men da du har
+                været i Moseløkken før, f.eks. 7 dage, korrigeres dit resultat med 0,98, og hvis din klatremakker har
+                klatret 7 ruter – tre mere end dig - korrigeres med yderligere 0,95, hvorved dit endelige resultat
+                bliver 115,07.
+            </p>
+            <img class="responsive" src="/static/regler.png">
+            <p>
+                <b>Husk at klatre PETZL ruten.</b> Rutens gradering er hemmelig, men den tæller dobbelt i konkurrencen.
+                <b>Husk at klatre Speed ruten og få noteret dit hurtigste forsøg. </b>Ruten tæller ikke med i
+                hovedkonkurrencen, men der er særskilt præmie til BotR’s hurtigste kvinde og mand.
+                Den første klatrer, der klatrer en rute, sætter slynger på ruten og lader dem hænge. Fra kl. 15.00, skal
+                den sidste klatrer i køen til ruten tage slyngerne med ned og aflevere dem ved dommerbordet.
+                Konkurrencen slutter kl. 16. Påbegyndt klatrerute må klatres færdig indtil top eller fald.
+                Kl. 18.00 forventes de endelige resultater at foreligge. Hvis der er nogen, der har indsigelser til egne
+                eller andres resultater, herunder observeret snyd, skal de indleveres til dommerne inden kl. 19.00.
+                Der er præmier til de tre bedste kvinder og de tre bedste mænd.
+                Evt. anvisninger fra dommerne skal følges. Tvivlsspørgsmål til fortolkning af reglerne kan rettes til -
+                og afgøres alene af – dommerne. Overdommer: Laust Højmark, tlf. 23957119. Meddommere: Thomas Rosenberg,
+                tlf. 51393023 og Yula Dalberg tlf. 20853055
+            </p>
+        </div>
+        </details>
+    </div>
+    <!-- Modal example -->
+    <dialog id="modal-example">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" data-target="modal-example" onclick="toggleModal(event)"></button>
+                <h3>Confirm your action!</h3>
+            </header>
+            <p>
+                Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus
+                pellentesque. Nullam finibus risus non semper euismod.
+            </p>
+            <footer>
+                <button role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">
+                    Cancel</button><button autofocus data-target="modal-example" onclick="toggleModal(event)">
+                    Confirm
+                </button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ Modal example -->
+
+</body>

@@ -113,19 +113,16 @@
 
     <div class="main" id="top">
         <h1>Welcome to the Admin page</h1>
-        <p>This page is meant for the amdinistration of the climbing contest Bornholm on the rocks.</p>
-        <p><b>Note that uploading to a database will automatically delete the previous content of the database, this
-                might lead to issues with how they relate due to uuids. Therefore this will break things if done in
-                production. If this does break during the competition the logfile can be used to retrive the original
-                uuids of people, just dont count on it
+<!--        <p>This page is meant for the amdinistration of the climbing contest Bornholm on the rocks.</p>-->
+        <p><b>Note: Uploading files to a database will automatically delete the previous content of the database!
             </b></p>
-
+<!--
         <h3>.:: COMPETITION MODE ::.</h3>
         <p>When competition mode is enablet, no users or routes can be uploaded to the database, also the database
             cannot be deleted from the web app. I.e everything is locked down and read for action.</p>
         <label>Competition mode:
             <input type="checkbox"></label>
-
+-->
         <div style="padding: 10px;background-color: aliceblue; box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);"
             id="server_func">
             <h3>.:: SERVER FUNCTIONS ::.</h3>
@@ -150,9 +147,8 @@
             </table>
 
             <h4>Create users file</h4>
-            <p>The following function generates a users file for use with the database, a manual file can be used as.
-                THE FILE IS NOT AUTOMATICALLY UPLOADED TO THE DATABASE.
-                well.</p>
+            <p>The following function generates a users file with usernames and passwords for climbers.</p>
+            <p>THE FILE IS NOT AUTOMATICALLY UPLOADED TO THE DATABASE!</p>
             <form action="/generate_users_file" method="post">
                 <label for="fname">number of users to generate:</label>
                 <input type="text" id="n" name="n"><br><br>
@@ -273,11 +269,12 @@
                     <td>Deletes the full database. This will permanently delete all contents from the database of the
                         application.</td>
                 </tr>
+                <!--
                 <tr>
                     <td><a href="/delete_app" class="button">Delete applicaiton</a></td>
                     <td>This deletes the database and all local files, this will perform a full reset of the
                         application.</td>
-                </tr>
+                </tr>-->
             </table>
         </div>
     </div>

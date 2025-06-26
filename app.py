@@ -226,7 +226,7 @@ def climber_id():
     else:
         # create user depending on what info was entered in the 
         # web page
-        cLog("[+] Updating user")
+        cLog("[+] Updating user: "+session["uuid"])
         if request.form.get("navn"):
             print("\t|- Navn")
             cursor.execute('''UPDATE climber_id SET 

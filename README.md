@@ -64,11 +64,17 @@ python -m pytest
 - implementer state management?
 - maybe setup traefik
 
+- need to do stress testing on cloud
+- also need to setup the app as a service that will just restart if it goes down
+
 2025-05-09 - test
 - Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
 - opdater tekst på login page 
 - måske gør så tables ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
 
+2025-06-26
+- added stress testing w. k6
+- reworked entire ui to look nicer with beercss
 
 # .:: DONE ::.
 - tjek om man kan få fil download til at virke for både windows og linux

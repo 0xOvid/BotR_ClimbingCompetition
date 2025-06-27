@@ -18,6 +18,9 @@ This information is then used to keep track of climbers scores during the compet
 The applicaiotn also allows users to enter their name and other info. 
 All of this cna then be exported at the end of the competition, to a csv file that can the be imported into a prepriotary excel macro sheet to perform the final calculations.
 
+<p align="center">
+<img src="/botr_demo.png" width="350">
+</p>
 
 # Usage
 To use the applicaiton the following bash script can be run.

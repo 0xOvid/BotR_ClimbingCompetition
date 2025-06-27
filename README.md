@@ -1,13 +1,32 @@
-# Intro
-This is the application for running competitions for bornholm on the rocks.
-The applicaiton is scoped for a userbase of less than 100 users.
-The applicaiton interface is designed for mobile use and the administarion portion is designed for laptop use only.
-Its created in flask and uses templates for displaying and updating contents for the users.
-Please refer to the swagger or the admin page for more info on the functioning of the app or how endpoints are layed out.
-## Running the application
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#)
+[![Flask](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff)](#)
+[![SQLite](https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white)](#)
+[![HTMX](https://img.shields.io/badge/HTMX-36C?logo=htmx&logoColor=fff)](#)
 
-### Git clone
-Github
+# Table of Contents
+- [About](#about)
+- [Usage](#usage)
+   - [Deployment](#deployment)
+   - [Testing](#testing)
+- [Todo](#todo)
+- [Credits](#credits)
+  
+# About
+This applicaiton was created to facilitate the Bonrholm on the Rocks (BotR) climbing competition of 2025.
+The applicaiton is a simple flask app that recives and stores user input and stores it in an sqlite database.
+This information is then used to keep track of climbers scores during the competition.
+The applicaiotn also allows users to enter their name and other info. 
+All of this cna then be exported at the end of the competition, to a csv file that can the be imported into a prepriotary excel macro sheet to perform the final calculations.
+
+
+# Usage
+To use the applicaiton the following bash script can be run.
+The script downloads the application. 
+Installs required dependencies. 
+Runs tests. 
+And spins up the application ready for use.
+The app is put in a while true loop to make sure that it will continue to run even if if it crashes. This is done to ensure no down time during a production run.
+
 ```
 git clone https://github.com/0xOvid/BotR_ClimbingCompetition
 cd BotR_ClimbingCompetition/
@@ -21,16 +40,17 @@ pip install Flask-BasicAuth
 pip install flask-htmx
 pip install pytest
 pip install requests
+python -m pytest # for some reason tests fail on first run
 python -m pytest
 rm ./comp_exp.csv
 rm ./record.log
 rm ./tmptmpRoutes.csv
 rm ./tmptmpUsers.csv
 
-flask run --host=0.0.0.0
+while true; do flask run --host=0.0.0.0 -p 80; sleep 10; done
 ```
 
-### Deployment
+## Deployment
 For deployment we can just run it via screen!: 
 https://devhints.io/screen
 
@@ -45,7 +65,7 @@ screen -ls
 screen -r botr
 ```
 
-### testing
+## Testing
 to test the application run the following
 ```
 python -m pytest
@@ -53,7 +73,7 @@ python -m pytest
 
 
 
-# .:: TODO ::.
+# TODO 
 
 - lav en intro side hvis det er første gang folk logger ind
 
@@ -76,7 +96,7 @@ python -m pytest
 - added stress testing w. k6
 - reworked entire ui to look nicer with beercss
 
-# .:: DONE ::.
+## .:: DONE ::.
 - tjek om man kan få fil download til at virke for både windows og linux
 - admin siden loader ikke uden database - fiks
 - fix css its a bit to small for people on mobile
@@ -141,3 +161,7 @@ N/A?
 - fixed the number of slings in dropdown by doing some hacky js to remove them from the front end
 - get username in export
 - fixed number of slings missing last item, likely due to the face that we are removing "1" with js ... dont know ask thomas
+
+# Credits
+Mark for making everything
+Thomas for ideas, and testing

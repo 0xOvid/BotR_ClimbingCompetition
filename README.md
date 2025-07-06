@@ -32,34 +32,10 @@ And spins up the application ready for use.
 The app is put in a while true loop to make sure that it will continue to run even if if it crashes. This is done to ensure no down time during a production run.
 
 ```
-git clone https://github.com/0xOvid/BotR_ClimbingCompetition
-cd BotR_ClimbingCompetition/
-
-apt install python3.12-venv
-python3 -m venv botr
-
-source botr/bin/activate
-pip install flask
-pip install Flask-BasicAuth
-pip install flask-htmx
-pip install pytest
-pip install requests
-python -m pytest # for some reason tests fail on first run
-python -m pytest
-rm ./comp_exp.csv
-rm ./record.log
-rm ./tmptmpRoutes.csv
-rm ./tmptmpUsers.csv
-
-while true; do flask run --host=0.0.0.0 -p 80; sleep 10; done
+wget -O - https://raw.githubusercontent.com/0xOvid/BotR_ClimbingCompetition/refs/heads/main/make.sh | sh
 ```
 
-## Deployment
-For deployment we can just run it via screen!: 
-https://devhints.io/screen
-
-Idea: have one screen running the competition applicaiton
-Have another doing backups of the database every 10 minutes and putting these in a seperate place for safe storage
+The above runs the make.sh script which in turn runs the flask application with "screen". 
 
 ```
 screen -S botr

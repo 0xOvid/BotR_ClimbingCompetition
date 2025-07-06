@@ -1,6 +1,10 @@
+# Setup
+git clone https://github.com/0xOvid/BotR_ClimbingCompetition
+cd BotR_ClimbingCompetition/
+# Install required python vnen
 apt install python3.12-venv -y
 python3 -m venv botr
-
+# Run venv
 source botr/bin/activate
 pip install -r requirements.txt
 python -m pytest # for some reason tests fail on first run

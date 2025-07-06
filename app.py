@@ -599,3 +599,4 @@ def generate_users_file():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    createDatabase(cursor, conn)

@@ -37,13 +37,17 @@ wget -O - https://raw.githubusercontent.com/0xOvid/BotR_ClimbingCompetition/refs
 
 The above runs the make.sh script which in turn runs the flask application with "screen". 
 
+## Resterting the App
+if the app needs restartign, terminate the screen session. Then go to the directory and use the follwoing comamnd to get everything running again:
+
 ```
-screen -S botr
-[when we want to exit we can just:]
-ctrl+a and ctrl+d
-screen -ls
-screen -r botr
+screen -dm bash -c "
+source botr/bin/activate
+# Run in production
+while true; do flask run --host=0.0.0.0 -p 80; sleep 10; done"
 ```
+
+
 
 ## Testing
 to test the application run the following

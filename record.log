@@ -1,0 +1,2110 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /admin2 [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 623, in admin2_routes_page
+    return render_template('./admin/base.html', )# users=users, routes=routes, comp=comp, log=log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\base.html", line 80, in top-level template code
+    {% include "nav.html" %}
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: nav.html
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:17:06] "[35m[1mGET /admin2 HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /admin2 [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 623, in admin2_routes_page
+    return render_template('/admin/base.html', )# users=users, routes=routes, comp=comp, log=log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\base.html", line 80, in top-level template code
+    {% include "nav.html" %}
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: nav.html
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:17:47] "[35m[1mGET /admin2 HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /admin2 [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 623, in admin2_routes_page
+    return render_template('admin/base.html', )# users=users, routes=routes, comp=comp, log=log)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\base.html", line 80, in top-level template code
+    {% include "nav.html" %}
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: nav.html
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:18:19] "[35m[1mGET /admin2 HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:18:42] "GET /admin2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:18:42] "[33mGET /dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:21:13] "GET /admin2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:21:13] "[33mGET /dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:21:14] "GET /admin2 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:21:15] "[33mGET /dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:25:09] "[33mGET /admin2 HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:25:26] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:25:26] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:07] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:07] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:50] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:50] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:51] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:51] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:59] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:26:59] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:28:22] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:28:22] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:28:59] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:29:00] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:29:14] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:29:14] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:30:13] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:30:13] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:35:40] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:35:40] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:25] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:26] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:27] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:27] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:28] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:28] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:38] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:38] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:39] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:39] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:54] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:36:54] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:37:03] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:37:04] "[33mGET /admin/dithered-image.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 660, in admin_routes_edit_page
+    route = cursor.execute("SELECT * FROM routes WHERE uuid = ?", uuid).fetchall()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: uuid
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:53:30] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 660, in admin_routes_edit_page
+    route = cursor.execute("SELECT * FROM routes WHERE route_uuid = ?", uuid).fetchall()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 1, and there are 32 supplied.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:54:08] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 660, in admin_routes_edit_page
+    route = cursor.execute("SELECT * FROM routes WHERE route_uuid = ?", uuid).fetchall()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 1, and there are 32 supplied.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:54:43] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:55:55] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:55:55] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:56:24] "GET /admin/routes/'or'1'='1 HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:56:24] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/'or'1'='1 [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 661, in admin_routes_edit_page
+    return render_template('admin/routes_edit.html', route=route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\routes_edit.html", line 5, in template
+    <h2 style="margin-top: 0px;">Edit Route {{ . }}{NAME}</h2>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateSyntaxError: unexpected '.'
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:57:07] "[35m[1mGET /admin/routes/'or'1'='1 HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 661, in admin_routes_edit_page
+    return render_template('admin/routes_edit.html', route=route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\routes_edit.html", line 5, in template
+    <h2 style="margin-top: 0px;">Edit Route {{ . }}{NAME}</h2>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateSyntaxError: unexpected '.'
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:57:11] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 661, in admin_routes_edit_page
+    return render_template('admin/routes_edit.html', route=route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\routes_edit.html", line 5, in template
+    <h2 style="margin-top: 0px;">Edit Route {{ .uuid }}{NAME}</h2>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.TemplateSyntaxError: unexpected '.'
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:57:44] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:58:06] "GET /admin/routes/'or'1'='1 HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:58:06] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:58:11] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:58:11] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:02] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:02] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:09] "GET /admin/routes/'or'1'='1 HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:09] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:11] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:11] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:13] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 02:59:13] "GET /admin/routes/dithered-image.png HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:00:12] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:00:14] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:00:30] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:00:57] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:01:10] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:01:21] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:01:21] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 662, in admin_routes_edit_page
+    return render_template('admin/routes_edit.html', route=route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\routes_edit.html", line 5, in top-level template code
+    <h2 style="margin-top: 0px;">Edit Route {{ route[1].route_uuid }} - {{ route.name }}</h2>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: list object has no element 1
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:01:28] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:01:46] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:02:16] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:02:35] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/f8d4469978de4c6f972fa5185f06c96a [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 662, in admin_routes_edit_page
+    return render_template('admin/routes_edit.html', route=route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
+    code = environment.compile(source, name, filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\routes_edit.html", line 32, in template
+    <input value="{{  }}">
+jinja2.exceptions.TemplateSyntaxError: Expected an expression, got 'end of print statement'
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:04:06] "[35m[1mGET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:04:25] "GET /admin/routes/f8d4469978de4c6f972fa5185f06c96a HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:05:47] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:05:52] "[33mGET /admin/route/820187fcbac748cfb64be1905a6693b5 HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 03:05:56] "GET /admin/routes/820187fcbac748cfb64be1905a6693b5 HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:28:02] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:28:06] "[33mGET /admin2 HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:28:18] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:28:24] "GET /admin/routes/980d8aef2b79455f89d489ef51d5622f HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:33:45] "GET /admin/routes/980d8aef2b79455f89d489ef51d5622f HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:33:46] "POST /admin/routes/980d8aef2b79455f89d489ef51d5622f HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /admin/routes/980d8aef2b79455f89d489ef51d5622f [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    return self.finalize_request(rv)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 889, in finalize_request
+    response = self.make_response(rv)
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1161, in make_response
+    raise TypeError(
+TypeError: The view function for 'admin_routes_update' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:35:12] "[35m[1mPOST /admin/routes/980d8aef2b79455f89d489ef51d5622f HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:36:06] "[32mPOST /admin/routes/980d8aef2b79455f89d489ef51d5622f HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:36:06] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:38:21] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:38:25] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:38:25] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:38:41] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:39:54] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:40:00] "[31m[1mPOST /generate_users_file HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:40:02] "[31m[1mPOST /generate_users_file HTTP/1.1[0m" 401 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:45:16] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:45:58] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:49:40] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:49:50] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:12] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:12] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:34] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:34] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:41] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:52:41] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:12] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:12] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:44] "[33mGET /admin/comp HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:44] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:45] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:46] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:50] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:50] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:52] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:53] "GET /admin/users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:53] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:58] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:54:58] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:58:55] "GET /admin/comp HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:58:59] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:58:59] "GET /admin/comp HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2025 23:59:01] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:35] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:49] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:51] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:53] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:58] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:25:59] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:11] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:11] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:14] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:15] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:17] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:26:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:12] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:13] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:14] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:21] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:27:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:33:32] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 17:33:44] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 21:24:47] "GET /admin/comp HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 21:24:49] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 21:25:37] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:17:57] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:17:59] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:18:01] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:18:06] "GET /admin/routes/9639c1500788467699eb26631ab42e77 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:18:13] "[33mGET /admin/server HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:18:15] "GET /admin/comp HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2025 23:18:19] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 15:58:17] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Adding new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 15:58:23] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 15:58:23] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:[+] Adding new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:00:49] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:00:49] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:[+] Adding new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:15] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:15] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Adding new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:16] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:16] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:49] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Adding new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:54] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:01:54] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:04:36] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:04:36] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:04:40] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:05:51] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:05:51] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:05:54] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:07:14] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:07:19] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:07:19] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:08:34] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:08:34] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', ''), ('name', ''), ('grade', ''), ('max_score', ''), ('factor', '')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Error on insert of new route
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:08:35] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:08:35] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:08:38] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:09:03] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:09:03] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:09:47] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:09:47] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:09:51] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProgrammingProjects\\BotR_ClimbingCompetition\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '1'), ('max_score', '1'), ('factor', '1')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:10:28] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:10:28] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 917-258-346
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:23] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '2'), ('name', '2'), ('grade', '2'), ('max_score', '2'), ('factor', '2')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:30] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:30] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '2'), ('name', '2'), ('grade', '2'), ('max_score', '2'), ('factor', '2')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:49] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:49] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:12:54] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '2'), ('name', '2'), ('grade', '2'), ('max_score', '2'), ('factor', '2')])>)
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:14:41] "[32mPOST /admin/routes HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:14:41] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:15:44] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:15:48] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Generating usernames and passwords
+INFO:app:('\t |- Generating n:', '1')
+INFO:app:[+] Exporting new users file
+INFO:app:	|- Deleting old files
+INFO:app:	|- Writing new file
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:15:52] "POST /generate_users_file HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:[!] Invalid post /routes
+ERROR:app:400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+INFO:app:[+] Recieved users file
+INFO:app:	|- Saving users file
+INFO:app:	|- Saved as: tmpUsers
+INFO:app:	|- Deleting exsisting users from db
+INFO:app:[+] Loading routes from csv: tmpUsers.csv
+INFO:app:	|- Csv parsed
+INFO:app:	|- Loading to db
+INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', '131d9cac04e44057a9a8cf044ec7613c', 'NK4R', '1a3f82856a16a4823348c9209708742d', ')')
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:04] "[32mPOST /admin HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:05] "GET /admin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:26] "[32mGET /routes HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:26] "GET /login HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:('[+] User attempting login: username', 'NK4R', '|| Password:', 'Z7AP')
+INFO:app:	|- Login successfull
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "GET /static/regler.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "GET /static/moselykken_map.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:16:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:17:02] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:17:07] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:21:08] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 715, in admin_routes_update
+    cursor.execute('''UPDATE routes SET
+sqlite3.OperationalError: near "max_score": syntax error
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:21:14] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 715, in admin_routes_update
+    cursor.execute('''UPDATE routes SET
+sqlite3.OperationalError: near "max_score": syntax error
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:21:20] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:22:20] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 715, in admin_routes_update
+    cursor.execute('''UPDATE routes SET
+sqlite3.OperationalError: near "max_score": syntax error
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:22:22] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 715, in admin_routes_update
+    cursor.execute('''UPDATE routes SET
+sqlite3.OperationalError: near "max_score": syntax error
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:23:04] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 715, in admin_routes_update
+    cursor.execute('''UPDATE routes SET
+sqlite3.OperationalError: no such column: uuid
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:24:11] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:24:39] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 16:24:39] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:23:47] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:23:48] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:23:48] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:24:11] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:24:11] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:24:52] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:24:52] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:26] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#rules')
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:27] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:27] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:34] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:34] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#rules')
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:35] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:35] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#rules')
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:40] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:26:40] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating content:', '#rules')
+INFO:app:	|-> File written
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:28:45] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:28:45] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating content:', '#greeting')
+ERROR:app:Exception on /admin/content [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 769, in admin_content_update
+    with open("/templates/"+request.get_json()["type"]+".html", "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/templates/#greeting.html'
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:31:21] "[35m[1mPOST /admin/content HTTP/1.1[0m" 500 -
+INFO:app:('[+] Updating content:', '#greeting')
+ERROR:app:Exception on /admin/content [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 769, in admin_content_update
+    with open("/templates/"+request.get_json()["type"]+".html", "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/templates/#greeting.html'
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:31:22] "[35m[1mPOST /admin/content HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating content:', '#greeting')
+ERROR:app:Exception on /admin/content [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 769, in admin_content_update
+    with open("/templates/"+request.get_json()["type"]+".html", "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/templates/#greeting.html'
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:32:11] "[35m[1mPOST /admin/content HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:32:12] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#greeting')
+ERROR:app:Exception on /admin/content [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 769, in admin_content_update
+    with open("/templates/"+request.get_json()["type"]+".html", "w") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/templates/#greeting.html'
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:32:15] "[35m[1mPOST /admin/content HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:32:59] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:32:59] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#rules')
+INFO:app:	|-> File written:#rules.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:33:00] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:33:00] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:33:35] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:34:28] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:34:28] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:34:29] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:34:29] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:35:17] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:35:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:35:18] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:35:18] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:36:12] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:36:12] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:36:13] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:36:13] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:38:16] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:38:16] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 135, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\login.html", line 21, in top-level template code
+    {% include "#greeting.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: #greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:39:41] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:39:41] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:14] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:14] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:45] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:45] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:46] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:40:46] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#rules')
+INFO:app:	|-> File written:#rules.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:04] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:04] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:06] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:06] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:17] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:28] "GET /admin/content HTTP/1.1" 200 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:36] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:36] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:42] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:41:42] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating content:', '#greeting')
+INFO:app:	|-> File written:#greeting.html
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:44:05] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:44:05] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:44:09] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:44:09] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:28] "GET /admin/comp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:29] "GET /admin/server HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:35] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:38] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:39] "GET /admin/users HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:40] "GET /admin/comp HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:41] "GET /admin/server HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:49:44] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:50:52] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:50:52] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:('[+] User attempting login: username', 'NK4R', '|| Password:', 'Z7AP')
+INFO:app:	|- Login successfull
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:51:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    return render_template('routes.html', user_info=u_info, routes=routes_list)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 362, in top-level template code
+    {% for s in range (1, route.3) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:51:26] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:51:26] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:51:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:51:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    return render_template('routes.html', user_info=u_info, routes=routes_list)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 362, in top-level template code
+    {% for s in range (1, route.3) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:53:17] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:53:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:53:20] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    return render_template('routes.html', user_info=u_info, routes=routes_list)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 362, in top-level template code
+    {% for s in range (1, route.3) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:55:49] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:55:49] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    return render_template('routes.html', user_info=u_info, routes=routes_list)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 362, in top-level template code
+    {% for s in range (1, route.3) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:55:50] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:55:50] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    return render_template('routes.html', user_info=u_info, routes=routes_list)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 362, in top-level template code
+    {% for s in range (1, route.3) %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: 'NoneType' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:55:54] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:56:25] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b')
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:56:31] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:56:31] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:57:28] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:57:35] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:57:35] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:58:48] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '2'), ('max_score', '2'), ('factor', '2')]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:58:54] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:58:54] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:59:02] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 20:59:02] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:01:51] "GET /routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating user: 131d9cac04e44057a9a8cf044ec7613c
+INFO:app:	|- Gender
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:01:55] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating user: 131d9cac04e44057a9a8cf044ec7613c
+INFO:app:	|- team_name
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:01:57] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating user: 131d9cac04e44057a9a8cf044ec7613c
+INFO:app:	|- max_flash
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:01:57] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating user: 131d9cac04e44057a9a8cf044ec7613c
+INFO:app:	|- dage_i_moselykken
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:01:59] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating user: 131d9cac04e44057a9a8cf044ec7613c
+INFO:app:	|- Gender
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:02:00] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:02:02] "[35m[1mPOST /route_post?uuid=51756b7ba89e4942b2fb6505b98ea6a1 HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:02:06] "[35m[1mPOST /route_post?uuid=ee844d4c93834dfb998a5a59dfe4f3ec HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 220, in routes
+    #routes[i] = routes[i] + (climber_route_uuid[2])
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 152, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 133, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\routes.html", line 416, in top-level template code
+    alert(document.getElementById('{{ route.0 }}').getElementsByTagName('select')[0].value)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 466, in getitem
+    return obj[argument]
+           ~~~^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'route' is undefined
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:48:33] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:48:33] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:49:07] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:49:07] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:50:17] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:50:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:52:23] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:52:23] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:53:53] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:53:53] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:53:56] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /route_post [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 307, in routes_post
+    route_uuid = request.get_json()["id"]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'id'
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:56:08] "[35m[1mPOST /route_post HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:56:47] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:56:47] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:f8d4469978de4c6f972fa5185f06c96a|Top
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:56:49] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:58:12] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:58:12] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:51756b7ba89e4942b2fb6505b98ea6a1|-
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating in competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:58:16] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Updating route:51756b7ba89e4942b2fb6505b98ea6a1|3
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating in competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:58:41] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:59:26] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:59:26] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:51756b7ba89e4942b2fb6505b98ea6a1|Top
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating in competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 21:59:29] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:02:53] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:02:53] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:51756b7ba89e4942b2fb6505b98ea6a1|3
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating in competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:02:56] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Updating route:80aef84a05f04346a8e644555dfbf639|4
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:03:31] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:04:15] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:04:15] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:eb42b14abf934606a7087e2a36d52241|Top
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:04:17] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating route:80aef84a05f04346a8e644555dfbf639|4
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Updating in competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:04:36] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:05:17] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:05:17] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Updating route:b85ffb77d6084b8086dcadf26678dac9|2
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:05:20] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating route:9639c1500788467699eb26631ab42e77|6
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:05:25] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:24] "GET /admin/routes/d7c0ced34cfa42dc8906d45b832b8253 HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:27] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:29] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([('area', '1'), ('name', '1'), ('grade', '2'), ('max_score', '2'), ('factor', '')]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:30] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:30] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:33] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([('area', '3'), ('name', '1'), ('grade', '2'), ('max_score', '2'), ('factor', '')]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:36] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:36] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:51] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([('area', '3'), ('name', '1'), ('grade', '2'), ('max_score', '2'), ('factor', '')]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:53] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:53] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:55] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([('area', '34'), ('name', '1'), ('grade', '2'), ('max_score', '2'), ('factor', '')]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:59] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:11:59] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:17:59] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:18:00] "[33mPOST /admin/routes_edit HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:17] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:19] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:19] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:39] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:39] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:41] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', ImmutableMultiDict([]))
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:48] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:48] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:19:51] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:16] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:18] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'update', 'id': '74f02668bffe40da9ceada26c59b761b', 'area': '1', 'name': '1', 'grade': '1', 'max_score': '1', 'factor': '1'})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:25] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:25] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:28] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:30] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'delete', 'id': '74f02668bffe40da9ceada26c59b761b'})
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 711, in admin_routes_update
+    cursor.execute('''DELETE FROM routes WHERE route_uuid = ? ''', uuid)
+sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 1, and there are 32 supplied.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:32] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:22:34] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:13] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'delete', 'id': '74f02668bffe40da9ceada26c59b761b'})
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 711, in admin_routes_update
+    cursor.execute('''DELETE FROM routes WHERE route_uuid = ? ''', (uuid) )
+sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 1, and there are 32 supplied.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:15] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:16] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:43] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'delete', 'id': '74f02668bffe40da9ceada26c59b761b'})
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 711, in admin_routes_update
+    cursor.execute('''DELETE FROM routes WHERE route_uuid = ''' + uuid )
+sqlite3.OperationalError: unrecognized token: "74f02668bffe40da9ceada26c59b761b"
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:44] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'delete', 'id': '74f02668bffe40da9ceada26c59b761b'})
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /admin/routes/74f02668bffe40da9ceada26c59b761b [POST]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 711, in admin_routes_update
+    cursor.execute('''DELETE FROM routes WHERE route_uuid = ''' + uuid )
+sqlite3.OperationalError: unrecognized token: "74f02668bffe40da9ceada26c59b761b"
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:44] "[35m[1mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:23:46] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:24:15] "GET /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '74f02668bffe40da9ceada26c59b761b', '|', {'action': 'delete', 'id': '74f02668bffe40da9ceada26c59b761b'})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:24:17] "[32mPOST /admin/routes/74f02668bffe40da9ceada26c59b761b HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:24:17] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:24:18] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:25:41] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:25:43] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:25:44] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:16] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvï¿½ggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:18] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:18] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:43] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvï¿½ggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:45] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:26:45] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:04] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvïæggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:08] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:08] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:11] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:13] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:16] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvæggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:20] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:20] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:41] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvæggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:42] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:42] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:49] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvæggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:53] "[32mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:27:53] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:29:08] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:29:08] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:('[+] Updating route:', '7fe0d3fac3254837a93a665f6d0361bf', '|', {'action': 'update', 'id': '7fe0d3fac3254837a93a665f6d0361bf', 'area': 'Laustvæggen', 'name': 'Yoni', 'grade': '6a+', 'max_score': '8', 'factor': ''})
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:29:09] "[35m[1mPOST /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1[0m" 204 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:19] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:19] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:20] "GET /admin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:21] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:25] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:35:25] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:36:45] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:36:45] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:18] "GET /admin/routes/7fe0d3fac3254837a93a665f6d0361bf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:18] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:20] "GET /admin/log HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:20] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:40] "GET /admin/log HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Aug/2025 22:38:40] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -

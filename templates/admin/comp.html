@@ -1,0 +1,29 @@
+{% include "admin/base.html" %}
+<td class="main">
+    <div class="card">
+        <h3 style="margin-top: 0px;">Competition Leaderboard:</h3>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">Raw Competition results:</h3>
+        <div style="height: 30vh; overflow:scroll">
+            <table>
+                <tr>
+                    <th>climber name</th>
+                    <th>route</th>
+                    <th>score</th>
+                </tr>
+                {% for c in comp %}
+                <tr hx-post="/route_post" hx-trigger="change">
+                    <td>{{ c.0 }}</td>
+                    <td>{{ c.1 }}</td>
+                    <td>{{ c.2 }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</td>
+{% include "admin/footer.html" %}
+
+

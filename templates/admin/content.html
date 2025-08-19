@@ -1,0 +1,84 @@
+
+{% include "admin/base.html" %}
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+<td class="main">
+    <div class="card">
+        <h3 style="margin-top: 0px;">Welcome message:</h3>
+        <!-- Create the editor container -->
+        <div id="greeting">
+        <p>Cool rules</p>
+        <p>Some initial <strong>bold</strong> text</p>
+        <p><br /></p>
+        </div>
+        <button onclick="SendQuillContent('#greeting')">Send</button>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">Rules:</h3>
+        <!-- Create the editor container -->
+        <div id="rules">
+        <p>Hello World!</p>
+        <p>Some initial <strong>bold</strong> text</p>
+        <p><br /></p>
+        </div>
+        <button onclick="SendQuillContent('#rules')">Send</button>
+ 
+    </div>
+</td>
+
+
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+<!-- Initialize Quill editor -->
+<script>
+const quill = new Quill('#rules', {
+  modules: {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
+      ['image', 'code-block'],
+    ],
+  },
+  placeholder: 'Compose an epic...',
+  theme: 'snow', // or 'bubble'
+});
+const quill2 = new Quill('#greeting', {
+  modules: {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
+      ['image', 'code-block'],
+    ],
+  },
+  placeholder: 'Compose an epic...',
+  theme: 'snow', // or 'bubble'
+});
+
+function SendQuillContent(id){
+    var myEditor = document.querySelector(id)
+    var html = myEditor.children[0].innerHTML
+    data = {
+        "type": id,
+        "content": html,
+    };
+        
+    fetch("/admin/content", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+            }).then(res => {
+                if (res.status == 200){
+                    alert("Successfully updated");
+                } else {
+                    alert("Something went wrong")
+                }
+            }).catch(res => {
+            alert("Something went wrong")
+        });
+}
+
+</script>
+
+{% include "admin/footer.html" %}

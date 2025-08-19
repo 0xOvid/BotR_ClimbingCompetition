@@ -12,6 +12,7 @@ import os
 import random
 import string
 
+
 """
 Setup flask app variables
 """
@@ -25,7 +26,8 @@ Setup authentication for admin user
 app.config['BASIC_AUTH_USERNAME'] = 'admin'
 app.config['BASIC_AUTH_PASSWORD'] = 'admin'
 auth = Blueprint('auth', __name__)
-
+# Allow hot reloading of templates
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 """
 Setup session management
 """
@@ -47,6 +49,7 @@ db_file = "Sqlite3.db"
 def cLog(msg, level=""):
     """
     Function for printing messages to std out and log file
+    Levels: err and everything else
     """
     if level == "err":
         logger.error(msg)
@@ -278,12 +281,15 @@ def routes_post():
     updates are psoted via htmx when the users change anything
     iun the routes table
     """
+    ##print(request)
+    route_uuid = request.get_json()["id"]
+    score = request.get_json()["score"]
+    cLog("[+] Updating route:" + route_uuid + "|" + score)
     conn = connect_to_db()
     cursor = conn.cursor()
     # Update user in competition database
-    route_uuid = request.args.get('uuid')
-    score = request.form.get("row")
-
+    #route_uuid = request.args.get('uuid')
+    #score = request.form.get("row")
     # Check if contents record exsists
     record_exsists = cursor.execute("SELECT * FROM competition WHERE uuid = ? AND route_uuid = ?", 
                                     (session["uuid"], route_uuid)).fetchall()
@@ -595,6 +601,197 @@ def generate_users_file():
         f.write(s+"\n")
     f.close()
     return send_from_directory(".", export_users_file)
+
+
+
+
+
+
+
+
+
+"""
+Revised admin page added some functionality and
+put different functions in their own pages to avoid clutter
+"""
+
+
+
+@app.route('/admin/routes', methods=['GET'])
+def admin_routes_page():
+    """
+    Page gets all the routes in the database, also allows user
+    to edit individual routes via the "route_edit.html".
+    Lastly allows for adding individual routes during a competition
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Check if db exsists, if not create one
+    try:
+        users = cursor.execute("SELECT * FROM users").fetchall()
+    except:
+        createDatabase(cursor, conn)
+    
+    routes = cursor.execute("SELECT * FROM routes").fetchall()
+    return render_template('admin/routes.html', routes=routes)
+
+
+@app.route('/admin/routes', methods=['POST'])
+def admin_routes_add():
+    """
+    Function to add new routes to the database, new routes are given a unique uuid and 
+    assigned the nr 0
+    """
+    msg = "[+] Adding new route;", request.form.values
+    cLog(msg, "")
+    #print(request.form.get("factor"))
+    
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"))
+                    )
+        
+        # Save (commit) the changes
+        conn.commit()
+        # Close the connection
+        conn.close()
+    except:
+        cLog("Error on insert of new route", "err")   
+
+    return redirect("/admin/routes", code=302)
+
+@app.route('/admin/routes/<uuid>', methods=['GET'])
+def admin_routes_edit_page(uuid):
+    """
+    Page allows admin to edit the specified route, uses uuid in url to know what route to get
+    """
+    # Get route info
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Check if db exsists, if not create one
+    try:
+        users = cursor.execute("SELECT * FROM users").fetchall()
+    except:
+        createDatabase(cursor, conn)
+    route = cursor.execute("SELECT * FROM routes WHERE route_uuid = \"" + uuid + "\"").fetchall()
+
+    return render_template('admin/routes_edit.html', route=route)
+
+@app.route('/admin/routes/<uuid>', methods=['POST'])
+def admin_routes_update(uuid):
+    """
+    Updates route using uuid to get the right route, recives form from POST request
+    """
+    msg = "[+] Updating route:", uuid, "|", request.get_json()
+    cLog(msg, "")
+
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    if request.get_json()["action"] == "delete":
+        cursor.execute('''DELETE FROM routes WHERE route_uuid = \"''' + uuid + "\"")
+    else: 
+        cursor.execute('''UPDATE routes SET 
+            name = ?,
+            max_score = ?,
+            area = ?,
+            grade = ?
+            WHERE route_uuid = ?''', 
+            #(request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), uuid)
+            (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], uuid)
+            )
+    # Save (commit) the changes
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return redirect("/admin/routes", code=204)
+
+
+@app.route('/admin/users', methods=['GET', 'POST'])
+def admin_users_page():
+    """
+    User admin page where user files can be uploaded and a user file 
+    generated if needed
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Check if db exsists, if not create one
+    try:
+        users = cursor.execute("SELECT * FROM users").fetchall()
+    except:
+        createDatabase(cursor, conn)
+    
+    return render_template('admin/users.html', users=users)
+
+@app.route('/admin/content', methods=['GET'])
+def admin_content_page():
+    """
+    Page for updating html on the different pages (rules and greeting message)
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Check if db exsists, if not create one
+    try:
+        users = cursor.execute("SELECT * FROM users").fetchall()
+    except:
+        createDatabase(cursor, conn)
+    
+    return render_template('admin/content.html', users=users)
+
+@app.route('/admin/content', methods=['POST'])
+def admin_content_update():
+    """
+    Accepts JSON post requests {"type": "", "content": ""}
+    with type being the resource to update
+    and content being the content of the file to be written
+    Writes file contents for other files to render.
+    Vulnerable to SSTI i know, so dont run somewhere important
+    """
+    cLog(("[+] Updating content:", request.get_json()["type"]),"")
+    with open("templates/"+request.get_json()["type"]+".html", "w") as f:
+        f.write(request.get_json()["content"])
+    cLog("\t|-> File written:"+request.get_json()["type"]+".html","")
+
+    return redirect("/admin/routes", code=302)
+
+@app.route('/admin/server', methods=['GET', 'POST'])
+def admin_server_mgmt_page():
+    """
+    Page for server management
+    """
+    return render_template('admin/server_management.html')
+
+@app.route('/admin/log', methods=['GET', 'POST'])
+def admin_log_page():
+    """
+    Page for displaying server logs
+    """
+    log = open("record.log").read()
+    return render_template('admin/log.html', log=log)
+
+@app.route('/admin/comp', methods=['GET', 'POST'])
+def admin_comp_page():
+    """
+    Page for displaying competition results
+    """
+    """
+    TODO: implement
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Check if db exsists, if not create one
+    try:
+        users = cursor.execute("SELECT * FROM users").fetchall()
+    except:
+        createDatabase(cursor, conn)
+    comp = cursor.execute('''SELECT climber_id.name, routes.name, competition.score FROM competition 
+                                JOIN climber_id ON climber_id.uuid = competition.uuid
+                                JOIN routes ON competition.route_uuid = routes.route_uuid ''').fetchall()
+    
+    return render_template('admin/comp.html', comp=comp)
+
+
 
 
 if __name__ == '__main__':

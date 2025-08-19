@@ -1,0 +1,80 @@
+
+{% include "admin/base.html" %}
+<td class="main">
+    <div class="card">
+        <h2 style="margin-top: 0px;">Routes</h2>
+        <p>This database contains all routs available for the contestants to enter their scores on. The file should be comma seperated and contain the following columns: nr, area, name, grade, max_score. The route will be displayed in the order of which they are in the uploaded document.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">Bulk: Add Route(s)</h3>
+        <p>Upload file</p>
+        <button>Upload</button>
+    </div>
+    <div class="card">
+        <h3 style="margin-top: 0px;">Manual: Add Route</h3>
+            <form method="POST" action="" enctype="multipart/form-data">
+        <table class="add-route">
+            <thead>
+                <th>Area</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>amount of slings/max score</th>
+                <th>Factor</th>
+            </thead>
+            <tbody> 
+                <tr>
+                    <td>
+                        <input id="area" name="area">
+                    </td>
+                    <td>
+                        <input id="name" name="name">
+                    </td>
+                    <td>
+                        <input id="grade" name="grade">
+                    </td>
+                    <td>
+                        <input id="max_score" name="max_score">
+                    </td>
+                    <td>
+                        <input id="factor" name="factor">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button>Add to database</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+            </form>
+    </div>
+
+    <div class="card">
+        <div style="height: 40vh; overflow-y:scroll">
+        <table class="routes">            
+            <tr>
+                <th>Område</th>
+                <th>Rute</th>
+                <th>Grad</th>
+                <th>Max score</th>
+                <th>Factor</th>
+                <th></th>
+            </tr>
+            {% for route in routes %}
+            <tr hx-post="/route_post" hx-trigger="change">
+                <td>{{ route.4 }}</td>
+                <td>{{ route.2 }}</td>
+                <td>{{ route.5 }}</td>
+                <td>{{ route.3 }}</td>
+                <td>6.9</td>
+                <td><a href="/admin/routes/{{ route.0 }}">EDIT</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    </div>
+</td>
+{% include "admin/footer.html" %}

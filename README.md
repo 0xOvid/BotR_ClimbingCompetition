@@ -78,27 +78,21 @@ python -m pytest
 
 
 # TODO 
-
 - lav en intro side hvis det er første gang folk logger ind
-
-- find udaf deployment
-- ?? when uploading new file make it so that the database deletes itself and creates a new one
 - lav det så at databasen ikke bliver slettet men at den bliver rykket til en .bak fil med tidspunkt
-- hosting er lid flaky - kig lige på det
 - implementer state management?
 - maybe setup traefik
 
-- need to do stress testing on cloud
-- also need to setup the app as a service that will just restart if it goes down
+# TODO: 2025-08-03
+- Add propper initialization script for initial seutp and testing
 
-2025-05-09 - test
-- Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
-- opdater tekst på login page 
-- måske gør så tables ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
+- figure out calculations for score in the app
+- create structured logging - and maybe have it stored in the database
+- Create leaderboard
 
-2025-06-26
-- added stress testing w. k6
-- reworked entire ui to look nicer with beercss
+- Create lock for database when competition in is swing
+- Migrate do admin page v2.0
+
 
 ## .:: DONE ::.
 - tjek om man kan få fil download til at virke for både windows og linux
@@ -165,6 +159,25 @@ N/A?
 - fixed the number of slings in dropdown by doing some hacky js to remove them from the front end
 - get username in export
 - fixed number of slings missing last item, likely due to the face that we are removing "1" with js ... dont know ask thomas
+
+2025-05-09 - test
+- Create a start competition state where databases cannot be deleted and only when in this mode or testing user ids can be updated
+- opdater tekst på login page 
+- måske gør så tables ikke bliver slettet men bare bliver markeret som deleted a.k.a. implementer soft delete i databasen
+
+2025-06-26
+- added stress testing w. k6
+- reworked entire ui to look nicer with beercss
+
+2025-08-08
+- Can now add new routes while running without deleting stuffs
+- Can now update routes
+- Can write content, login and content pages
+- Can now create and update content of rules and welcome message from admin dashboard
+- Modals for user routes now shows when an error arose
+- add cancle to edit routes
+- add delete to edit routes
+- log page added
 
 # Credits
 Mark for making everything

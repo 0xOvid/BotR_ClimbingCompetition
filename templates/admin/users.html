@@ -1,0 +1,43 @@
+
+{% include "admin/base.html" %}
+<td class="main">
+    <div class="card">
+        <h2 style="margin-top: 0px;">Users</h2>
+        <p>This database contains all users available</p>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">Generate users:</h3>
+        <form action="/generate_users_file" method="post">
+            <label for="fname">number of users to generate:</label>
+            <input type="text" id="n" name="n"><br><br>
+            <input type="submit" value="Generate users file">
+        </form>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">Bulk: Add Users(s)</h3>
+        <p>Upload file</p>
+        <button>Upload</button>
+    </div>
+
+    <div class="card">
+        <div style="height: 40vh; overflow-y:scroll">
+        <table class="routes">   
+            <tr>
+                <th>uuid</th>
+                <th>username</th>
+                <th>password</th>
+            </tr>
+            {% for user in users %}
+            <tr hx-post="/route_post" hx-trigger="change">
+                <td>{{ user.0 }}</td>
+                <td>{{ user.1 }}</td>
+                <td>{{ user.2 }}</td>
+            </tr>
+            {% endfor %}      
+        </table>
+        </div>
+    </div>
+</td>
+{% include "admin/footer.html" %}

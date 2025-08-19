@@ -24,7 +24,7 @@ basic_auth = BasicAuth(app)
 Setup authentication for admin user
 """
 app.config['BASIC_AUTH_USERNAME'] = 'admin'
-app.config['BASIC_AUTH_PASSWORD'] = 'admin'
+app.config['BASIC_AUTH_PASSWORD'] = 'b3tt3r4dm1nCr3d3nt14l5!'
 auth = Blueprint('auth', __name__)
 # Allow hot reloading of templates
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -796,3 +796,4 @@ def admin_comp_page():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    createDatabase(cursor, conn)

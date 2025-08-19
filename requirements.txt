@@ -1,0 +1,5 @@
+flask
+Flask-BasicAuth
+flask-htmx
+pytest
+requests

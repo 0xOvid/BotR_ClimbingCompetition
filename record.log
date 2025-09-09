@@ -2541,3 +2541,147 @@ INFO:app:[+] Database Sqlite3.db loaded.
 INFO:werkzeug:127.0.0.1 - - [08/Sep/2025 23:27:30] "GET /admin/routes HTTP/1.1" 200 -
 INFO:app:[+] Database Sqlite3.db loaded.
 INFO:werkzeug:127.0.0.1 - - [08/Sep/2025 23:27:35] "GET /leaderboard HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:39:45] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:39:50] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:02] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:06] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:06] "GET /login HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:('[+] User attempting login: username', 'ccc', '|| Password:', 'ccc')
+INFO:app:	|- Login successfull
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:10] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Creating tables
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 168, in routes
+    for u in user_info[0]:
+             ~~~~~~~~~^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:22] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:24] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:[+] Recieved routes file
+INFO:app:	|- Saving routes file
+INFO:app:	|- Saved as: tmpRoutes
+INFO:app:	|- Deleting exsisting routes from db
+INFO:app:[+] Loading routes from csv: tmpRoutes.csv
+INFO:app:	|- Csv parsed
+INFO:app:	|- Loading to db
+INFO:app:['4', 'tester', 'Difficault', '4a', '5']
+INFO:app:['5', 'Overen', 'Borte med bl�sten', '4b', '6']
+INFO:app:['6', 'Overen', 'A Walk in the Woods', '4c', '7']
+INFO:app:['7', 'Skolev�ggen', 'Easy Peacy', '5a', '5']
+INFO:app:['7', 'Skolev�ggen', 'Gungununu', '5a', '3']
+INFO:app:['7', 'Elkapitan', 'The Nose', '5a', '4']
+INFO:app:['8', 'Det listige hj�rne', 'Mix Ruten', '5b', '5']
+INFO:app:['8', 'Elkapitan', 'Skr�Ved', '5b', '6']
+INFO:app:['8', 'Overen', 'Madame Butterfly', '5b', '9']
+INFO:app:['8', 'Skolev�ggen', 'Aqua Fobia', '5b', '4']
+INFO:app:['9', 'Bowlingev�ggen', 'Containertr�f', '5c', '9']
+INFO:app:['9', 'Elkapitan', 'Undfangelsen', '5c', '5']
+INFO:app:['9', 'Overen', 'For de voksne', '5c', '5']
+INFO:app:['9', 'Overen', 'Kanten', '5c', '5']
+INFO:app:['9', 'Store gumbas', 'Tetris', '5c', '6']
+INFO:app:['10', 'Det listige hj�rne', 'Waikiki Beach', '6a', '4']
+INFO:app:['10', 'Elkapitan', 'Space Monkey', '6a', '6']
+INFO:app:['10', 'Store gumbas', 'Gaia Love', '6a', '7']
+INFO:app:['10', 'Undervejsv�ggen', 'Soltrappen', '6a', '7']
+INFO:app:['11', 'Bowlingev�ggen', 'Spare', '6a+', '10']
+INFO:app:['11', 'Bowlingev�ggen', 'Strike', '6a+', '7']
+INFO:app:['11', 'Det listige hj�rne', 'Fyrtr�et', '6a+', '5']
+INFO:app:['11', 'Laustv�ggen', 'Yoni', '6a+', '8']
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:40] "[32mPOST /admin HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:40] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:[!] Invalid post /routes
+ERROR:app:400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+INFO:app:[+] Recieved users file
+INFO:app:	|- Saving users file
+INFO:app:	|- Saved as: tmpUsers
+INFO:app:	|- Deleting exsisting users from db
+INFO:app:[+] Loading routes from csv: tmpUsers.csv
+INFO:app:	|- Csv parsed
+INFO:app:	|- Loading to db
+INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', 'c969973f07ef4c6387a34108fb3a3be9', 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', ')')
+INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', 'bb9f6bd422cf45cea7d138a7468eac8a', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', ')')
+INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', '513415a98cf047448ef2d47ce3ac69f4', 'ccc', '9df62e693988eb4e1e1444ece0578579', ')')
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:48] "[32mPOST /admin HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:48] "GET /admin HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 168, in routes
+    for u in user_info[0]:
+             ~~~~~~~~~^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:52] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:app:[+] Database Sqlite3.db loaded.
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 168, in routes
+    for u in user_info[0]:
+             ~~~~~~~~~^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:55] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:40:58] "GET /login HTTP/1.1" 200 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:app:('[+] User attempting login: username', 'aaa', '|| Password:', 'aaa')
+INFO:app:	|- Login successfull
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:41:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:app:[+] Database Sqlite3.db loaded.
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:41:02] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Sep/2025 20:41:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

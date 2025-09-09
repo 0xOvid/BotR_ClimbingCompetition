@@ -2,7 +2,7 @@
 git clone https://github.com/0xOvid/BotR_ClimbingCompetition
 cd BotR_ClimbingCompetition/
 
-apt install python3.12-venv -y
+apt install python3.13-venv -y
 python3 -m venv botr
 
 screen -dm bash -c "

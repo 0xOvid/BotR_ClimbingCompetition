@@ -18,7 +18,11 @@
     <div class="card">
         <h3 style="margin-top: 0px;">Bulk: Add Users(s)</h3>
         <p>Upload file</p>
-        <button>Upload</button>
+    
+        <form method="POST" action="/admin" enctype="multipart/form-data">
+            <input type="file" name="users" accept=".csv">
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
     <div class="card">

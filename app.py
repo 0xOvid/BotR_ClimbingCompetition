@@ -11,7 +11,7 @@ import hashlib
 import os
 import random
 import string
-
+from dataclasses import dataclass
 
 """
 Setup flask app variables
@@ -328,10 +328,15 @@ def createDatabase(cursor, conn):
              (uuid text, username text, password text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS competition
              (uuid text, route_uuid text, score text, timestamp text)''')
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS routes
+    #         (route_uuid text, nr, name text, max_score int, area text, grade text, factor int)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS routes
              (route_uuid text, nr, name text, max_score int, area text, grade text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS climber_id
              (uuid text, name text, gender text, team_name text, max_flash text, dage_i_moselykken text)''')
+    # Create table for factors
+    cursor.execute('''CREATE TABLE IF NOT EXISTS factors
+             (uuid text, category text, upper text, factor text)''')
     # Save (commit) the changes
     conn.commit()
 
@@ -618,6 +623,7 @@ put different functions in their own pages to avoid clutter
 
 
 @app.route('/admin/routes', methods=['GET'])
+@basic_auth.required
 def admin_routes_page():
     """
     Page gets all the routes in the database, also allows user
@@ -637,6 +643,7 @@ def admin_routes_page():
 
 
 @app.route('/admin/routes', methods=['POST'])
+@basic_auth.required
 def admin_routes_add():
     """
     Function to add new routes to the database, new routes are given a unique uuid and 
@@ -663,6 +670,7 @@ def admin_routes_add():
     return redirect("/admin/routes", code=302)
 
 @app.route('/admin/routes/<uuid>', methods=['GET'])
+@basic_auth.required
 def admin_routes_edit_page(uuid):
     """
     Page allows admin to edit the specified route, uses uuid in url to know what route to get
@@ -680,6 +688,7 @@ def admin_routes_edit_page(uuid):
     return render_template('admin/routes_edit.html', route=route)
 
 @app.route('/admin/routes/<uuid>', methods=['POST'])
+@basic_auth.required
 def admin_routes_update(uuid):
     """
     Updates route using uuid to get the right route, recives form from POST request
@@ -696,10 +705,11 @@ def admin_routes_update(uuid):
             name = ?,
             max_score = ?,
             area = ?,
-            grade = ?
+            grade = ?,
+            factor = ?
             WHERE route_uuid = ?''', 
             #(request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), uuid)
-            (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], uuid)
+            (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], request.get_json()["factor"], uuid)
             )
     # Save (commit) the changes
     conn.commit()
@@ -709,6 +719,7 @@ def admin_routes_update(uuid):
 
 
 @app.route('/admin/users', methods=['GET', 'POST'])
+@basic_auth.required
 def admin_users_page():
     """
     User admin page where user files can be uploaded and a user file 
@@ -725,6 +736,7 @@ def admin_users_page():
     return render_template('admin/users.html', users=users)
 
 @app.route('/admin/content', methods=['GET'])
+@basic_auth.required
 def admin_content_page():
     """
     Page for updating html on the different pages (rules and greeting message)
@@ -740,6 +752,7 @@ def admin_content_page():
     return render_template('admin/content.html', users=users)
 
 @app.route('/admin/content', methods=['POST'])
+@basic_auth.required
 def admin_content_update():
     """
     Accepts JSON post requests {"type": "", "content": ""}
@@ -756,6 +769,7 @@ def admin_content_update():
     return redirect("/admin/routes", code=302)
 
 @app.route('/admin/server', methods=['GET', 'POST'])
+@basic_auth.required
 def admin_server_mgmt_page():
     """
     Page for server management
@@ -763,6 +777,7 @@ def admin_server_mgmt_page():
     return render_template('admin/server_management.html')
 
 @app.route('/admin/log', methods=['GET', 'POST'])
+@basic_auth.required
 def admin_log_page():
     """
     Page for displaying server logs
@@ -770,30 +785,324 @@ def admin_log_page():
     log = open("record.log").read()
     return render_template('admin/log.html', log=log)
 
-@app.route('/admin/comp', methods=['GET', 'POST'])
+@app.route('/admin/comp_settings', methods=['GET', 'POST'])
+@basic_auth.required
 def admin_comp_page():
     """
-    Page for displaying competition results
+    Page for displaying and allowing for changes to competition settings
+    for factors of different counts
     """
-    """
-    TODO: implement
-    """
+    
     conn = connect_to_db()
     cursor = conn.cursor()
-    # Check if db exsists, if not create one
-    try:
-        users = cursor.execute("SELECT * FROM users").fetchall()
-    except:
-        createDatabase(cursor, conn)
-    comp = cursor.execute('''SELECT climber_id.name, routes.name, competition.score FROM competition 
-                                JOIN climber_id ON climber_id.uuid = competition.uuid
-                                JOIN routes ON competition.route_uuid = routes.route_uuid ''').fetchall()
+    # Check if contents record exsists
+    factors = cursor.execute("SELECT * FROM factors").fetchall()
     
-    return render_template('admin/comp.html', comp=comp)
+    # If factors is empty then initialize values
+    if not factors:
+        print("|-> Factors empty, populating with default values")
+        # Antal klatredage i moselykken
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "3", "1"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "8", "0.98"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "15", "0.96"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "24", "0.94"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "35", "0.92"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "49", "0.90"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "antal_klatre_dage", "999", "0.88"))
+        # Forskel i antal ruter klatret
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "2", "1"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "4", "0.95"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "6", "0.9"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "8", "0.85"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "10", "0.8"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "forskel_i_ruter_klatret", "999", "0.7"))
+
+        # Router under eget niveau
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "ruter_under_eget_niveau", "5", "0.14"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "ruter_under_eget_niveau", "10", "0.13"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "ruter_under_eget_niveau", "15", "0.05"))
+        cursor.execute('''INSERT INTO factors (uuid, category, upper, factor) VALUES (?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "ruter_under_eget_niveau", "999", "0"))
+        conn.commit()
+    # get factors
+    antal_klatre_dage = cursor.execute("SELECT * FROM factors WHERE category = \"antal_klatre_dage\"").fetchall()
+    forskel_i_ruter_klatret = cursor.execute("SELECT * FROM factors WHERE category = \"forskel_i_ruter_klatret\"").fetchall()
+    ruter_under_eget_niveau = cursor.execute("SELECT * FROM factors WHERE category = \"ruter_under_eget_niveau\"").fetchall()
+
+    # render
+    return render_template('admin/comp_settings.html', antal_klatre_dage=antal_klatre_dage, forskel_i_ruter_klatret=forskel_i_ruter_klatret, ruter_under_eget_niveau=ruter_under_eget_niveau)
+
+@app.route('/admin/comp_settings/<id>', methods=['POST'])
+@basic_auth.required
+def update_comp_settings(id):
+    """
+    Route for updating competition factor settings
+    """
+    print("[+] Updating competition settings")
+
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    cursor.execute('''UPDATE factors SET 
+                    upper = ?,
+                    factor = ?
+                WHERE uuid = ?''', 
+                (request.form.get("upper"), 
+                request.form.get("factor"), 
+                id))
+    conn.commit()
+    conn.close()
+    print("\t|-> UUID:", id)
+    print("\t|-> Factor:", request.form.get("factor"))
+    print("\t|-> Upper:", request.form.get("upper"))
+
+    return  '', 204
 
 
+from dataclasses import dataclass
+@dataclass
+class Route:
+    """ Class for representing routes """
+    uuid: str
+    name: str # Rutenavn
+    nr: str # Rute tæller
+    max_score: int # AntalSlynger
+    area: str # Område
+    grade: str # Rutegradering
+    factor: int # Pointtop
+    score: str 
+ 					
+
+
+def calculate_score(uuid):
+    """
+    Function that calculates a given climbers score.
+    The calculation is done as follows:
+    1) The top "x" routes are found, here a restriction can be placed so the
+    e.g. only the top 2 climbs of a certain grade is included
+    2) Points are decided based on how much of the route was completed, the score is individual based on the route
+     a) top = 100%
+     b) above 2 quickdraws, score = 80%
+     c) score = 0
+    3) The above score is then timed with the constant "grade_point" and timed with the "flash score"
+    grade_point =
+    flash_score = 
+    4) now we take the sum of eavh of the routes points as calculated above
+    5) lastly this sum is timed with "visit_factor" and "noob_factor" and "team_factor" 
+    team_factor = 
+    """
+
+    #cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
+    #            (uuid.uuid4().hex, nr, name, max_score, area, grade))
+
+    """
+
+    route_score = 0
+    route_point = 0 #total score
+    # If "top", rute point = 1 * gradpoint * flashpoint
+    if r1.score == "top":
+        route_point = 1 * r1.factor 
+        route_point = r1.factor * 0.8 / r1.max_score
+        print("w")
+    # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
+    elif int(r1.score) >= 2:
+        route_point = r1.factor * 0.8 / r1.max_score
+    # Else routepoint = 0
+    print(route_point)
+
+    print(route_point * (matrix_val + 3) * f_days * f_team_diff )
+    """
+
+
+@app.route('/leaderboard', methods=['GET'])
+@basic_auth.required
+def leaderboard():
+    
+    return redirect("/admin")
+    """
+    renders the leaderboard for the competition
+    """
+    # Check if key exists
+    if 'logged_in' in session.keys():
+        if session['logged_in'] == True:
+            # get user info
+            # Check if user exsists in database
+            conn = connect_to_db()
+            cursor = conn.cursor()
+            # Get all user uuids
+            users = cursor.execute("SELECT uuid FROM users").fetchall()
+            leaderboard = []
+            # Go through each and calculate score
+            i = 0
+            for user in users:
+                print("\t|-> Calculating result for:", user[0])
+                # Getting users info
+                user_info = cursor.execute("SELECT * FROM climber_id WHERE uuid = \"" + user[0] + "\"").fetchall()
+                print("\t\t|- User info:", user_info)
+                leaderboard.append([user_info[0][1], ""])
+                flash_level = user_info[0][4]
+                #grade = "7a"
+                climbing_days = user_info[0][5]
+                # Adjust
+                team_diff = 0
+                factor_coregation = 10
+                total_route_score = 0
+                results = cursor.execute("SELECT * FROM competition where uuid = \"" + user[0] + "\"").fetchall()
+                print("\t\t|- Results[]:", results)
+                # lav en sortering her efter de "x" højeste
+                for r in results:
+                    # The calculations below are independent from routes
+                    # Route Matrix calculation
+                    """
+                    Each grade has a coresponding value (route kategori)
+                    """
+                    # get rute info
+                    route = cursor.execute("SELECT * FROM routes where route_uuid = \"" + r[1] + "\"").fetchall()
+
+                    route_category = {
+                        "3g": 1,
+                        "4a": 2,
+                        "4b": 3,
+                        "4c": 4,
+                        "5a": 5,
+                        "5b": 6,
+                        "5c": 7,
+                        "6a": 8,
+                        "6a+": 9,
+                        "6b": 10,
+                        "6b+": 11,
+                        "6c": 12,
+                        "6c+": 13,
+                        "7a": 14,
+                        "7a+": 15,
+                        "7b": 16,
+                        "7b+": 17,
+                        "7c": 18,
+                        "7c+": 19,
+                        "8a": 20,
+                        "8a+": 21,
+                        "8b": 22,
+                        "8b+": 23,
+                        "8c": 24,
+                        "8c+": 25
+                    }
+                    matrix_val = 1 + (route_category[route[0][5]]-(route_category[flash_level]-1))/factor_coregation
+                    if matrix_val <= 0:
+                        matrix_val = 0.05
+                    print("\t\t|-> matrix_val:", matrix_val)
+                    # calc for route
+
+                    # If "top", rute point = 1 * gradpoint * flashpoint
+                    print("\t\t|- Result:", r)
+                    print("\t\t|- Route:", route[0])
+                    route_factor = route[0][6] 
+                    route_max = route[0][3]
+                    route_score = r[2]
+                        
+                    # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
+                    if route_score == 'None':
+                        continue
+                    if route_score == "Top":
+                        #route_point = 1 * route_factor
+                        #route_point = route_factor * 0.8 / route_max
+                        route_point = route_factor * matrix_val
+                    elif int(route_score) >= 2:
+                        # der er noget der fucker op her!!! TODO 
+                        route_point = (route_factor * 0.8 / route_max) * int(route_score)* matrix_val
+                    # Else routepoint = 0
+                    else:
+                        route_point = 0
+                    print("\t\t|- Route Points:", route_point)
+                    total_route_score = total_route_score + route_point
+
+                print("\t|-> Total score", total_route_score)
+                dict_climbing_days_factors = {
+                    "3": 1,
+                    "8": 0.98,
+                    "15": 0.96,
+                    "24": 0.94,
+                    "35": 0.93,
+                    "49": 0.90,
+                    "999": 0.88
+                }
+                f_days = 0
+                for key in dict_climbing_days_factors:
+                    if not climbing_days:
+                        break
+                    if int(climbing_days) <= int(key):
+                        f_days = dict_climbing_days_factors[key]
+                        break
+                print("\t|-> f_days:", f_days)
+
+
+                dict_team_diff_factors = {
+                    "0": 1,
+                    "3": 0.95,
+                    "5": 0.9,
+                    "7": 0.85,
+                    "9": 0.8,
+                    "11": 0.7
+                }
+                f_team_diff = 0
+                for key in dict_team_diff_factors:
+                    if int(team_diff) < int(key):
+                        f_team_diff = dict_team_diff_factors[key]
+                        break
+                print("\t|-> Team diff factor:", f_team_diff)
+
+
+                dict_routes_below_level_factors = {
+                    "0": 0.14,
+                    "6": 0.13,
+                    "11": 0.05,
+                    "15": 0,
+                }
+                f_routes_below = 0
+                for key in dict_routes_below_level_factors:
+                    if not flash_level:
+                        break
+                    # flash_level score = route_category[flash_level]
+                    if int(route_category[flash_level]) < int(key):
+                        f_routes_below = dict_routes_below_level_factors[key]
+                        break
+                print("\t|-> Routes below level factor:", f_routes_below)
+                # iterate through results and calculate score
+                # MAngler team factor
+                f_korigeret_score = total_route_score * f_days * 1 * 1
+                print("\t|-> Faktor korrigeret score" , f_korigeret_score)
+                leaderboard[i][1]=f_korigeret_score
+                # get "x" highest scores
+                i += 1
+
+            return render_template('leaderboard.html', leaderboard=leaderboard)
+    return redirect("/login")
+
+
+# init db on run
+conn = connect_to_db()
+cursor = conn.cursor()
+# Check if db exsists, if not create one
+try:
+    users = cursor.execute("SELECT * FROM users").fetchall()
+except:
+    createDatabase(cursor, conn)
+conn.close()
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-    createDatabase(cursor, conn)

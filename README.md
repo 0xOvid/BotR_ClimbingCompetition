@@ -159,6 +159,16 @@ N/A?
 - add delete to edit routes
 - log page added
 
+2025-09-05
+- got competition factors page setup and working, now needs to register updates
+- got updating on settings working
+
+2025-09-06
+- Started on the calculation page for testing the settings
+
+2025-09-08
+- Got a PoC of calculations working, needs more testing
+
 # Credits
 Mark for making everything
 

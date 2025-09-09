@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<header>
+    
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+
+    <style>
+        body {
+            background: black;
+            color: antiquewhite;
+            font-family: 'Courier New', monospace;
+        }
+        a {
+            color: hotpink;
+        }
+        .container {
+            max-width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .title{
+            text-align: center;
+            background-color:  antiquewhite;
+            color:  #2c2822;
+            box-shadow: 10px 10px #2c2822;
+        }
+        tr .main {
+            max-width: 1020px;
+            width: 1020px;
+            vertical-align: top; 
+            overflow-x: hidden;
+        }
+        tr .menu{
+            max-width: 220px;
+            width: 220px;
+            vertical-align: top;
+        }
+        .card {
+            border: 1px solid antiquewhite;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #2c2822;
+        }
+
+        table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        th, td {
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #312d2d}
+        tr {
+            
+        background-color: dimgrey;
+        }
+        th {
+        background-color: #04AA6D;
+        color: white;
+        }
+
+    </style>
+</header>
+<body>
+    <!-- Page for testing variables when calculating the scores of routes with the different factors -->
+    <h2>Climber Info:</h2>
+    <table>
+        <thead>
+            <th>Max flash</th>
+            <th>Klatredage</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input></td>
+                <td><input></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Test Ruter:</h2>
+    <table>
+        <thead>
+            <th>Rutenavn</th>
+            <th>Rutegradering</th>
+            <th>AntalSlynger</th>
+            <th>Pointtop</th>
+            <th>Samletscore</th>
+            <th>Score</th>
+            <th>Resultat for rute</th>
+        </thead>
+        <tr>
+            <td>Test 1</td>
+            <td id="rute_grade">
+                <select>
+                <option value="3g">3g</option>
+
+                <option value="4.a">4.a</option>
+                <option value="4.b">4.b</option>
+                <option value="4.c">4.c</option>
+
+                <option value="5.a">5.a</option>
+                <option value="5.b">5.b</option>
+                <option value="5.c">5.c</option>
+
+                <option value="6.a">6.a</option>
+                <option value="6.a+">6.a+</option>
+                <option value="6.b">6.b</option>
+                <option value="6.b+">6.b+</option>
+                <option value="6.c">6.c</option>
+                <option value="6.c+">6.c+</option>
+
+                <option value="7.a">7.a</option>
+                <option value="7.a+">7.a+</option>
+                <option value="7.b">7.b</option>
+                <option value="7.b+">7.b+</option>
+                <option value="7.c">7.c</option>
+                <option value="7.c+">7.c+</option>
+
+                <option value="8.a">8.a</option>
+                <option value="8.a+">8.a+</option>
+                <option value="8.b">8.b</option>
+                <option value="8.b+">8.b+</option>
+                <option value="8.c">8.c</option>
+                <option value="8.c+">8.c+</option>
+            </select>
+        </td>
+            <td><input></td>
+            <td><input></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Test 2</td>
+            <td>
+                <select>
+                <option value="3g">3g</option>
+
+                <option value="4.a">4.a</option>
+                <option value="4.b">4.b</option>
+                <option value="4.c">4.c</option>
+
+                <option value="5.a">5.a</option>
+                <option value="5.b">5.b</option>
+                <option value="5.c">5.c</option>
+
+                <option value="6.a">6.a</option>
+                <option value="6.a+">6.a+</option>
+                <option value="6.b">6.b</option>
+                <option value="6.b+">6.b+</option>
+                <option value="6.c">6.c</option>
+                <option value="6.c+">6.c+</option>
+
+                <option value="7.a">7.a</option>
+                <option value="7.a+">7.a+</option>
+                <option value="7.b">7.b</option>
+                <option value="7.b+">7.b+</option>
+                <option value="7.c">7.c</option>
+                <option value="7.c+">7.c+</option>
+
+                <option value="8.a">8.a</option>
+                <option value="8.a+">8.a+</option>
+                <option value="8.b">8.b</option>
+                <option value="8.b+">8.b+</option>
+                <option value="8.c">8.c</option>
+                <option value="8.c+">8.c+</option>
+            </select>
+        </td>
+            <td><input></td>
+            <td><input></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Test 3</td>
+            <td>
+                <select>
+                <option value="3g">3g</option>
+
+                <option value="4.a">4.a</option>
+                <option value="4.b">4.b</option>
+                <option value="4.c">4.c</option>
+
+                <option value="5.a">5.a</option>
+                <option value="5.b">5.b</option>
+                <option value="5.c">5.c</option>
+
+                <option value="6.a">6.a</option>
+                <option value="6.a+">6.a+</option>
+                <option value="6.b">6.b</option>
+                <option value="6.b+">6.b+</option>
+                <option value="6.c">6.c</option>
+                <option value="6.c+">6.c+</option>
+
+                <option value="7.a">7.a</option>
+                <option value="7.a+">7.a+</option>
+                <option value="7.b">7.b</option>
+                <option value="7.b+">7.b+</option>
+                <option value="7.c">7.c</option>
+                <option value="7.c+">7.c+</option>
+
+                <option value="8.a">8.a</option>
+                <option value="8.a+">8.a+</option>
+                <option value="8.b">8.b</option>
+                <option value="8.b+">8.b+</option>
+                <option value="8.c">8.c</option>
+                <option value="8.c+">8.c+</option>
+            </select>
+        </td>
+            <td><input></td>
+            <td><input></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <button>Udregn</button>
+    <hr>
+    <h2>Resultat:</h2>
+
+    <table>
+        <thead>
+            <th>Kategori</th>
+            <th>Resultat</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Max Flash offset</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Besøgsfaktor</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Antal klatrede ruter</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Teamfaktor</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Ruter under eget niveau</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Begynder faktor</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Faktorkorrigeret SUM</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Besøgsfaktor</td>
+            <td><input disabled></td>
+        </tr>
+        <tr>
+            <td>Top 2 Begrænset sum</td>
+            <td><input disabled></td>
+        </tr>
+        </tbody>
+    </table>
+<a href="#" onClick="MyWindow=window.open('http://www.google.com','MyWindow','width=600,height=300'); return false;">Click Here</a>
+
+
+
+
+
+
+
+
+
+
+</body>

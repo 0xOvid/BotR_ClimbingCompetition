@@ -10,7 +10,11 @@
     <div class="card">
         <h3 style="margin-top: 0px;">Bulk: Add Route(s)</h3>
         <p>Upload file</p>
-        <button>Upload</button>
+        
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input type="file" name="route" accept=".csv">
+            <input type="submit" value="Submit">
+        </form>
     </div>
     <div class="card">
         <h3 style="margin-top: 0px;">Manual: Add Route</h3>

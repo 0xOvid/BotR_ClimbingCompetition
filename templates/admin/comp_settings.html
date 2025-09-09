@@ -1,0 +1,69 @@
+{% include "admin/base.html" %}
+<td class="main">
+    <div class="card">
+        <h3 style="margin-top: 0px;">Besøgs faktor/Antal dage i moselykken:</h3>
+        <p>
+            Alle disse felter bliver automatisk opdateret i databasen når du opdatere felterne og klikker væk.
+        </p>
+        <br>
+        <p>
+            ØvreGrænse = alt herunder få denne faktor
+        </p>
+        <table>
+            <tr>
+                <th>ØvreGrænse</th>
+                <th>Faktor</th>
+            </tr>
+            {% for c in antal_klatre_dage %}
+            <tr hx-post="/admin/comp_settings/{{ c.0}}"  hx-trigger="change" hx-include="closest tr">
+                <td><input id="upper" name="upper" value="{{ c.2 }}"></td>
+                <td><input id="factor" name="factor" value="{{ c.3 }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">forskel_i_ruter_klatret:</h3>
+        <p>
+            ØvreGrænse = alt herunder få denne faktor
+        </p>
+        <table>
+            <tr>
+                <th>ØvreGrænse</th>
+                <th>Faktor</th>
+            </tr>
+            {% for c in forskel_i_ruter_klatret %}
+            <tr hx-post="/admin/comp_settings/{{ c.0}}" hx-trigger="change" hx-include="closest tr">
+                <td><input id="upper" name="upper" value="{{ c.2 }}"></td>
+                <td><input id="factor" name="factor" value="{{ c.3 }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="card">
+        <h3 style="margin-top: 0px;">ruter_under_eget_niveau:</h3>
+        <p>
+            ØvreGrænse = alt herunder få denne faktor
+        </p>
+        <table>
+            <tr>
+                <th>ØvreGrænse</th>
+                <th>Faktor</th>
+            </tr>
+            {% for c in ruter_under_eget_niveau %}
+            <tr hx-post="/admin/comp_settings/{{ c.0 }}" hx-trigger="change" hx-include="closest tr">
+                <td><input id="upper" name="upper" value="{{ c.2 }}"></td>
+                <td><input id="factor" name="factor" value="{{ c.3 }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+</td>
+{% include "admin/footer.html" %}
+
+

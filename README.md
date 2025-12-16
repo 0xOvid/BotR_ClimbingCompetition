@@ -169,6 +169,11 @@ N/A?
 2025-09-08
 - Got a PoC of calculations working, needs more testing
 
+2025-09-16
+- continued work on leaderboard and got PoC working, now waiting for check by thomas
+- added the route factors to be displayed in admin pannel
+- still needs testing and verification
+
 # Credits
 Mark for making everything
 

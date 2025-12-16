@@ -328,10 +328,10 @@ def createDatabase(cursor, conn):
              (uuid text, username text, password text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS competition
              (uuid text, route_uuid text, score text, timestamp text)''')
-    #cursor.execute('''CREATE TABLE IF NOT EXISTS routes
-    #         (route_uuid text, nr, name text, max_score int, area text, grade text, factor int)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS routes
-             (route_uuid text, nr, name text, max_score int, area text, grade text)''')
+             (route_uuid text, nr, name text, max_score int, area text, grade text, factor int)''')
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS routes
+    #         (route_uuid text, nr, name text, max_score int, area text, grade text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS climber_id
              (uuid text, name text, gender text, team_name text, max_flash text, dage_i_moselykken text)''')
     # Create table for factors
@@ -393,7 +393,7 @@ def admin_page():
                     area = line[1] 
                     name = line[2] 
                     grade = line[3]
-                    max_score = line[4]
+                    max_score = line[4] #TODO here to fix the problems thomas were talking about, we just add one to here
                     try:
                         cLog(line)
                     except:
@@ -888,209 +888,277 @@ class Route:
     score: str 
  					
 
+route_category = {
+    "3g": 1,
+    "4a": 2,
+    "4b": 3,
+    "4c": 4,
+    "5a": 5,
+    "5a+": 6,
+    "5b": 7,
+    "5b+": 8,
+    "5c": 9,
+    "5c+": 10,
+    "6a": 11,
+    "6a+": 12,
+    "6b": 13,
+    "6b+": 14,
+    "6c": 15,
+    "6c+": 16,
+    "7a": 17,
+    "7a+": 18,
+    "7b": 19,
+    "7b+": 20,
+    "7c": 21,
+    "7c+": 22,
+    "8a": 23,
+    "8a+": 24,
+    "8b": 25,
+    "8b+": 26,
+    "8c": 27,
+    "8c+": 28
+}
 
-def calculate_score(uuid):
-    """
-    Function that calculates a given climbers score.
-    The calculation is done as follows:
-    1) The top "x" routes are found, here a restriction can be placed so the
-    e.g. only the top 2 climbs of a certain grade is included
-    2) Points are decided based on how much of the route was completed, the score is individual based on the route
-     a) top = 100%
-     b) above 2 quickdraws, score = 80%
-     c) score = 0
-    3) The above score is then timed with the constant "grade_point" and timed with the "flash score"
-    grade_point =
-    flash_score = 
-    4) now we take the sum of eavh of the routes points as calculated above
-    5) lastly this sum is timed with "visit_factor" and "noob_factor" and "team_factor" 
-    team_factor = 
-    """
+top = 2
 
-    #cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
-    #            (uuid.uuid4().hex, nr, name, max_score, area, grade))
+def calc_matrix_val(grade, flash_level, factor_coregation):
+    matrix_val = 1 + (route_category[grade]-(route_category[flash_level]-1))/factor_coregation
+    if matrix_val <= 0:
+        matrix_val = 0.05
+    print("\t\t|-> matrix_val:", matrix_val)
+    return matrix_val
 
-    """
 
-    route_score = 0
-    route_point = 0 #total score
-    # If "top", rute point = 1 * gradpoint * flashpoint
-    if r1.score == "top":
-        route_point = 1 * r1.factor 
-        route_point = r1.factor * 0.8 / r1.max_score
-        print("w")
-    # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
-    elif int(r1.score) >= 2:
-        route_point = r1.factor * 0.8 / r1.max_score
-    # Else routepoint = 0
-    print(route_point)
+def calculate_score(user_uuid, user_info, routes, results):
+    print("\t\t|-> Calculating score for uuid:", user_uuid)
+    #leaderboard = []
+    print("\t\t|- User info:", user_info)
+    #leaderboard.append([user_info[0][1], ""])
+    flash_level = user_info[0][4]
+    # if user didnt add their max we just assume 8c+
+    if flash_level == None:
+        flash_level = "8c+"
+    #grade = "7a"
+    climbing_days = user_info[0][5]
+    # Adjust
+    team_diff = 0
+    factor_coregation = 10
+    total_route_score = 0
 
-    print(route_point * (matrix_val + 3) * f_days * f_team_diff )
-    """
+    print("\t\t|- Results[]:", results)
+    r_dict = {}
+    for r in results:
+        # The calculations below are independent from routes
+        # Route Matrix calculation
+        """
+        Each grade has a coresponding value (route kategori)
+        """
+        # get rute info
+        # iterate through rutes to get appropriate one
+        for route_ in routes:
+            #print(route_)
+            if route_[0] == r[1]:
+                route = route_
+            
+        #route = cursor.execute("SELECT * FROM routes where route_uuid = \"" + r[1] + "\"").fetchall()
+        print(route)
+        # calc for route
+        matrix_val = calc_matrix_val(route[5], flash_level, factor_coregation)
+        # If "top", rute point = 1 * gradpoint * flashpoint
+        print("\t\t|- Result:", r)
+        print("\t\t|- Route:", route[0])
+        route_factor = route[6] 
+        route_grade = route[5]
+        route_max = route[3]
+        route_score = r[2]
+        # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
+        if route_score == 'None':
+            continue
+        if route_score == '-':
+            continue
+        if route_score == "Top":
+            #route_point = 1 * route_factor
+            #route_point = route_factor * 0.8 / route_max
+            route_point = float(route_factor) * float(matrix_val)
+        elif int(route_score) >= 2:
+            # TODO remove minus one when updating sling count/max score to allign with thomas 
+            route_point = (float(route_factor) * 0.8 / (int(route_max)-1)) * int(route_score)* float(matrix_val)
+        # Else routepoint = 0
+        else:
+            route_point = 0
+        # Add to dict for sorting of oply top "x" of values
+        print("\t\t|- Route Points:", route_point)
+        if not route_grade in r_dict:
+             r_dict[route_grade] = [route_point]
+        else:
+            r_dict[route_grade].append(route_point)
+        # limit to only TOP "x" of routes
+        #total_route_score = total_route_score + route_point
+    
+    # iterate through dict and get top "x" of routes and add to total score
+    for a in r_dict:
+        top_scores = sorted(range(len(r_dict[a])), key=lambda i: r_dict[a][i])[-top:]
+        for t in top_scores:
+            total_route_score = total_route_score + r_dict[a][t]
+        
+    print("\t|-> Total score", total_route_score)
+    dict_climbing_days_factors = {
+        "3": 1,
+        "8": 0.98,
+        "15": 0.96,
+        "24": 0.94,
+        "35": 0.93,
+        "49": 0.90,
+        "999": 0.88
+    }
+    f_days = 0.88
+    for key in dict_climbing_days_factors:
+        if not climbing_days:
+            break
+        if int(climbing_days) <= int(key):
+            f_days = dict_climbing_days_factors[key]
+            break
+    print("\t|-> f_days:", f_days)
+
+
+    dict_team_diff_factors = {
+        "0": 1,
+        "3": 0.95,
+        "5": 0.9,
+        "7": 0.85,
+        "9": 0.8,
+        "11": 0.7
+    }
+    f_team_diff = 0
+    for key in dict_team_diff_factors:
+        if int(team_diff) < int(key):
+            f_team_diff = dict_team_diff_factors[key]
+            break
+    print("\t|-> Team diff factor:", f_team_diff)
+
+
+    dict_routes_below_level_factors = {
+        "0": 0.14,
+        "6": 0.083, #0.13,
+        "18": 0.04,# 0.05,
+        "999": 0,
+    }
+    f_routes_below = 0
+    for key in dict_routes_below_level_factors:
+        if not flash_level:
+            break
+        # flash_level score = route_category[flash_level]
+        if int(route_category[flash_level]) < int(key):
+            f_routes_below = dict_routes_below_level_factors[key]
+            break
+    print("\t|-> Routes below level factor:", f_routes_below)
+    # iterate through results and calculate score
+    # MAngler team factor
+    f_korigeret_score = total_route_score * f_days * 1 * 1
+    print("\t|-> total_route_score" , total_route_score)
+    print("\t|-> Faktor korrigeret score" , f_korigeret_score)
+    #leaderboard[i][1]=f_korigeret_score
+    # get "x" highest scores
+    #i += 1
+    return total_route_score
+
+
 
 
 @app.route('/leaderboard', methods=['GET'])
-@basic_auth.required
+#@basic_auth.required
 def leaderboard():
+
+    #print("\t|-> Calculating result for:", user[0])
+    # Getting users info
+    #user_info = cursor.execute("SELECT * FROM climber_id WHERE uuid = \"" + user[0] + "\"").fetchall()
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Add factor row to db if doesnt exsist
+    #cursor.execute("ALTER TABLE routes ADD COLUMN factor INT")
+
+
+    # Get all user uuids
+    users = cursor.execute("SELECT uuid FROM users").fetchall()
+    leaderboard = []
+    # Go through each and calculate score
+    routes = cursor.execute("SELECT * FROM routes").fetchall()
+
+    i = 0
     
-    return redirect("/admin")
-    """
-    renders the leaderboard for the competition
-    """
-    # Check if key exists
-    if 'logged_in' in session.keys():
-        if session['logged_in'] == True:
-            # get user info
-            # Check if user exsists in database
-            conn = connect_to_db()
-            cursor = conn.cursor()
-            # Get all user uuids
-            users = cursor.execute("SELECT uuid FROM users").fetchall()
-            leaderboard = []
-            # Go through each and calculate score
-            i = 0
-            for user in users:
-                print("\t|-> Calculating result for:", user[0])
-                # Getting users info
-                user_info = cursor.execute("SELECT * FROM climber_id WHERE uuid = \"" + user[0] + "\"").fetchall()
-                print("\t\t|- User info:", user_info)
-                leaderboard.append([user_info[0][1], ""])
-                flash_level = user_info[0][4]
-                #grade = "7a"
-                climbing_days = user_info[0][5]
-                # Adjust
-                team_diff = 0
-                factor_coregation = 10
-                total_route_score = 0
-                results = cursor.execute("SELECT * FROM competition where uuid = \"" + user[0] + "\"").fetchall()
-                print("\t\t|- Results[]:", results)
-                # lav en sortering her efter de "x" højeste
-                for r in results:
-                    # The calculations below are independent from routes
-                    # Route Matrix calculation
-                    """
-                    Each grade has a coresponding value (route kategori)
-                    """
-                    # get rute info
-                    route = cursor.execute("SELECT * FROM routes where route_uuid = \"" + r[1] + "\"").fetchall()
+    #user_info = [("user_uuid1", "Lars B", "M", "team", "6c", "50")]
+    for user in users:
+        climber_info = cursor.execute("SELECT * FROM climber_id where uuid = \"" + user[0] + "\"").fetchall()
+        # skip users with no name
+        if climber_info[0][1] == None:
+            continue
+        print("\t|-> Calculating result for:", climber_info)
+        results = cursor.execute("SELECT * FROM competition where uuid = \"" + user[0] + "\"").fetchall()
+        # round for nice number
+        leaderboard.append([climber_info[0][1], round(calculate_score(user[0], climber_info, routes, results),2)])
 
-                    route_category = {
-                        "3g": 1,
-                        "4a": 2,
-                        "4b": 3,
-                        "4c": 4,
-                        "5a": 5,
-                        "5b": 6,
-                        "5c": 7,
-                        "6a": 8,
-                        "6a+": 9,
-                        "6b": 10,
-                        "6b+": 11,
-                        "6c": 12,
-                        "6c+": 13,
-                        "7a": 14,
-                        "7a+": 15,
-                        "7b": 16,
-                        "7b+": 17,
-                        "7c": 18,
-                        "7c+": 19,
-                        "8a": 20,
-                        "8a+": 21,
-                        "8b": 22,
-                        "8b+": 23,
-                        "8c": 24,
-                        "8c+": 25
-                    }
-                    matrix_val = 1 + (route_category[route[0][5]]-(route_category[flash_level]-1))/factor_coregation
-                    if matrix_val <= 0:
-                        matrix_val = 0.05
-                    print("\t\t|-> matrix_val:", matrix_val)
-                    # calc for route
-
-                    # If "top", rute point = 1 * gradpoint * flashpoint
-                    print("\t\t|- Result:", r)
-                    print("\t\t|- Route:", route[0])
-                    route_factor = route[0][6] 
-                    route_max = route[0][3]
-                    route_score = r[2]
-                        
-                    # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
-                    if route_score == 'None':
-                        continue
-                    if route_score == "Top":
-                        #route_point = 1 * route_factor
-                        #route_point = route_factor * 0.8 / route_max
-                        route_point = route_factor * matrix_val
-                    elif int(route_score) >= 2:
-                        # der er noget der fucker op her!!! TODO 
-                        route_point = (route_factor * 0.8 / route_max) * int(route_score)* matrix_val
-                    # Else routepoint = 0
-                    else:
-                        route_point = 0
-                    print("\t\t|- Route Points:", route_point)
-                    total_route_score = total_route_score + route_point
-
-                print("\t|-> Total score", total_route_score)
-                dict_climbing_days_factors = {
-                    "3": 1,
-                    "8": 0.98,
-                    "15": 0.96,
-                    "24": 0.94,
-                    "35": 0.93,
-                    "49": 0.90,
-                    "999": 0.88
-                }
-                f_days = 0
-                for key in dict_climbing_days_factors:
-                    if not climbing_days:
-                        break
-                    if int(climbing_days) <= int(key):
-                        f_days = dict_climbing_days_factors[key]
-                        break
-                print("\t|-> f_days:", f_days)
+    # sort dict
+    sorted_leaderboard = sorted(leaderboard, key=lambda x:x[1])
+    return render_template('leaderboard.html', leaderboard=sorted_leaderboard[::-1])
 
 
-                dict_team_diff_factors = {
-                    "0": 1,
-                    "3": 0.95,
-                    "5": 0.9,
-                    "7": 0.85,
-                    "9": 0.8,
-                    "11": 0.7
-                }
-                f_team_diff = 0
-                for key in dict_team_diff_factors:
-                    if int(team_diff) < int(key):
-                        f_team_diff = dict_team_diff_factors[key]
-                        break
-                print("\t|-> Team diff factor:", f_team_diff)
 
 
-                dict_routes_below_level_factors = {
-                    "0": 0.14,
-                    "6": 0.13,
-                    "11": 0.05,
-                    "15": 0,
-                }
-                f_routes_below = 0
-                for key in dict_routes_below_level_factors:
-                    if not flash_level:
-                        break
-                    # flash_level score = route_category[flash_level]
-                    if int(route_category[flash_level]) < int(key):
-                        f_routes_below = dict_routes_below_level_factors[key]
-                        break
-                print("\t|-> Routes below level factor:", f_routes_below)
-                # iterate through results and calculate score
-                # MAngler team factor
-                f_korigeret_score = total_route_score * f_days * 1 * 1
-                print("\t|-> Faktor korrigeret score" , f_korigeret_score)
-                leaderboard[i][1]=f_korigeret_score
-                # get "x" highest scores
-                i += 1
+    #############################################################
+    # should be made in test
+    #############################################################
+    user = ["1"]
+    user_info = [("user_uuid", "Jonathan E", "M", "team", "6c", "50")]
+    leaderboard = []
+    print("\t\t|- User info:", user_info)
+    results = [
+        ("user_uuid", "route_uuid1", "Top", "time"),
+        ("user_uuid", "route_uuid2", "Top", "time"),
+        ("user_uuid", "route_uuid3", "Top", "time"),
+        ("user_uuid", "route_uuid4", "Top", "time"),
+        ("user_uuid", "route_uuid5", "Top", "time"),
+        ("user_uuid", "route_uuid6", "Top", "time"),
+        ("user_uuid", "route_uuid7", "Top", "time"),
+        ("user_uuid", "route_uuid8", "5", "time"),
+        ("user_uuid", "route_uuid9", "5", "time")
+    ]
+    # "route_uuid1", "nr", "name", "max_score", "area", "grade", "factor"
+    routes = [
+        ("route_uuid1", "nr", "34.B Meleret - Signe og Jesper", "5", "area", "4a", "21"),
+        ("route_uuid2", "nr", "34.A Blå - Jan & Helle", "7", "area", "4c", "23"),
+        ("route_uuid3", "nr", "05.A Grøn - Lars", "6", "area", "5b+", "27"),
+        ("route_uuid4", "nr", "25.B Mint - Kristoffer", "5", "area", "6a", "30"),
+        ("route_uuid5", "nr", "14.A Sort - Astrid", "5", "area", "6a", "30"),
+        ("route_uuid6", "nr", "19.C Gul - Tobias L", "5", "area", "6a+", "31"),
+        ("route_uuid7", "nr", "20.A Blå - Andreas L", "9", "area", "6a+", "31"),
+        ("route_uuid8", "nr", "50.A Lilla - Circuit.dk", "6", "area", "6c", "34"),
+        ("route_uuid9", "nr", "48.A Blå - Circuit.dk", "6", "area", "7b+", "39"),
+        ("route_uuid10", "nr", "10.A Rød - Luna", "4", "area", "5a+", "25"),
+        ("route_uuid11", "nr", "32.A Grøn - Vitus", "6", "area", "6b", "32"),
+        ("route_uuid12", "nr", "06.B Blå - Kasper S", "7", "area", "6b+", "33")
+    ]
+    
+    leaderboard.append([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    user = ["2"]
+    user_info = [("user_uuid1", "Lars B", "M", "team", "6c", "50")]
+    print("\t\t|- User info:", user_info)
+    results = [
+        ("user_uuid1", "route_uuid1", "Top", "time"),
+        ("user_uuid1", "route_uuid10", "Top", "time"),
+        ("user_uuid1", "route_uuid3", "Top", "time"),
+        ("user_uuid1", "route_uuid4", "Top", "time"),
+        ("user_uuid1", "route_uuid7", "Top", "time"),
+        ("user_uuid1", "route_uuid11", "Top", "time"),
+        ("user_uuid1", "route_uuid12", "3", "time"),
+        ("user_uuid1", "route_uuid12", "2", "time"),
+        ("user_uuid1", "route_uuid12", "Top", "time"),
+        ("user_uuid1", "route_uuid12", "Top", "time"),
+        ("user_uuid1", "route_uuid12", "2", "time")
+    ]
+    leaderboard.append([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
 
-            return render_template('leaderboard.html', leaderboard=leaderboard)
-    return redirect("/login")
+    return render_template('leaderboard.html', leaderboard=leaderboard)
+
 
 
 # init db on run

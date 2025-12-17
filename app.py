@@ -63,7 +63,7 @@ def connect_to_db():
     """
     try: 
         conn = sqlite3.connect(db_file) 
-        cLog("[+] Database Sqlite3.db loaded.") 
+        #cLog("[+] Database Sqlite3.db loaded.") 
     except: 
         cLog("[!] Database Sqlite3.db not loaded.", "err")
         quit()
@@ -417,6 +417,7 @@ def admin_page():
         just containe username and password. when these are posted 
         new users are created and exah user is given a new uuid
         """
+        """
         try:
             if request.files['users']:
                 cLog("[+] Recieved users file")
@@ -454,7 +455,7 @@ def admin_page():
             cLog("[!] Err post /users", "err")
             cLog(error, "err")
             return redirect("/admin", code=500)
-
+    """
     log = open("record.log").read()
     return render_template('admin.html', users=users, routes=routes, comp=comp, log=log)
 
@@ -718,7 +719,9 @@ def admin_routes_update(uuid):
     return redirect("/admin/routes", code=204)
 
 
-@app.route('/admin/users', methods=['GET', 'POST'])
+
+
+@app.route('/admin/users', methods=['GET'])
 @basic_auth.required
 def admin_users_page():
     """
@@ -734,6 +737,54 @@ def admin_users_page():
         createDatabase(cursor, conn)
     
     return render_template('admin/users.html', users=users)
+
+
+@app.route('/admin/users', methods=['POST'])
+@basic_auth.required
+def admin_users_post():
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    """
+    :: Users ::
+    Handles the posting of new user records, the suer records
+    just containe username and password. when these are posted 
+    new users are created and exah user is given a new uuid
+    """
+
+    cLog("[+] Recieved users file")
+    cLog("\t|- Saving users file")
+    uploaded_file = request.files['users']
+    uploaded_file.save("tmpUsers.csv")
+    cLog("\t|- Saved as: tmpUsers")
+    cLog("\t|- Deleting exsisting users from db")
+    # All old users need to be deleted since the new users will have different ids
+    cursor.execute("DELETE FROM users")
+    lines = load_routes_from_csv("tmpUsers.csv")
+    cLog("\t|- Loading to db")
+
+    for line in lines:
+        h = str(line[1])
+        md5_hash = hashlib.md5()
+        # Update the hash object with the input string encoded to bytes
+        md5_hash.update(h.encode('utf-8'))
+        user_uuid = uuid.uuid4().hex
+        # Return the hexadecimal representation of the hash
+        try:
+            msg = "\tExecuting: INSERT INTO users (uuid, username, password) VALUES (", user_uuid, line[0], md5_hash.hexdigest(), ")"
+            cLog(msg)
+        except:
+            print("logging failed")
+        cursor.execute('''INSERT INTO users (uuid, username, password) VALUES (?, ?, ?)''', 
+                    (user_uuid, line[0], md5_hash.hexdigest()))
+        # create user id - maybe we need to delete users from the comp db as well? 
+        cursor.execute('''INSERT INTO climber_id (uuid) VALUES ("''' + user_uuid + '''")''')
+    
+    conn.commit()
+    conn.close()
+    return redirect("/admin/users", code=302)
+
+
+
 
 @app.route('/admin/content', methods=['GET'])
 @basic_auth.required
@@ -1158,6 +1209,12 @@ def leaderboard():
     leaderboard.append([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
 
     return render_template('leaderboard.html', leaderboard=leaderboard)
+
+
+@app.route('/admin/dashboard')
+@basic_auth.required
+def admin_render_dashboard():
+    return render_template('admin/dashboard.html')
 
 
 

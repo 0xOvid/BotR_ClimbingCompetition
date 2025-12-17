@@ -1,47 +1,102 @@
 
 {% include "admin/base.html" %}
-<td class="main">
-    <div class="card">
-        <h2 style="margin-top: 0px;">Users</h2>
-        <p>This database contains all users available</p>
-    </div>
+    <div class="grid">
+        <div class="s12 m6 l6">
+            <article>
+                <h4 style="margin-top: 0px;">Users</h4>
+                <p>This page contains all functions related to the management of the users.
+                    in this case users refers to the climbers in the competition.
+                </p>
+                <p>The functions of this page are:</p>
+                <ul>
+                    <li><b>Genarate Users</b> - This generates a list of users and passwords as a .csv file.
+                        The users are not uploaded to the database.
+                    </li>
+                    <li><b>Bulk: Add Users</b> - This will take the provided .csv of usernames and passwords and upload these to the database.
+                        by uploading new users to the database you will delete any old users and thereby destroy any exsisting data in the database from a competition.
+                    </li>
+                </ul>
+            </article>
+        </div>
 
-    <div class="card">
-        <h3 style="margin-top: 0px;">Generate users:</h3>
-        <form action="/generate_users_file" method="post">
-            <label for="fname">number of users to generate:</label>
-            <input type="text" id="n" name="n"><br><br>
-            <input type="submit" value="Generate users file">
-        </form>
-    </div>
+        <div class="s12 m6 l6">
+        <article>
+            <h4 style="margin-top: 0px;">Generate users:</h4>
+            <form action="/generate_users_file" method="post" id="generate_users_file" onsubmit="return validate();" >
 
-    <div class="card">
-        <h3 style="margin-top: 0px;">Bulk: Add Users(s)</h3>
-        <p>Upload file</p>
-    
-        <form method="POST" action="/admin" enctype="multipart/form-data">
-            <input type="file" name="users" accept=".csv">
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+                <div class="row">
+                    <div class="field border label max">
+                        <input type="text" id="n" name="n">
+                        <label>Number of users to generate</label>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <button type="submit" form="generate_users_file" value="Submit">Generate users file</button>
+            <script>
+                function validate(){
+                    if (document.getElementById("n").value == "")
+                    {
+                        alert("Please add number of users to generate");
+                        return false;
+                    }
+                }
+            </script>
+            <br>
+            <br>
+            <hr>
+            <br>
 
-    <div class="card">
-        <div style="height: 40vh; overflow-y:scroll">
-        <table class="routes">   
-            <tr>
+            <h4 style="margin-top: 0px;">Bulk: Add Users</h4>
+            <p>Upload file with usernames and passwords for competition users</p>
+            <div class="row">
+            <form method="POST" action="/admin/users" enctype="multipart/form-data" id="upload_users">
+                
+                <button>
+                    <i>attach_file</i>
+                    <span>File</span>
+                    <input type="file" name="users" accept=".csv" id="file-picker">
+                </button>
+                <span type="text" disabled id="output"></span>
+                
+            </form>
+            <button type="submit" form="upload_users" value="Submit">Upload users file</button>
+            </div>
+            <script>
+                const output = document.getElementById("output");
+                const filePicker = document.getElementById("file-picker");
+
+                filePicker.addEventListener("change", (event) => {
+                const files = event.target.files;
+                output.textContent = "";
+
+                for (const file of files) {
+                    output.textContent += file.name;
+                }
+                });
+            </script>
+
+        </article>
+        </div>
+    </div>
+    <article>
+        <div style="overflow-y:scroll; max-height:40vh ;">
+        <table class="stripes">
+            <thead>   
                 <th>uuid</th>
                 <th>username</th>
                 <th>password</th>
-            </tr>
+            </thead>
+            <tbody>
             {% for user in users %}
             <tr hx-post="/route_post" hx-trigger="change">
                 <td>{{ user.0 }}</td>
                 <td>{{ user.1 }}</td>
                 <td>{{ user.2 }}</td>
             </tr>
-            {% endfor %}      
+            {% endfor %}     
+            </tbody> 
         </table>
         </div>
-    </div>
-</td>
+    <article>
 {% include "admin/footer.html" %}

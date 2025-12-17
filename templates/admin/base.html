@@ -1,136 +1,18 @@
 <!DOCTYPE html>
-<header>
+<head>
     
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.13.1/dist/cdn/beer.min.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.13.1/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
 
-    <style>
-        body {
-            background: black;
-            color: antiquewhite;
-            font-family: 'Courier New', monospace;
-        }
-        a {
-            color: hotpink;
-        }
-        .container {
-            max-width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .title{
-            text-align: center;
-            background-color:  antiquewhite;
-            color:  #2c2822;
-            box-shadow: 10px 10px #2c2822;
-        }
-        tr .main {
-            max-width: 1020px;
-            width: 1020px;
-            vertical-align: top; 
-            overflow-x: hidden;
-        }
-        tr .menu{
-            max-width: 220px;
-            width: 220px;
-            vertical-align: top;
-        }
-        .card {
-            border: 1px solid antiquewhite;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #2c2822;
-        }
-        table {
-            border-collapse: separate;
-            border-spacing: 10px 0;
-        }
-        table .add-route {
-            border-spacing: 0px 5px;
-            text-align: left;
-        }
-        th .add-route {
-            padding: 0px;
-        }
-        .routes {
-            border-spacing: 0 0;
-            width: 100%;
-        }
-        .routes th, .routes td {
-            padding-left: 15px;
-            text-align: left;
-        }
-        .routes td, .routes td {
-            padding-left: 15px;
-        }
+</head>
 
-        .routes tr:nth-child(even)  {background-color: #57534d;}
-
-
-        .successModal {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(20, 130, 25, 0.7);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2em;
-            z-index: 1000;
-            border-top: 2px solid #fff;
-        }
-        .errorModal {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(130, 20, 20, 0.7);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2em;
-            z-index: 1000;
-            border-top: 2px solid #fff;
-        }
-
-        .successModal .modal-content {
-            background-color: green;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left; 
-            font-family:Verdana, sans-serif; 
-            font-weight: 600;
-        }
-        .errorModal .modal-content {
-            background-color: red;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: left; 
-            font-family:Verdana, sans-serif; 
-            font-weight: 600;
-        }
-
-    </style>
-</header>
 <body>
-    <div class="container">
-        <div class="title">
-            <pre>
-                
-                :: ADMIN PAGE ::
-            </pre>                                                                                                                 
-        </div>
-        <table>
-            <tbody>
-                <tr>
-                    <td class="menu">
-                        <div class="card">
-                            {% include "admin/nav.html" %}
-                        </div>
-                    </td>
+    {% include "admin/nav.html" %}
+    
+    <main class="responsive">

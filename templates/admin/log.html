@@ -1,17 +1,17 @@
 
 
 {% include "admin/base.html" %}
-<td class="main">
-    <div class="card">
-        <h3 style="margin-top: 0px;">Competition Leaderboard:</h3>
-    </div>
 
-    <div class="card">
+    <article>
+        <h3 style="margin-top: 0px;">Competition Leaderboard:</h3>
+    </article>
+
+    <article>
         <h3 style="margin-top: 0px;">Log File:</h3>
         
-        <pre>
+        <pre style="max-height: 60vh; overflow-y: scroll;">
             {{log}}
         </pre>
-    </div>
-</td>
+    </article>
+    
 {% include "admin/footer.html" %}

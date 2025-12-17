@@ -174,6 +174,15 @@ N/A?
 - added the route factors to be displayed in admin pannel
 - still needs testing and verification
 
+
+2025-12-16
+- rework look of users, nav, base
+- update admin/users to use new route
+- move add user functionality to seperate function
+- users updated and validated
+- nav look updated
+
+
 # Credits
 Mark for making everything
 

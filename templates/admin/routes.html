@@ -15,6 +15,33 @@
             <input type="file" name="route" accept=".csv">
             <input type="submit" value="Submit">
         </form>
+
+        <div class="row">
+        <form method="POST" action="/admin/users" enctype="multipart/form-data" id="upload_users">
+            <button>
+                <i>attach_file</i>
+                <span>File</span>
+                <input type="file" name="users" accept=".csv" id="file-picker">
+            </button>
+            <p type="text" disabled id="output"></p>
+            
+        </form>
+        <button type="submit" form="upload_users" value="Submit">Upload users file</button>
+        </div>
+        <script>
+            const output = document.getElementById("output");
+            const filePicker = document.getElementById("file-picker");
+
+            filePicker.addEventListener("change", (event) => {
+            const files = event.target.files;
+            output.textContent = "";
+
+            for (const file of files) {
+                output.textContent += file.name;
+            }
+            });
+        </script>
+
     </div>
     <div class="card">
         <h3 style="margin-top: 0px;">Manual: Add Route</h3>

@@ -2,30 +2,46 @@
 {% include "admin/base.html" %}
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
-<td class="main">
-    <div class="card">
-        <h3 style="margin-top: 0px;">Welcome message:</h3>
-        <!-- Create the editor container -->
-        <div id="greeting">
-        <p>Cool rules</p>
-        <p>Some initial <strong>bold</strong> text</p>
-        <p><br /></p>
-        </div>
-        <button onclick="SendQuillContent('#greeting')">Send</button>
-    </div>
+<article>
+    <h3 style="margin-top: 0px;">Welcome message:</h3>
+    <!-- Create the editor container -->
+    <div id="greeting">
+    {% if '<p><br></p>' == greeting|safe %}
+    <h1>Hello dear climber!</h1>
+    <p>
+    Welcome to the BotR/PLØKS competition app.
+    This app is where you will register your progress in the competition.
+    If you encounter any issues during use please contact the competition organizers.
+    </p>
+    {% else %}
+    {{ greeting|safe }}
+    {% endif %}
 
-    <div class="card">
-        <h3 style="margin-top: 0px;">Rules:</h3>
-        <!-- Create the editor container -->
-        <div id="rules">
-        <p>Hello World!</p>
-        <p>Some initial <strong>bold</strong> text</p>
-        <p><br /></p>
-        </div>
-        <button onclick="SendQuillContent('#rules')">Send</button>
- 
+
     </div>
-</td>
+    <br>
+    <button onclick="SendQuillContent('#greeting')">Send</button>
+</article>
+
+<article>
+    <h3 style="margin-top: 0px;">Rules:</h3>
+    <!-- Create the editor container -->
+    <div id="rules" style="color: white;">
+      
+    {% if '<p><br></p>' == rules|safe %}
+    <h1>Hello dear climber!</h1>
+    <p>
+    Welcome to the BotR/PLØKS competition app.
+    For more on the rules of the competition, please refer to the provided instructions and material provided by the competition organizers.
+    </p>
+    {% else %}
+    {{ greeting|safe }}
+    {% endif %}
+    {{ rules|safe }}
+    </div>
+    <br>
+    <button onclick="SendQuillContent('#rules')">Send</button>
+</article>
 
 
 <!-- Include the Quill library -->

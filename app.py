@@ -417,35 +417,37 @@ def export_results():
     for route in routes:
         export += route[2] + "; "
     export += "\n"
-    
+
     for user in users:
-        # check if database for competition is empty, if not then continue
-        
-        username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-        # remove: (' ',)
-        username = username.replace("(", "")
-        username = username.replace(")", "")
-        username = username.replace("'", "")
-        username = username.replace(",", "")
-        # set user info
-        export += str(user[0]) + "; " + username + "; " + str(user[1]) + "; " + str(user[2]) + "; " + str(user[3]) + "; " + str(user[4])  + "; " + str(user[5]) + "; "
-        # go through routes and check if user has completed route
-        # get all routes for user
-        user_routes = cursor.execute("SELECT * FROM competition WHERE uuid = \"" + user[0] + "\"").fetchall()
-        # go through all routes
-        user_row = ""
-        for route in routes:
-            # check for routes user has done
-            route_found = False
-            for uRoute in user_routes:
-                # user has done route
-                if uRoute[1] == route[0]:
-                    user_row += uRoute[2] + "; "
-                    route_found = True
-                    break
-            if not route_found:
-                user_row += "- ;"
-        export += user_row + "\n"
+        try:
+            # check if database for competition is empty, if not then continue
+            username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
+            # remove: (' ',)
+            username = username.replace("(", "")
+            username = username.replace(")", "")
+            username = username.replace("'", "")
+            username = username.replace(",", "")
+            # set user info
+            export += str(user[0]) + "; " + username + "; " + str(user[1]) + "; " + str(user[2]) + "; " + str(user[3]) + "; " + str(user[4])  + "; " + str(user[5]) + "; "
+            # go through routes and check if user has completed route
+            # get all routes for user
+            user_routes = cursor.execute("SELECT * FROM competition WHERE uuid = \"" + user[0] + "\"").fetchall()
+            # go through all routes
+            user_row = ""
+            for route in routes:
+                # check for routes user has done
+                route_found = False
+                for uRoute in user_routes:
+                    # user has done route
+                    if uRoute[1] == route[0]:
+                        user_row += uRoute[2] + "; "
+                        route_found = True
+                        break
+                if not route_found:
+                    user_row += "- ;"
+            export += user_row + "\n"
+        except:
+            cLog("export result error")
     
     cLog("[+] Exporting competition results")
     export_filename = "comp_exp.csv"
@@ -497,6 +499,14 @@ def generate_users_file():
 
 
 
+
+@app.route('/delete_log', methods=['GET'])
+@basic_auth.required
+def delete_log():
+    print("[+] Deleting log file")
+    with open("record.log", "w") as f:
+        f.write("Cleared")
+    return redirect("/admin/log", code=302)
 
 
 
@@ -743,15 +753,13 @@ def admin_content_page():
     """
     Page for updating html on the different pages (rules and greeting message)
     """
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Check if db exsists, if not create one
-    try:
-        users = cursor.execute("SELECT * FROM users").fetchall()
-    except:
-        createDatabase(cursor, conn)
-    
-    return render_template('admin/content.html', users=users)
+    greeting = ""
+    with open("./templates/#greeting.html", "r") as file:
+        greeting = file.read()
+    rules = ""
+    with open("./templates/#rules.html", "r") as file:
+        rules = file.read()
+    return render_template('admin/content.html', greeting=greeting, rules=rules)
 
 @app.route('/admin/content', methods=['POST'])
 @basic_auth.required
@@ -765,7 +773,9 @@ def admin_content_update():
     """
     cLog(("[+] Updating content:", request.get_json()["type"]),"")
     with open("templates/"+request.get_json()["type"]+".html", "w") as f:
-        f.write(request.get_json()["content"])
+        content = request.get_json()["content"]
+        print(content)
+        f.write(content)
     cLog("\t|-> File written:"+request.get_json()["type"]+".html","")
 
     return redirect("/admin/routes", code=302)

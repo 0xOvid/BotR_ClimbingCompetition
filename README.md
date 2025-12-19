@@ -188,6 +188,10 @@ N/A?
 adding individual ones, editing these have also been tested, 
 deleting has been tested.
 - started some work on the other pages
+- added functionality to clear log file from browser
+- server management now working
+- content addition now working
+- added defaults to greetings and rule contents when empty
 
 # Credits
 Mark for making everything

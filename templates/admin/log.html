@@ -1,17 +1,13 @@
 
 
 {% include "admin/base.html" %}
-
-    <article>
-        <h3 style="margin-top: 0px;">Competition Leaderboard:</h3>
-    </article>
-
     <article>
         <h3 style="margin-top: 0px;">Log File:</h3>
+        <br>
+        <button onclick="fetch('/delete_log')">Delete logs</button>
         
-        <pre style="max-height: 60vh; overflow-y: scroll;">
+        <pre style="max-height: 80vh; overflow-y: scroll;">
             {{log}}
         </pre>
     </article>
-    
 {% include "admin/footer.html" %}

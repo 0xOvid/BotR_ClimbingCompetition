@@ -182,6 +182,12 @@ N/A?
 - users updated and validated
 - nav look updated
 
+2025-12-19
+- routes page done
+- now supports deleting all routes from db with warning, 
+adding individual ones, editing these have also been tested, 
+deleting has been tested.
+- started some work on the other pages
 
 # Credits
 Mark for making everything

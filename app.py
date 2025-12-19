@@ -343,121 +343,8 @@ def createDatabase(cursor, conn):
 @app.route('/admin', methods=['GET', 'POST'])
 @basic_auth.required
 def admin_page():
-    """
-    Renders the administrative page of the application
-    in here the database can be managed
-    users and routes can be added
-    also competition results can be retrived
-    """
-    
-    conn = connect_to_db()
-    cursor = conn.cursor()
-    # Check if db exsists, if not create one
-    try:
-        users = cursor.execute("SELECT * FROM users").fetchall()
-    except:
-        createDatabase(cursor, conn)
-    
-    users = cursor.execute("SELECT * FROM users").fetchall()
-    routes = cursor.execute("SELECT * FROM routes").fetchall()
-    comp = cursor.execute('''SELECT climber_id.name, routes.name, competition.score FROM competition 
-                                JOIN climber_id ON climber_id.uuid = competition.uuid
-                                JOIN routes ON competition.route_uuid = routes.route_uuid ''').fetchall()
-    
+    return redirect("/admin/dashboard", code=200)
 
-    """
-    Code here handles the different files that can be submitted to the database
-    """
-    if request.method == 'POST':
-        """
-        :: Routes :: 
-        Handles when new routes are uploaded
-        deletes the old table and creates a new table fo routes
-        all routes are given a new uuid therefore the routes cannot be reused from
-        previous uploads
-        """
-        try:
-            if request.files['route']:
-                cLog("[+] Recieved routes file")
-                cLog("\t|- Saving routes file")
-                uploaded_file = request.files['route']
-                uploaded_file.save("tmpRoutes.csv")
-                cLog("\t|- Saved as: tmpRoutes")
-                cLog("\t|- Deleting exsisting routes from db")
-                cursor.execute("DELETE FROM routes")
-                lines = load_routes_from_csv("tmpRoutes.csv")
-                cLog("\t|- Loading to db")
-                for line in lines:
-                    # still some issues with special chars
-                    nr = line[0]
-                    area = line[1] 
-                    name = line[2] 
-                    grade = line[3]
-                    max_score = line[4] #TODO here to fix the problems thomas were talking about, we just add one to here
-                    try:
-                        cLog(line)
-                    except:
-                        print("logging failed")
-                    #cLog(line[1].encode("latin-1").decode("utf-8"))
-                    cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
-                                (uuid.uuid4().hex, nr, name, max_score, area, grade))
-                
-                # Save (commit) the changes
-                conn.commit()
-                # Close the connection
-                conn.close()
-                return redirect("/admin", code=302)
-        except Exception as error:
-            cLog("[!] Invalid post /routes", "err")
-            cLog(error, "err")
-        
-        """
-        :: Users ::
-        Handles the posting of new user records, the suer records
-        just containe username and password. when these are posted 
-        new users are created and exah user is given a new uuid
-        """
-        """
-        try:
-            if request.files['users']:
-                cLog("[+] Recieved users file")
-                cLog("\t|- Saving users file")
-                uploaded_file = request.files['users']
-                uploaded_file.save("tmpUsers.csv")
-                cLog("\t|- Saved as: tmpUsers")
-                cLog("\t|- Deleting exsisting users from db")
-                # All old users need to be deleted since the new users will have different ids
-                cursor.execute("DELETE FROM users")
-                lines = load_routes_from_csv("tmpUsers.csv")
-                cLog("\t|- Loading to db")
-
-                for line in lines:
-                    h = str(line[1])
-                    md5_hash = hashlib.md5()
-                    # Update the hash object with the input string encoded to bytes
-                    md5_hash.update(h.encode('utf-8'))
-                    user_uuid = uuid.uuid4().hex
-                    # Return the hexadecimal representation of the hash
-                    try:
-                        msg = "\tExecuting: INSERT INTO users (uuid, username, password) VALUES (", user_uuid, line[0], md5_hash.hexdigest(), ")"
-                        cLog(msg)
-                    except:
-                        print("logging failed")
-                    cursor.execute('''INSERT INTO users (uuid, username, password) VALUES (?, ?, ?)''', 
-                                (user_uuid, line[0], md5_hash.hexdigest()))
-                    # create user id - maybe we need to delete users from the comp db as well? 
-                    cursor.execute('''INSERT INTO climber_id (uuid) VALUES ("''' + user_uuid + '''")''')
-                
-                conn.commit()
-                conn.close()
-                return redirect("/admin", code=302)
-        except Exception as error:
-            cLog("[!] Err post /users", "err")
-            cLog(error, "err")
-            return redirect("/admin", code=500)
-    """
-    log = open("record.log").read()
-    return render_template('admin.html', users=users, routes=routes, comp=comp, log=log)
 
 # downloads
 @app.route('/get_sqlite', methods=['GET'])
@@ -502,7 +389,7 @@ def delete_db():
     createDatabase(cursor, conn)
     # Close the connection
     conn.close()
-    return redirect("/admin", code=302)
+    return redirect("/admin/dashboard", code=302)
 
 @app.route('/export_results', methods=['GET'])
 @basic_auth.required
@@ -644,6 +531,70 @@ def admin_routes_page():
 
 
 @app.route('/admin/routes', methods=['POST'])
+@basic_auth.required
+def admin_add_routes():
+    """
+    :: Routes :: 
+    Handles when new routes are uploaded
+    deletes the old table and creates a new table fo routes
+    all routes are given a new uuid therefore the routes cannot be reused from
+    previous uploads
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    
+    cLog("[+] Recieved routes file")
+    cLog("\t|- Saving routes file")
+    uploaded_file = request.files['routes']
+    uploaded_file.save("tmpRoutes.csv")
+    cLog("\t|- Saved as: tmpRoutes")
+    cLog("\t|- Deleting exsisting routes from db")
+    cursor.execute("DELETE FROM routes")
+    lines = load_routes_from_csv("tmpRoutes.csv")
+    cLog("\t|- Loading to db")
+    for line in lines:
+        # still some issues with special chars
+        nr = line[0]
+        area = line[1] 
+        name = line[2] 
+        grade = line[3]
+        max_score = line[4] #TODO here to fix the problems thomas were talking about, we just add one to here
+        try:
+            cLog(line)
+        except:
+            print("logging failed")
+        #cLog(line[1].encode("latin-1").decode("utf-8"))
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, nr, name, max_score, area, grade))
+    
+    # Save (commit) the changes
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return redirect("/admin/routes", code=302)
+
+@app.route('/admin/routes', methods=['DELETE'])
+@basic_auth.required
+def admin_delete_routes():
+    """
+    :: Routes :: 
+    Handles when new routes are uploaded
+    deletes the old table and creates a new table fo routes
+    all routes are given a new uuid therefore the routes cannot be reused from
+    previous uploads
+    """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    
+    cLog("\t|- Deleting exsisting routes from db")
+    cursor.execute("DELETE FROM routes")
+    # Save (commit) the changes
+    conn.commit()
+    # Close the connection
+    conn.close()
+    return 200
+
+@app.route('/admin/route', methods=['POST'])
 @basic_auth.required
 def admin_routes_add():
     """

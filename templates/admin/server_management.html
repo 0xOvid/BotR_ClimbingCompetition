@@ -1,55 +1,45 @@
-
-
-
 {% include "admin/base.html" %}
-<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+<article>
+    <h3>.:: SERVER FUNCTIONS ::.</h3>
+    <p>The following seciton contains verions server functions, please be carefull.</p>
 
-<td class="main">
-    <div class="card">
-            <h3>.:: SERVER FUNCTIONS ::.</h3>
-            <p>The following seciton contains verions server functions, please be carefull.</p>
+    <table>
+        <tr>
+            <td><a href="/get_sqlite" class="button">Export sqlite database</a></td>
+            <td>Exports the database for the applications as a sqlite file. The idea is that this cna be usedd
+                to create local backups and help with troubleshooting in case of errors.</td>
+        </tr>
+        <tr>
+            <td><a href="/get_log" class="button">Export logfile</a></td>
+            <td>Exports the log file of the applicaiton. The logfile stores information about the actions
+                performed on the server.</td>
+        </tr>
+        <tr>
+            <td><a href="/export_results" class="button">Export competition results</a></td>
+            <td>Exports the results of the competition as a .csv file, The first couple of columns are the
+                general user info, the rest are the different routs. One user will have one row.</td>
+        </tr>
+    </table>
+</article>
+<article>
+    <h3>.:: Destructive SERVER FUNCTIONS ::.</h3>
+    <p>The following seciton contains verions server functions, please be carefull.</p>
 
-            <table>
-                <tr>
-                    <td><a href="/get_sqlite" class="button">Export sqlite database</a></td>
-                    <td>Exports the database for the applications as a sqlite file. The idea is that this cna be usedd
-                        to create local backups and help with troubleshooting in case of errors.</td>
-                </tr>
-                <tr>
-                    <td><a href="/get_log" class="button">Export logfile</a></td>
-                    <td>Exports the log file of the applicaiton. The logfile stores information about the actions
-                        performed on the server.</td>
-                </tr>
-                <tr>
-                    <td><a href="/export_results" class="button">Export competition results</a></td>
-                    <td>Exports the results of the competition as a .csv file, The first couple of columns are the
-                        general user info, the rest are the different routs. One user will have one row.</td>
-                </tr>
-            </table>
-    </div>
-
-    <div class="card">
-        <h3>.:: Destructive SERVER FUNCTIONS ::.</h3>
-            <p>The following seciton contains verions server functions, please be carefull.</p>
-
-            <table>
-                <tr>
-                    <td><a href="/delete_db" class="button">Delete full database contents</a></td>
-                    <td>Deletes the full database. This will permanently delete all contents from the database of the
-                        application.</td>
-                </tr>
-                <!--
-                <tr>
-                    <td><a href="/delete_app" class="button">Delete applicaiton</a></td>
-                    <td>This deletes the database and all local files, this will perform a full reset of the
-                        application.</td>
-                </tr>-->
-            </table>
-    </div>
-</td>
-
-
-</script>
+    <table>
+        <tr>
+            <td><a href="/delete_db" class="button">Delete full database contents</a></td>
+            <td>Deletes the full database. This will permanently delete all contents from the database of the
+                application.</td>
+        </tr>
+        <!--
+        <tr>
+            <td><a href="/delete_app" class="button">Delete applicaiton</a></td>
+            <td>This deletes the database and all local files, this will perform a full reset of the
+                application.</td>
+        </tr>
+        -->
+    </table>
+</article>
 
 {% include "admin/footer.html" %}
 

@@ -1,90 +1,118 @@
 
 {% include "admin/base.html" %}
-<td class="main">
-    <div class="card">
-        <h2 style="margin-top: 0px;">Routes</h2>
-        <p>This database contains all routs available for the contestants to enter their scores on. The file should be comma seperated and contain the following columns: nr, area, name, grade, max_score. The route will be displayed in the order of which they are in the uploaded document.
-        </p>
-    </div>
+            <article>
+                <h2 style="margin-top: 0px;">Routes</h2>
+                <p>
+                    This database contains all routs available for the contestants to enter their scores on. 
+                    The file should be comma seperated and contain the following columns: nr, area, name, grade, max_score.
+                    The route will be displayed in the order of which they are in the uploaded document.
+                </p>
+            </article>
 
-    <div class="card">
-        <h3 style="margin-top: 0px;">Bulk: Add Route(s)</h3>
-        <p>Upload file</p>
-        
-        <form method="POST" action="" enctype="multipart/form-data">
-            <input type="file" name="route" accept=".csv">
-            <input type="submit" value="Submit">
-        </form>
+    <div class="grid">
+        <div class="s12 m6 l6">
+            <article>
+                <h3 style="margin-top: 0px;">Bulk: Add Route(s)</h3>
+                <p>Upload file containgin routes for the comp. When doing this you will ruin any exsisting routes and data.</p>
+                
+                <div class="row">
+                <form method="POST" action="/admin/routes" enctype="multipart/form-data" id="upload_routes">
+                    
+                    <button>
+                        <i>attach_file</i>
+                        <span>File</span>
+                        <input type="file" name="routes" accept=".csv" id="file-picker">
+                    </button>
+                    <span type="text" disabled id="output"></span>
+                    
+                </form>
+                <button type="submit" form="upload_routes" value="Submit">Upload routes file</button>
+                </div>
 
-        <div class="row">
-        <form method="POST" action="/admin/users" enctype="multipart/form-data" id="upload_users">
-            <button>
-                <i>attach_file</i>
-                <span>File</span>
-                <input type="file" name="users" accept=".csv" id="file-picker">
-            </button>
-            <p type="text" disabled id="output"></p>
-            
-        </form>
-        <button type="submit" form="upload_users" value="Submit">Upload users file</button>
+                <script>
+                    const output = document.getElementById("output");
+                    const filePicker = document.getElementById("file-picker");
+
+                    filePicker.addEventListener("change", (event) => {
+                    const files = event.target.files;
+                    output.textContent = "";
+
+                    for (const file of files) {
+                        output.textContent += file.name;
+                    }
+                    });
+                </script>
+            </article>
+            <article>
+                <h3>Delete routes from DB</h3>
+                <p>By clicking this button you wil delete all routes from the database. These cannot be restored.</p>
+                <button data-ui="#dialog-modal">Delete routes from database</button>
+                <dialog id="dialog-modal">
+                    <h5>Delete routes from db</h5>
+                    <div>THIS WILL DELETE ALL ROUTES FROM DB AND CANT BE RECOVERED</div>
+                    <nav class="right-align no-space">
+                        <button class="transparent link" data-ui="#dialog-modal">Cancel</button>
+                        <button class="transparent link" onclick="delete_routes()" data-ui="#dialog-modal">Confirm</button>
+                    </nav>
+                </dialog>
+                <script>
+                    function delete_routes(){
+                        const options = {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json', // Specify the content type if necessary
+                                // Additional headers can be included as needed, such as authentication tokens
+                            },
+                            };
+                        fetch("/admin/routes", options);
+                        alert("Routes deleted, please refresh");
+                    }
+                </script>
+
+            </article>
         </div>
-        <script>
-            const output = document.getElementById("output");
-            const filePicker = document.getElementById("file-picker");
+        <div class="s12 m6 l6">
+        <article>
+            <h3 style="margin-top: 0px;">Manual: Add Route</h3>
+            <p>
+                Manually adding single routes or editing them will not affect current routes. 
+                Editing exsisting routes will not ruin any data in the system.
+            </p>
 
-            filePicker.addEventListener("change", (event) => {
-            const files = event.target.files;
-            output.textContent = "";
 
-            for (const file of files) {
-                output.textContent += file.name;
-            }
-            });
-        </script>
-
+            <form method="POST" action="/admin/route" enctype="multipart/form-data">
+            <fieldset>
+            <div class="field border label">
+                <input id="area" name="area">
+                <label>Area</label>
+            </div>
+            <div class="field border label">
+                <input id="name" name="name">
+                <label>Name</label>
+            </div>
+            <div class="field border label">
+                <input id="grade" name="grade">
+                <label>Grade</label>
+            </div>
+            <div class="field border label">
+                <input id="max_score" name="max_score">
+                <label>Max score</label>
+            </div>
+            <div class="field border label">
+                <input id="factor" name="factor">
+                <label>Factor</label>
+            </div>
+            </fieldset>
+            <br>
+            <button>Add to database</button>
+        </form>
+        </article>
     </div>
-    <div class="card">
-        <h3 style="margin-top: 0px;">Manual: Add Route</h3>
-            <form method="POST" action="" enctype="multipart/form-data">
-        <table class="add-route">
-            <thead>
-                <th>Area</th>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>amount of slings/max score</th>
-                <th>Factor</th>
-            </thead>
-            <tbody> 
-                <tr>
-                    <td>
-                        <input id="area" name="area">
-                    </td>
-                    <td>
-                        <input id="name" name="name">
-                    </td>
-                    <td>
-                        <input id="grade" name="grade">
-                    </td>
-                    <td>
-                        <input id="max_score" name="max_score">
-                    </td>
-                    <td>
-                        <input id="factor" name="factor">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button>Add to database</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-            </form>
     </div>
-
-    <div class="card">
+    <article>
         <div style="height: 40vh; overflow-y:scroll">
-        <table class="routes">            
+            <h3>Routes:</h3>
+        <table class="stripes">            
             <tr>
                 <th>Område</th>
                 <th>Rute</th>
@@ -100,12 +128,12 @@
                 <td>{{ route.5 }}</td>
                 <td>{{ route.3 }}</td>
                 <td>{{ route.6 }}</td>
-                <td><a href="/admin/routes/{{ route.0 }}">EDIT</a></td>
+                <td><a href="/admin/routes/{{ route.0 }}" style="color: var(--primary); text-decoration: underline; font-weight: 800;">EDIT</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
+    </article>
     </div>
 </td>
 {% include "admin/footer.html" %}

@@ -1,11 +1,9 @@
 
 {% include "admin/base.html" %}
-<td class="main">
-    <div class="card">
-        <h2 style="margin-top: 0px; color: lime;">Edit Route {{ route[0].0 }} - {{ route[0].2 }}</h2>
-    </div>
-    <div class="card">
-        <h3 style="margin-top: 0px;">Edeting...</h3>
+<article>
+    <h2 style="margin-top: 0px; color: lime;">Edit Route {{ route[0].0 }} - {{ route[0].2 }}</h2>
+
+    <h3 style="margin-top: 0px;">Edeting...</h3>
         <table class="add-route">
             <thead>
                 <th>Area</th>
@@ -41,8 +39,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-</td>
+    </article>
 
     <!-- Modal : nneds formating -->
     <div id="successModal" class="successModal">

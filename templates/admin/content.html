@@ -3,7 +3,24 @@
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
 
 <article>
+    <h3 style="margin-top: 0px;">Competition name:</h3>
+    <p>This is the name of the competition shown in the web page where users enter their scores.</p>
+    <!-- Create the editor container -->
+    <div id="comp_name">
+    {% if '<p><br></p>' == comp_name|safe %}
+    <h1>BotR/PLØKS</h1>
+    {% else %}
+    {% include "#comp_name.html" %}
+    {% endif %}
+
+    </div>
+    <br>
+    <button onclick="SendQuillContent('#comp_name')">Send</button>
+</article>
+
+<article>
     <h3 style="margin-top: 0px;">Welcome message:</h3>
+    <p>This is the message users see when they visit the login page.</p>
     <!-- Create the editor container -->
     <div id="greeting">
     {% if '<p><br></p>' == greeting|safe %}
@@ -14,7 +31,7 @@
     If you encounter any issues during use please contact the competition organizers.
     </p>
     {% else %}
-    {{ greeting|safe }}
+    {% include "#greeting.html" %}
     {% endif %}
 
 
@@ -25,6 +42,7 @@
 
 <article>
     <h3 style="margin-top: 0px;">Rules:</h3>
+    <p>This is the content displayed to users in the "rules" section of the web page where they enter their climbing results.</p>
     <!-- Create the editor container -->
     <div id="rules" style="color: white;">
       
@@ -32,12 +50,12 @@
     <h1>Hello dear climber!</h1>
     <p>
     Welcome to the BotR/PLØKS competition app.
-    For more on the rules of the competition, please refer to the provided instructions and material provided by the competition organizers.
+    For more on the rules of the competition, 
+    please refer to the provided instructions and material provided by the competition organizers.
     </p>
     {% else %}
-    {{ greeting|safe }}
+    {% include "#rules.html" %}
     {% endif %}
-    {{ rules|safe }}
     </div>
     <br>
     <button onclick="SendQuillContent('#rules')">Send</button>
@@ -57,7 +75,7 @@ const quill = new Quill('#rules', {
       ['image', 'code-block'],
     ],
   },
-  placeholder: 'Compose an epic...',
+  placeholder: 'Rules of the competition',
   theme: 'snow', // or 'bubble'
 });
 const quill2 = new Quill('#greeting', {
@@ -68,7 +86,17 @@ const quill2 = new Quill('#greeting', {
       ['image', 'code-block'],
     ],
   },
-  placeholder: 'Compose an epic...',
+  placeholder: 'Greeting for the login page',
+  theme: 'snow', // or 'bubble'
+});
+
+const quill3 = new Quill('#comp_name', {
+  modules: {
+    toolbar: [
+      [{ header: [3, ] }],
+    ],
+  },
+  placeholder: 'Competition name',
   theme: 'snow', // or 'bubble'
 });
 

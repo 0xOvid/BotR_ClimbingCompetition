@@ -2,56 +2,52 @@
 {% include "admin/base.html" %}
 <article>
     <h2 style="margin-top: 0px; color: lime;">Edit Route {{ route[0].0 }} - {{ route[0].2 }}</h2>
+    <hr>
+    <br>
 
-    <h3 style="margin-top: 0px;">Edeting...</h3>
-        <table class="add-route">
-            <thead>
-                <th>Area</th>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>amount of slings/max score</th>
-                <th>Factor</th>
-            </thead>
-            <tbody> 
-                <tr>
-                    <td>
-                        <input value="{{ route[0].4 }}" id="area" name="area">
-                    </td>
-                    <td>
-                        <input value="{{ route[0].2 }}" id="name" name="name">
-                    </td>
-                    <td>
-                        <input value="{{ route[0].5 }}" id="grade" name="grade">
-                    </td>
-                    <td>
-                        <input value="{{ route[0].3 }}" id="max_score" name="max_score">
-                    </td>
-                    <td>
-                        <input value="{{ route[0].6 }}" id="factor" name="factor">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="updateRoute('{{ route[0].0 }}')">Save</button>
-                        <button onclick="deleteRoute('{{ route[0].0 }}')">Delete route</button>
-                        <button onclick="cancle()">Cancle</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
+    <h4 style="margin-top: 0px;">Edeting...</h4>
 
-    <!-- Modal : nneds formating -->
-    <div id="successModal" class="successModal">
-        <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600;">
-            <h2>Resultat opdateret</h2>
+    <p>This page is for editing a route, changes will only be saved after cliciking the button below.</p>
+
+    <fieldset>
+        <div class="field border label">
+            <input id="area" name="area" value="{{ route[0].4 }}" >
+            <label>Area</label>
         </div>
-    </div>
-    <div id="errorModal" class="errorModal">
-        <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600;">
-            <h2>Something went wrong</h2>
+        <div class="field border label">
+            <input id="name" name="name" value="{{ route[0].2 }}">
+            <label>Name</label>
         </div>
+        <div class="field border label">
+            <input id="grade" name="grade" value="{{ route[0].5 }}">
+            <label>Grade</label>
+        </div>
+        <div class="field border label">
+            <input id="max_score" name="max_score" value="{{ route[0].3 }}">
+            <label>Max score</label>
+        </div>
+        <div class="field border label">
+            <input id="factor" name="factor" value="{{ route[0].6 }}">
+            <label>Factor</label>
+        </div>
+        <br>
+    <button onclick="updateRoute('{{ route[0].0 }}')">Save</button>
+    <button onclick="deleteRoute('{{ route[0].0 }}')" class="error">Delete route</button>
+    <button onclick="cancle()" class="inverse-surface">Cancle</button>
+    </fieldset>
+</article>
+
+<!-- Modal : nneds formating -->
+<div id="successModal" class="successModal">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: green; color: whitesmoke; padding: 15px; border-radius: 5px;">
+        <h2>Resultat opdateret</h2>
     </div>
+</div>
+<div id="errorModal" class="errorModal">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: tomato; color: black; padding: 15px; border-radius: 5px;">
+        <h2>Something went wrong</h2>
+    </div>
+</div>
 
 <script>
         // Function to show the modal
@@ -116,5 +112,7 @@
                     showModal(document.getElementById('errorModal'));
             });
     }
+
+    closeModal() 
 </script>
 {% include "admin/footer.html" %}

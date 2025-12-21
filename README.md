@@ -193,6 +193,17 @@ deleting has been tested.
 - content addition now working
 - added defaults to greetings and rule contents when empty
 
+2025-12-20
+- updated editing for individual routes
+- fixed comp settings
+- now factors get added to the database
+- fixed some encoding errors in the content saving
+- can now change the name of the contest in the content pannel
+- almost close to testing ready
+- added +1 to route points so it alligns with how thomas likes to do it
+
+
+
 # Credits
 Mark for making everything
 

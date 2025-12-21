@@ -28,6 +28,7 @@ app.config['BASIC_AUTH_PASSWORD'] = 'b3tt3r4dm1nCr3d3nt14l5!'
 auth = Blueprint('auth', __name__)
 # Allow hot reloading of templates
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 """
 Setup session management
 """
@@ -83,9 +84,9 @@ def load_routes_from_csv(filename):
     Take path to csv as input and parse the contents
     return array/list of list for the items
     The structure of the data should be:
-    nr; area; name; grade; max_score
+    nr; area; name; grade; max_score; factor
     I.e:
-    4;Skolevæggen;Difficault;4a;5
+    4;Skolevæggen;Difficault;4a;5;5
     """
     cLog("[+] Loading routes from csv: " + filename)
     # Clean file by converting from nordic iso-8859 to standard UTF8 - static for now, should probabpy be done dyn>
@@ -96,6 +97,7 @@ def load_routes_from_csv(filename):
     with open(filename,'r') as data:
         for line in csv.reader(data, delimiter=';'):
             lines.append(line)
+            print(line)
     cLog("\t|- Csv parsed")
     return lines
 
@@ -199,6 +201,8 @@ def routes():
                         #routes_list[i].append("-")
                         #routes[i] = routes[i] + ("-",)
                 i += 1
+
+            # utf fuckes up here
             return render_template('routes.html', user_info=u_info, routes=routes_list)
     return redirect("/login")
 
@@ -537,6 +541,7 @@ def admin_routes_page():
         createDatabase(cursor, conn)
     
     routes = cursor.execute("SELECT * FROM routes").fetchall()
+
     return render_template('admin/routes.html', routes=routes)
 
 
@@ -568,14 +573,15 @@ def admin_add_routes():
         area = line[1] 
         name = line[2] 
         grade = line[3]
-        max_score = line[4] #TODO here to fix the problems thomas were talking about, we just add one to here
+        max_score = str(int(line[4]) + 1) #TODO here to fix the problems thomas were talking about, we just add one to here
+        factor = line[5] 
         try:
             cLog(line)
         except:
             print("logging failed")
         #cLog(line[1].encode("latin-1").decode("utf-8"))
-        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
-                    (uuid.uuid4().hex, nr, name, max_score, area, grade))
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, nr, name, max_score, area, grade, factor))
     
     # Save (commit) the changes
     conn.commit()
@@ -754,12 +760,15 @@ def admin_content_page():
     Page for updating html on the different pages (rules and greeting message)
     """
     greeting = ""
-    with open("./templates/#greeting.html", "r") as file:
+    with open("./templates/#greeting.html", "r", encoding='utf8') as file:
         greeting = file.read()
     rules = ""
-    with open("./templates/#rules.html", "r") as file:
+    with open("./templates/#rules.html", "r", encoding='utf8') as file:
         rules = file.read()
-    return render_template('admin/content.html', greeting=greeting, rules=rules)
+    comp_name = ""
+    with open("./templates/#comp_name.html", "r", encoding='utf8') as file:
+        comp_name = file.read()
+    return render_template('admin/content.html', greeting=greeting, rules=rules, comp_name=comp_name).encode('utf8')
 
 @app.route('/admin/content', methods=['POST'])
 @basic_auth.required
@@ -772,7 +781,7 @@ def admin_content_update():
     Vulnerable to SSTI i know, so dont run somewhere important
     """
     cLog(("[+] Updating content:", request.get_json()["type"]),"")
-    with open("templates/"+request.get_json()["type"]+".html", "w") as f:
+    with open("templates/"+request.get_json()["type"]+".html", "w", encoding='utf8') as f:
         content = request.get_json()["content"]
         print(content)
         f.write(content)

@@ -202,7 +202,9 @@ deleting has been tested.
 - almost close to testing ready
 - added +1 to route points so it alligns with how thomas likes to do it
 
-
+2025-12-22
+- added matrix view to projects
+- found issues with routes, now that an additional one has been added - fixed was just an issue with indexing
 
 # Credits
 Mark for making everything

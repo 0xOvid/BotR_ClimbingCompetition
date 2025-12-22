@@ -202,7 +202,7 @@ def routes():
                         #routes[i] = routes[i] + ("-",)
                 i += 1
 
-            # utf fuckes up here
+            print(routes_list)
             return render_template('routes.html', user_info=u_info, routes=routes_list)
     return redirect("/login")
 
@@ -1180,11 +1180,71 @@ def leaderboard():
 
     return render_template('leaderboard.html', leaderboard=leaderboard)
 
-
+# not used currently
 @app.route('/admin/dashboard')
 @basic_auth.required
 def admin_render_dashboard():
     return render_template('admin/dashboard.html')
+
+
+
+@app.route('/matrix', methods=['GET'])
+#@basic_auth.required
+def render_matrix():
+
+    #print("\t|-> Calculating result for:", user[0])
+    # Getting users info
+    #user_info = cursor.execute("SELECT * FROM climber_id WHERE uuid = \"" + user[0] + "\"").fetchall()
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    # Add factor row to db if doesnt exsist
+    #cursor.execute("ALTER TABLE routes ADD COLUMN factor INT")
+
+
+    # Get all user uuids
+    users = cursor.execute("SELECT * FROM users").fetchall()
+    sql_climbers = cursor.execute("SELECT * FROM climber_id").fetchall()
+    climbers = []
+    for climber in sql_climbers:
+        # username
+        user = cursor.execute("SELECT username FROM users WHERE uuid ='" + climber[0] + "'").fetchall()
+        if len(user) > 0 :
+            username = user[0][0]
+        else:
+            username = "N/A"
+        
+        
+        climbers.append((
+            climber[0], # uuid
+            climber[1], # name
+            climber[2], # gender 
+            climber[3], # team
+            climber[4], # max flash
+            username)
+        )
+
+
+
+    users = cursor.execute("SELECT * FROM climber_id").fetchall()
+    routes = cursor.execute("SELECT * FROM routes").fetchall()
+    # create header row
+
+    routes_w_res = []
+    for route in routes:
+        comp_route_res = cursor.execute("SELECT * FROM competition WHERE route_uuid ='" + route[0] + "'").fetchall()
+        route_results = []
+        for user in users:
+            try:
+                if user[0] == comp_route_res[0][0]:
+                    route_results.append(comp_route_res[0][2])
+                else:
+                    route_results.append("-")
+            except:
+                route_results.append("-")
+        print(route + (route_results,))
+        routes_w_res.append(route + (route_results,))
+    print(routes_w_res)
+    return render_template('matrix.html', climbers=climbers, routes=routes_w_res)
 
 
 

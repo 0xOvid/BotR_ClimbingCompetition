@@ -1,2 +1,4 @@
 Sqlite3.db
 __pycache__
+.log
+.pytest_cache

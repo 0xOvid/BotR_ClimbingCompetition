@@ -1,5 +1,68 @@
 {% include "admin/base.html" %}
 <article>
+    <h3>Disable/enable Leaderboard/matrix</h3>
+    <p>
+        The switches below determines if users are allowed to visit the "/leaderboard" and "/matrix" web pages.
+        Truning these on and off might be desirable when creating suspense at the end of a competition.
+    </p>
+    <div class="field middle-align">
+    <nav>
+        <div class="max">
+        <h6>Leaderboard</h6>
+        <div>This page showes a list of the competitiores ranked on their scores</div>
+        </div>
+        <label class="switch">
+        <input type="checkbox" {{ leaderboard_status }} onchange="sendPut('leaderboard')">
+        <span></span>
+        </label>
+    </nav>
+    </div>
+
+    <div class="field middle-align">
+    <nav>
+        <div class="max">
+        <h6>Maxtrix</h6>
+        <div>This page shows a detailed view of each climbers score in terms of routes climbed and their score.</div>
+        </div>
+        <label class="switch">
+        <input type="checkbox" id="matrix_switch" {{ matrix_status }} onchange="sendPut('matrix')">
+        <span></span>
+        </label>
+    </nav>
+    </div>
+    <script>
+        // Function to show the modal
+        function showModal(modal) {
+            modal.style.display = 'block';  // Show the modal
+            setTimeout(closeModal, 2000);  // Close the modal after 5 seconds
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('errorModal').style.display = 'none';
+        }
+        function sendPut(id){
+            
+        fetch("/admin/comp_settings/"+id, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}, 
+            body: {"request": id}
+                }).then(res => {
+                    if (res.status == 304){
+                        
+                        showModal(document.getElementById('successModal'));
+                    } else {
+                        showModal(document.getElementById('errorModal'));
+                    }
+                }).catch(res => {
+                    showModal(document.getElementById('errorModal'));
+            });
+        }
+
+    </script>
+</article>
+<article>
     <h3 style="margin-top: 0px;">Besøgs faktor/Antal dage i moselykken:</h3>
     <p>
         Alle disse felter bliver automatisk opdateret i databasen når du opdatere felterne og klikker væk.
@@ -81,6 +144,19 @@
         {% endfor %}
     </table>
 </article>
+
+
+<!-- Modal : nneds formating -->
+<div id="successModal" class="successModal">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: green; color: whitesmoke; padding: 15px; border-radius: 5px;">
+        <h2>Resultat opdateret</h2>
+    </div>
+</div>
+<div id="errorModal" class="errorModal">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: tomato; color: black; padding: 15px; border-radius: 5px;">
+        <h2>Something went wrong</h2>
+    </div>
+</div>
 {% include "admin/footer.html" %}
 
 

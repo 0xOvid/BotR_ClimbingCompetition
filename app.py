@@ -341,6 +341,9 @@ def createDatabase(cursor, conn):
     # Create table for factors
     cursor.execute('''CREATE TABLE IF NOT EXISTS factors
              (uuid text, category text, upper text, factor text)''')
+    
+    cursor.execute('''CREATE TABLE IF NOT EXISTS leaderboards
+             (page text, status text)''')
     # Save (commit) the changes
     conn.commit()
 
@@ -806,6 +809,63 @@ def admin_log_page():
     log = open("record.log").read()
     return render_template('admin/log.html', log=log)
 
+
+# Functionality for "enabling" and "disabeling" the leaderboard
+# and matrix webpages for regular users
+@app.route('/admin/comp_settings/leaderboard', methods=['PUT'])
+@basic_auth.required
+def admin_comp_leaderboard():
+    """ Update the leaderboard setting in the db """
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    # check if not exsists, if not add
+    leaderboard_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'leaderboard'").fetchall()
+    if len(leaderboard_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("leaderboard", "enabled"))
+        return redirect("/admin/comp_settings", code=304)
+    # else switch value
+    if leaderboard_status[0][1] == "enabled":
+        cursor.execute('''UPDATE leaderboards SET
+            status = "disabled"
+            WHERE page == "leaderboard"''')
+    else:
+        cursor.execute('''UPDATE leaderboards SET
+            status = "enabled"
+            WHERE page == "leaderboard"''')
+
+    conn.commit()
+    conn.close()
+    return redirect("/admin/comp_settings", code=304)
+
+
+@app.route('/admin/comp_settings/matrix', methods=['PUT'])
+@basic_auth.required
+def admin_comp_matrix():
+    """ Update the matrix setting in the db """    
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    # check if not exsists, if not add
+    leaderboard_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'matrix'").fetchall()
+    if len(leaderboard_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("matrix", "enabled"))
+        return redirect("/admin/comp_settings", code=304)
+    # else switch value
+    if leaderboard_status[0][1] == "enabled":
+        cursor.execute('''UPDATE leaderboards SET
+            status = "disabled"
+            WHERE page == "matrix"''')
+    else:
+        cursor.execute('''UPDATE leaderboards SET
+            status = "enabled"
+            WHERE page == "matrix"''')
+
+    conn.commit()
+    conn.close()
+    return redirect("/admin/comp_settings", code=304)
+
+
 @app.route('/admin/comp_settings', methods=['GET', 'POST'])
 @basic_auth.required
 def admin_comp_page():
@@ -866,8 +926,35 @@ def admin_comp_page():
     forskel_i_ruter_klatret = cursor.execute("SELECT * FROM factors WHERE category = \"forskel_i_ruter_klatret\"").fetchall()
     ruter_under_eget_niveau = cursor.execute("SELECT * FROM factors WHERE category = \"ruter_under_eget_niveau\"").fetchall()
 
+    
+    leaderboard_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'leaderboard'").fetchall()
+    if len(leaderboard_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("leaderboard", "enabled"))
+    else:
+        #print(leaderboard_status)
+        if leaderboard_status[0][1] == "enabled":
+            leaderboard_status = "checked"
+        else:
+            leaderboard_status = ""
+
+    matrix_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'matrix'").fetchall()
+    if len(matrix_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("matrix", "enabled"))
+    else:
+        if matrix_status[0][1] == "enabled":
+            matrix_status = "checked"
+        else:
+            matrix_status = ""
+            
+    conn.commit()
+    conn.close()
     # render
-    return render_template('admin/comp_settings.html', antal_klatre_dage=antal_klatre_dage, forskel_i_ruter_klatret=forskel_i_ruter_klatret, ruter_under_eget_niveau=ruter_under_eget_niveau)
+    return render_template('admin/comp_settings.html',
+                           antal_klatre_dage=antal_klatre_dage, 
+                           forskel_i_ruter_klatret=forskel_i_ruter_klatret, 
+                           ruter_under_eget_niveau=ruter_under_eget_niveau, 
+                           leaderboard_status=leaderboard_status,
+                           matrix_status=matrix_status)
 
 @app.route('/admin/comp_settings/<id>', methods=['POST'])
 @basic_auth.required
@@ -1098,6 +1185,13 @@ def leaderboard():
     # Add factor row to db if doesnt exsist
     #cursor.execute("ALTER TABLE routes ADD COLUMN factor INT")
 
+    # check if enabled
+    leaderboard_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'leaderboard'").fetchall()
+    if len(leaderboard_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("leaderboard", "enabled"))
+    else:
+        if leaderboard_status[0][1] != "enabled":
+            return "page disabled"
 
     # Get all user uuids
     users = cursor.execute("SELECT uuid FROM users").fetchall()
@@ -1119,6 +1213,8 @@ def leaderboard():
         leaderboard.append([climber_info[0][1], round(calculate_score(user[0], climber_info, routes, results),2)])
 
     # sort dict
+    cursor.close()
+    conn.close()
     sorted_leaderboard = sorted(leaderboard, key=lambda x:x[1])
     return render_template('leaderboard.html', leaderboard=sorted_leaderboard[::-1])
 
@@ -1200,6 +1296,13 @@ def render_matrix():
     # Add factor row to db if doesnt exsist
     #cursor.execute("ALTER TABLE routes ADD COLUMN factor INT")
 
+    # check if enabled
+    matrix_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'matrix'").fetchall()
+    if len(matrix_status) < 1:
+        cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("matrix", "enabled"))
+    else:
+        if matrix_status[0][1] != "enabled":
+            return "page disabled"
 
     # Get all user uuids
     users = cursor.execute("SELECT * FROM users").fetchall()
@@ -1241,9 +1344,11 @@ def render_matrix():
                     route_results.append("-")
             except:
                 route_results.append("-")
-        print(route + (route_results,))
+        #print(route + (route_results,))
         routes_w_res.append(route + (route_results,))
-    print(routes_w_res)
+    #print(routes_w_res)
+    cursor.close()
+    conn.close()
     return render_template('matrix.html', climbers=climbers, routes=routes_w_res)
 
 

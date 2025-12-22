@@ -205,6 +205,7 @@ deleting has been tested.
 2025-12-22
 - added matrix view to projects
 - found issues with routes, now that an additional one has been added - fixed was just an issue with indexing
+- added functionality for enabeling and disabelign leaderboard and matrix pages
 
 # Credits
 Mark for making everything

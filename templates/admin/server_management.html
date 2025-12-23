@@ -27,9 +27,34 @@
 
     <table>
         <tr>
-            <td><a href="/delete_db" class="button">Delete full database contents</a></td>
-            <td>Deletes the full database. This will permanently delete all contents from the database of the
-                application.</td>
+            <td>
+                Deletes the full database. This will permanently delete all contents from the database of the
+                application.
+            </td>
+            <td>
+                <button data-ui="#dialog-modal">Delete full database contents</button>
+                <dialog id="dialog-modal">
+                    <h5>Delete routes from db</h5>
+                    <div>THIS WILL DELETE THE DATABASE AND CANNOT BE UNDONE</div>
+                    <nav class="right-align no-space">
+                        <button class="transparent link" data-ui="#dialog-modal">Cancel</button>
+                        <button class="transparent link" onclick="delete_db()" data-ui="#dialog-modal">Confirm</button>
+                    </nav>
+                </dialog>
+                <script>
+                    function delete_db(){
+                        const options = {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json', // Specify the content type if necessary
+                                // Additional headers can be included as needed, such as authentication tokens
+                            },
+                            };
+                        fetch("/delete_db", options);
+                        alert("DB deleted, please refresh");
+                    }
+                </script>
+            </td>
         </tr>
         <!--
         <tr>

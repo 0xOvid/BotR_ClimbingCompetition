@@ -1,4 +1,17 @@
 {% include "admin/base.html" %}
+
+<!-- Modal : nneds formating -->
+<div id="successModal" class="successModal" style="display: none;">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: green; color: whitesmoke; padding: 15px; border-radius: 5px;">
+        <h2>Success</h2>
+    </div>
+</div>
+<div id="errorModal" class="errorModal" style="display: none;">
+    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: tomato; color: black; padding: 15px; border-radius: 5px;">
+        <h2>Something went wrong</h2>
+    </div>
+</div>
+
 <article>
     <h3>Disable/enable Leaderboard/matrix</h3>
     <p>
@@ -146,17 +159,6 @@
 </article>
 
 
-<!-- Modal : nneds formating -->
-<div id="successModal" class="successModal">
-    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: green; color: whitesmoke; padding: 15px; border-radius: 5px;">
-        <h2>Resultat opdateret</h2>
-    </div>
-</div>
-<div id="errorModal" class="errorModal">
-    <div class="modal-content" style="text-align: left; font-family:Verdana, sans-serif; font-weight: 600; background-color: tomato; color: black; padding: 15px; border-radius: 5px;">
-        <h2>Something went wrong</h2>
-    </div>
-</div>
 {% include "admin/footer.html" %}
 
 

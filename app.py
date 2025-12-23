@@ -627,8 +627,8 @@ def admin_routes_add():
     conn = connect_to_db()
     cursor = conn.cursor()
     try:
-        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
-                    (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"))
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), request.form.get("factor"))
                     )
         
         # Save (commit) the changes
@@ -679,7 +679,6 @@ def admin_routes_update(uuid):
             grade = ?,
             factor = ?
             WHERE route_uuid = ?''', 
-            #(request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), uuid)
             (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], request.get_json()["factor"], uuid)
             )
     # Save (commit) the changes

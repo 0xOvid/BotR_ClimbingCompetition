@@ -60,21 +60,17 @@ python -m pytest
 # TODO 
 - lav en intro side hvis det er første gang folk logger ind
 - lav det så at databasen ikke bliver slettet men at den bliver rykket til en .bak fil med tidspunkt
-- implementer state management?
-- maybe setup traefik
 
 # TODO: 2025-08-03
 - Add propper initialization script for initial seutp and testing
-
 - figure out calculations for score in the app
 - create structured logging - and maybe have it stored in the database
-- Create leaderboard
-
 - Create lock for database when competition in is swing
+
+
+# .:: Changelog ::.
+- Create leaderboard
 - Migrate do admin page v2.0
-
-
-## .:: DONE ::.
 - tjek om man kan få fil download til at virke for både windows og linux
 - admin siden loader ikke uden database - fiks
 - fix css its a bit to small for people on mobile
@@ -206,6 +202,12 @@ deleting has been tested.
 - added matrix view to projects
 - found issues with routes, now that an additional one has been added - fixed was just an issue with indexing
 - added functionality for enabeling and disabelign leaderboard and matrix pages
+
+2025-12-23
+- added modal and confirmation for deleting db in svr. mgmt.
+- fixed and rearranged modals in comp settings
+- fixed missing factor when adding individual routes
+
 
 # Credits
 Mark for making everything

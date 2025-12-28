@@ -350,7 +350,7 @@ def createDatabase(cursor, conn):
 @app.route('/admin', methods=['GET', 'POST'])
 @basic_auth.required
 def admin_page():
-    return redirect("/admin/dashboard", code=200)
+    return redirect("/admin/routes", code=200)
 
 
 # downloads
@@ -396,7 +396,7 @@ def delete_db():
     createDatabase(cursor, conn)
     # Close the connection
     conn.close()
-    return redirect("/admin/dashboard", code=302)
+    return redirect("/admin/routes", code=302)
 
 @app.route('/export_results', methods=['GET'])
 @basic_auth.required
@@ -1279,7 +1279,7 @@ def leaderboard():
 @app.route('/admin/dashboard')
 @basic_auth.required
 def admin_render_dashboard():
-    return render_template('admin/dashboard.html')
+    return render_template('admin/routes.html')
 
 
 
@@ -1365,3 +1365,4 @@ conn.close()
 
 if __name__ == '__main__':
     app.run(debug=True)
+

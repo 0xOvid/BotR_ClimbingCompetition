@@ -929,6 +929,7 @@ def admin_comp_page():
     leaderboard_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'leaderboard'").fetchall()
     if len(leaderboard_status) < 1:
         cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("leaderboard", "enabled"))
+        leaderboard_status = "checked"
     else:
         #print(leaderboard_status)
         if leaderboard_status[0][1] == "enabled":
@@ -939,6 +940,7 @@ def admin_comp_page():
     matrix_status = cursor.execute("SELECT * FROM leaderboards WHERE page = 'matrix'").fetchall()
     if len(matrix_status) < 1:
         cursor.execute('''INSERT INTO leaderboards (page, status) VALUES (?, ?)''', ("matrix", "enabled"))
+        matrix_status = "checked"
     else:
         if matrix_status[0][1] == "enabled":
             matrix_status = "checked"
@@ -1274,13 +1276,6 @@ def leaderboard():
     leaderboard.append([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
 
     return render_template('leaderboard.html', leaderboard=leaderboard)
-
-# not used currently
-@app.route('/admin/dashboard')
-@basic_auth.required
-def admin_render_dashboard():
-    return render_template('admin/routes.html')
-
 
 
 @app.route('/matrix', methods=['GET'])

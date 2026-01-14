@@ -96,10 +96,6 @@
                 <input id="max_score" name="max_score">
                 <label>Max score</label>
             </div>
-            <div class="field border label">
-                <input id="factor" name="factor">
-                <label>Factor</label>
-            </div>
             </fieldset>
             <br>
             <button>Add to database</button>
@@ -116,7 +112,6 @@
                 <th>Rute</th>
                 <th>Grad</th>
                 <th>Max score</th>
-                <th>Factor</th>
                 <th></th>
             </tr>
             {% for route in routes %}
@@ -125,7 +120,6 @@
                 <td>{{ route.2 }}</td>
                 <td>{{ route.5 }}</td>
                 <td>{{ route.3 }}</td>
-                <td>{{ route.6 }}</td>
                 <td><a href="/admin/routes/{{ route.0 }}" style="color: var(--primary); text-decoration: underline; font-weight: 800;">EDIT</a></td>
             </tr>
             {% endfor %}

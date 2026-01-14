@@ -26,10 +26,6 @@
             <input id="max_score" name="max_score" value="{{ route[0].3 }}">
             <label>Max score</label>
         </div>
-        <div class="field border label">
-            <input id="factor" name="factor" value="{{ route[0].6 }}">
-            <label>Factor</label>
-        </div>
         <br>
     <button onclick="updateRoute('{{ route[0].0 }}')">Save</button>
     <button onclick="deleteRoute('{{ route[0].0 }}')" class="error">Delete route</button>
@@ -94,7 +90,6 @@
             "name": document.getElementById("name").value,
             "grade": document.getElementById("grade").value,
             "max_score": document.getElementById("max_score").value,
-            "factor": document.getElementById("factor").value,
         };
             
         fetch("/admin/routes/"+id, {

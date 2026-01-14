@@ -9,13 +9,11 @@
                 </p>
             </article>
 
-    <div class="grid">
         <div class="s12 m6 l6">
             <article>
                 <h3 style="margin-top: 0px;">Bulk: Add Route(s)</h3>
                 <p>Upload file containgin routes for the comp. When doing this you will ruin any exsisting routes and data.</p>
                 
-                <div class="row">
                 <form method="POST" action="/admin/routes" enctype="multipart/form-data" id="upload_routes">
                     
                     <button>
@@ -26,8 +24,8 @@
                     <span type="text" disabled id="output"></span>
                     
                 </form>
+                <br>
                 <button type="submit" form="upload_routes" value="Submit">Upload routes file</button>
-                </div>
 
                 <script>
                     const output = document.getElementById("output");
@@ -107,7 +105,6 @@
             <button>Add to database</button>
         </form>
         </article>
-    </div>
     </div>
     <article>
         <div>

@@ -332,8 +332,12 @@ def createDatabase(cursor, conn):
              (uuid text, username text, password text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS competition
              (uuid text, route_uuid text, score text, timestamp text)''')
+    #cursor.execute('''CREATE TABLE IF NOT EXISTS routes
+    #         (route_uuid text, nr, name text, max_score int, area text, grade text, factor int)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS routes
-             (route_uuid text, nr, name text, max_score int, area text, grade text, factor int)''')
+             (route_uuid text, nr, name text, max_score int, area text, grade text)''')
+    
+    
     #cursor.execute('''CREATE TABLE IF NOT EXISTS routes
     #         (route_uuid text, nr, name text, max_score int, area text, grade text)''')
     cursor.execute('''CREATE TABLE IF NOT EXISTS climber_id
@@ -577,14 +581,16 @@ def admin_add_routes():
         name = line[2] 
         grade = line[3]
         max_score = str(int(line[4]) + 1) #TODO here to fix the problems thomas were talking about, we just add one to here
-        factor = line[5] 
+        #factor = line[5] 
         try:
             cLog(line)
         except:
             print("logging failed")
         #cLog(line[1].encode("latin-1").decode("utf-8"))
-        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
-                    (uuid.uuid4().hex, nr, name, max_score, area, grade, factor))
+        #cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
+        #            (uuid.uuid4().hex, nr, name, max_score, area, grade, factor))
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, nr, name, max_score, area, grade))
     
     # Save (commit) the changes
     conn.commit()
@@ -627,8 +633,11 @@ def admin_routes_add():
     conn = connect_to_db()
     cursor = conn.cursor()
     try:
-        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
-                    (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), request.form.get("factor"))
+        #cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade, factor) VALUES (?, ?, ?, ?, ?, ?, ?)''', 
+        #            (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"), request.form.get("factor"))
+        #            )
+        cursor.execute('''INSERT INTO routes (route_uuid, nr, name, max_score, area, grade) VALUES (?, ?, ?, ?, ?, ?)''', 
+                    (uuid.uuid4().hex, "0", request.form.get("name"), request.form.get("max_score"), request.form.get("area"), request.form.get("grade"))
                     )
         
         # Save (commit) the changes
@@ -672,6 +681,7 @@ def admin_routes_update(uuid):
     if request.get_json()["action"] == "delete":
         cursor.execute('''DELETE FROM routes WHERE route_uuid = \"''' + uuid + "\"")
     else: 
+        """
         cursor.execute('''UPDATE routes SET 
             name = ?,
             max_score = ?,
@@ -680,6 +690,14 @@ def admin_routes_update(uuid):
             factor = ?
             WHERE route_uuid = ?''', 
             (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], request.get_json()["factor"], uuid)
+            )"""
+        cursor.execute('''UPDATE routes SET 
+            name = ?,
+            max_score = ?,
+            area = ?,
+            grade = ?,
+            WHERE route_uuid = ?''', 
+            (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], uuid)
             )
     # Save (commit) the changes
     conn.commit()
@@ -1076,22 +1094,42 @@ def calculate_score(user_uuid, user_info, routes, results):
         # If "top", rute point = 1 * gradpoint * flashpoint
         print("\t\t|- Result:", r)
         print("\t\t|- Route:", route[0])
-        route_factor = route[6] 
+        
+        # needs to be gotten from factor matrix via grade
+        #route_factor = route[6] 
+
+        
+
+
+
         route_grade = route[5]
         route_max = route[3]
         route_score = r[2]
+
+
+        # route factor
+        std_top_point = 19
+        route_factor =route_category[route_grade] + std_top_point
+        print("route factor", route_factor)
+
         # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
         if route_score == 'None':
             continue
         if route_score == '-':
             continue
         if route_score == "Top":
+
+            # hvis top så skal der gives std top point
+
             #route_point = 1 * route_factor
             #route_point = route_factor * 0.8 / route_max
             route_point = float(route_factor) * float(matrix_val)
         elif int(route_score) >= 2:
             # TODO remove minus one when updating sling count/max score to allign with thomas 
-            route_point = (float(route_factor) * 0.8 / (int(route_max)-1)) * int(route_score)* float(matrix_val)
+
+            print("\t|- point pr slynge:", float(route_factor * 0.8)/ (float(route_max)))
+            print("\t|- route point, !top !0", float(route_factor * 0.8)/ (float(route_max)) * float(route_score)* float(matrix_val) )
+            route_point = (float(route_factor) * 0.8 / (int(route_max))) * int(route_score)* float(matrix_val)
         # Else routepoint = 0
         else:
             route_point = 0
@@ -1217,6 +1255,81 @@ def leaderboard():
     cursor.close()
     conn.close()
     sorted_leaderboard = sorted(leaderboard, key=lambda x:x[1])
+
+    # Test: col:BM
+    #
+    user = ["1"]
+    user_info = [("user_uuid1", "Vitus", "M", "hhjj", "7b+", "50")]
+    # antal ruter 9
+
+    print("\t\t|- User info:", user_info)
+    results = [
+        ("user_uuid", "route_uuid1", "Top", "time"),
+        ("user_uuid", "route_uuid5", "Top", "time"),
+        ("user_uuid", "route_uuid6", "Top", "time"),
+        ("user_uuid", "route_uuid7", "Top", "time"),
+        ("user_uuid", "route_uuid8", "Top", "time"),
+        ("user_uuid", "route_uuid9", "Top", "time"),
+        ("user_uuid", "route_uuid10", "Top", "time"),
+        ("user_uuid", "route_uuid11", "Top", "time"),
+        ("user_uuid", "route_uuid12", "7", "time")
+    ]
+    # 15	Det Høje Slab	09.A Rødbrun - Vitus	6b	8	32 - top
+
+    # 15	Det Nye Overhæng	42.C Grøn - Tobias B	6b	10	32 - top
+    # 15	Finns Corner	27.A Gul - Alfred	6b	6	32 - top
+    # 16	Den Høje Væg	06.B Blå - Kasper S	6b+	7	33 - top
+    # 17	Den Høje Væg	05.B Sort - Kasper S	6c	6	34 - top
+    # 18	Det Nye Overhæng	42.A Blå - Tobias B	6c+	10	35 - top
+    # 19	Det Nye Overhæng	41.C Gul - Mikkel	7a	7	36 - top
+    # 20	Det Nye Overhæng	41.B Lilla - Seno	7a+	7	37 - top
+    # 24	Matas Kassen	21.B Sort/WideBoyz	7c+	11	41 - 7
+    routes = [
+        ("route_uuid1", "15", "Det Høje Slab", "8", "09.A Rødbrun - Vitus", "6b"),
+        ("route_uuid5", "nr", "42.C Grøn - Tobias B", "10", "area", "6b"),
+        ("route_uuid6", "nr", "27.A Gul - Alfred", "6", "area", "6b"),
+        ("route_uuid7", "nr", "06.B Blå - Kasper S", "7", "area", "6b+"),
+        ("route_uuid8", "nr", "05.B Sort - Kasper S", "6", "area", "6c"),
+        ("route_uuid9", "nr", "42.A Blå - Tobias B", "10", "area", "6c+"),
+        ("route_uuid10", "nr", "41.C Gul - Mikkel", "7", "area", "7a"),
+        ("route_uuid11", "nr", "41.B Lilla - Seno", "7", "area", "7a+"),
+        ("route_uuid12", "nr", "21.B Sort/WideBoyz", "11", "area", "7c+")
+    ]
+    print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    print("expected: 176.23")
+
+
+    user = ["2"]
+    user_info = [("user_uuid2", "AAF", "M", "hhjj", "8b", "50")]
+    # antal ruter 9
+
+    print("\t\t|- User info:", user_info)
+    results = [
+        ("user_uuid", "route_uuid1", "Top", "time"),
+        ("user_uuid", "route_uuid5", "Top", "time"),
+        ("user_uuid", "route_uuid6", "Top", "time"),
+        ("user_uuid", "route_uuid7", "Top", "time"),
+    ]
+    # 15	Det Høje Slab	09.A Rødbrun - Vitus	6b	8	32 - top
+
+    # 15	Det Nye Overhæng	42.C Grøn - Tobias B	6b	10	32 - top
+    # 15	Finns Corner	27.A Gul - Alfred	6b	6	32 - top
+    # 16	Den Høje Væg	06.B Blå - Kasper S	6b+	7	33 - top
+    # 17	Den Høje Væg	05.B Sort - Kasper S	6c	6	34 - top
+    # 18	Det Nye Overhæng	42.A Blå - Tobias B	6c+	10	35 - top
+    # 19	Det Nye Overhæng	41.C Gul - Mikkel	7a	7	36 - top
+    # 20	Det Nye Overhæng	41.B Lilla - Seno	7a+	7	37 - top
+    # 24	Matas Kassen	21.B Sort/WideBoyz	7c+	11	41 - 7
+    routes = [
+        ("route_uuid1", "15", "", "8", "09.A Rødbrun - Vitus", "4b"),
+        ("route_uuid5", "nr", "", "5", "area", "4b"),
+        ("route_uuid6", "nr", "", "4", "area", "5a"),
+        ("route_uuid7", "nr", "", "5", "area", "5b")
+    ]
+    print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    print("expected: 4.7")
+
+
     return render_template('leaderboard.html', leaderboard=sorted_leaderboard[::-1])
 
 

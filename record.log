@@ -1,362 +1,124 @@
-ClearedINFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:08:21] "[32mGET /delete_log HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:08:21] "GET /admin/log HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:08:23] "GET /admin/log HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:09:07] "GET /admin/log HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:09:11] "GET /admin/users HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:09:12] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:09:36] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:10:16] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:10:39] "GET /admin/dashboard HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:16] "GET /admin/server HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:24] "[32mGET / HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:24] "[32mGET /routes HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:24] "GET /login HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:33] "GET /admin/users HTTP/1.1" 200 -
-INFO:app:[+] Recieved users file
-INFO:app:	|- Saving users file
-INFO:app:	|- Saved as: tmpUsers
-INFO:app:	|- Deleting exsisting users from db
-INFO:app:[+] Loading routes from csv: tmpUsers.csv
-INFO:app:	|- Csv parsed
-INFO:app:	|- Loading to db
-INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', '20354bbb8d4d43c5ab00af5f87c90469', 'aaa', '47bce5c74f589f4867dbd57e9ca9f808', ')')
-INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', '3c527a9d21334bb2888faaf742c0e0ca', 'bbb', '08f8e0260c64418510cefb2b06eee5cd', ')')
-INFO:app:('\tExecuting: INSERT INTO users (uuid, username, password) VALUES (', '54e81f422b874d5dbf4dcc0222dfac7c', 'ccc', '9df62e693988eb4e1e1444ece0578579', ')')
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:47] "[32mPOST /admin/users HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:47] "GET /admin/users HTTP/1.1" 200 -
-INFO:app:('[+] User attempting login: username', 'aaa', '|| Password:', 'aaa')
+ClearedINFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:17] "[32mGET /delete_log HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:17] "GET /admin/log HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:19] "GET /admin/log HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:23] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:30] "GET /leaderboard HTTP/1.1" 200 -
+ERROR:app:Exception on /routes [GET]
+Traceback (most recent call last):
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 170, in routes
+    for u in user_info[0]:
+             ~~~~~~~~~^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:33] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:37] "GET /login HTTP/1.1" 200 -
+INFO:app:('[+] User attempting login: username', 'H88B', '|| Password:', 'S77D')
 INFO:app:	|- Login successfull
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:51] "[32mPOST /login HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:51] "GET /routes HTTP/1.1" 200 -
-INFO:app:[+] Updating route:453a43681490439fb0a013663f8860ba|4
-INFO:app:[+] Inserting into competition
-INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:55] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating route:49c06dd19aaa4fcca6b7fcd34bff44dc|4
-INFO:app:[+] Inserting into competition
-INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:56] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating route:9d83c1bda73b4f25baadd87c504fa329|Top
-INFO:app:[+] Inserting into competition
-INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:58] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating route:888d9c8ab169499dad7f79c744a5715b|3
-INFO:app:[+] Inserting into competition
-INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:15:59] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating route:1b6f9a89dd9e48c3a823f3a3d163ddb4|2
-INFO:app:[+] Inserting into competition
-INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:01] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating user: 20354bbb8d4d43c5ab00af5f87c90469
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:11:58] "GET /routes HTTP/1.1" 200 -
+INFO:app:[+] Updating user: e07334264f094f00ab77aed4a04cec30
 INFO:app:	|- Gender
 INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:04] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating user: 20354bbb8d4d43c5ab00af5f87c90469
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:03] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating user: e07334264f094f00ab77aed4a04cec30
 INFO:app:	|- team_name
 INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:06] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating user: 20354bbb8d4d43c5ab00af5f87c90469
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:04] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating user: e07334264f094f00ab77aed4a04cec30
 INFO:app:	|- max_flash
 INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:08] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating user: 20354bbb8d4d43c5ab00af5f87c90469
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:05] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating user: e07334264f094f00ab77aed4a04cec30
 INFO:app:	|- dage_i_moselykken
 INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:09] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
-INFO:app:[+] Updating user: 20354bbb8d4d43c5ab00af5f87c90469
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:06] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating user: e07334264f094f00ab77aed4a04cec30
 INFO:app:	|- Gender
 INFO:app:	|- Commiting to database
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:11] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:14] "GET /admin/users HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:18] "GET /admin/server HTTP/1.1" 200 -
-INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:20] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:16:45] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:08] "[35m[1mPOST /climber_id HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating route:8c64727c5f2f49148be50d0b022cbe6a|5
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:12] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating route:f948a08c165b43a2920e55f647a775a5|Top
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:13] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:app:[+] Updating route:2ce55282a7944ab6a26c635b1b6b86e6|Top
+INFO:app:[+] Inserting into competition
+INFO:app:	|- Commiting to database
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:17] "[35m[1mPOST /route_post HTTP/1.1[0m" 204 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:18] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:12:25] "GET /matrix HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:06] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:07] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:11] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:14] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:17] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:19] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:23] "GET /matrix HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:27] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:29] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:31] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:33] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:34] "GET /admin/server HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:35] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:40] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:40] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:42] "GET /matrix HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:44] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:46] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:48] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:50] "GET /matrix HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:13:55] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:14:01] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:14:02] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:14:04] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:18:04] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:25:50] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:25:54] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:25:59] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:26:26] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:26:28] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:26:31] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:26:46] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:27:27] "GET /admin/server HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:33] "GET /admin/server HTTP/1.1" 200 -
+INFO:app:[+] Deleting database contents
+INFO:app:[+] Creating tables
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:39] "[32mGET /delete_db HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:39] "GET /admin/dashboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:41] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:44] "GET /admin/server HTTP/1.1" 200 -
 INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:18:24] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:18:49] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:19:13] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-INFO:app:a646166c0581463781955253ae30117f
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 424, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:19:56] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-INFO:app:a646166c0581463781955253ae30117f
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 426, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:20:32] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:app:[+] Exporting results as csv
-INFO:app:a646166c0581463781955253ae30117f
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 426, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:20:36] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-INFO:app:a646166c0581463781955253ae30117f
-ERROR:app:Exception on /export_results [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 426, in export_results
-    username = str(cursor.execute("SELECT username FROM users WHERE uuid = \"" + user[0] + "\"").fetchall()[0])
-                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
-IndexError: list index out of range
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:20:52] "[35m[1mGET /export_results HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:[+] Exporting results as csv
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
-INFO:app:export result error
 INFO:app:[+] Exporting competition results
 INFO:app:	|- Deleting old files
 INFO:app:	|- Writing new file
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:21:39] "GET /export_results HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:22:59] "GET /admin/server HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:23:01] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:29:57] "GET /export_results HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:30:00] "GET /get_log HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:30:02] "GET /get_sqlite HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:31:33] "GET /admin/content HTTP/1.1" 200 -
 INFO:app:('[+] Updating content:', '#greeting')
 INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:23:10] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:23:10] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:23:15] "[32mGET /logout HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:23:15] "GET /login HTTP/1.1" 200 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:app:Exception on /admin/content [GET]
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:31:44] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:31:44] "GET /admin/routes HTTP/1.1" 200 -
+ERROR:app:Exception on /routes [GET]
 Traceback (most recent call last):
   File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
     response = self.full_dispatch_request()
@@ -370,27 +132,48 @@ Traceback (most recent call last):
   File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 757, in admin_content_page
-    with open("./templates/admin/#greeting.html", "r") as file:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: './templates/admin/#greeting.html'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:26:36] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:26:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:27:02] "GET /admin/content HTTP/1.1" 200 -
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 170, in routes
+    for u in user_info[0]:
+             ~~~~~~~~~^^^
+IndexError: list index out of range
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:31:52] "[35m[1mGET /routes HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:31:59] "GET /login HTTP/1.1" 200 -
 INFO:app:('[+] Updating content:', '#greeting')
 INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:27:06] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:27:06] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:32:10] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:32:10] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:32:13] "GET /login HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:app:Exception on /admin/content [GET]
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:34:21] "GET /admin/routes HTTP/1.1" 200 -
+INFO:app:('[+] Adding new route;', <bound method MultiDict.values of ImmutableMultiDict([('area', '45'), ('name', '45'), ('grade', '45'), ('max_score', '45'), ('factor', '45')])>)
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:34:27] "[32mPOST /admin/route HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Dec/2025 23:34:27] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:37] "[33mGET /f HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:39] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:39] "[32mGET /routes HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:39] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:44] "GET /leaderboard HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:48] "[33mGET /admin/ HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:44:53] "[31m[1mGET /admin HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:03] "GET /admin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:07] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:09] "GET /admin/comp_settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:12] "[36mPUT /admin/comp_settings/leaderboard HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:14] "[36mPUT /admin/comp_settings/matrix HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:17] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:17] "[32mGET /routes HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:17] "GET /login HTTP/1.1" 200 -
+ERROR:app:Exception on /leaderboard [GET]
 Traceback (most recent call last):
   File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
     response = self.full_dispatch_request()
@@ -404,512 +187,44 @@ Traceback (most recent call last):
   File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:27:50] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "../#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:28:37] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:29:31] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
+  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 1293, in leaderboard
+    print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+                                            ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:45:21] "[35m[1mGET /leaderboard HTTP/1.1[0m" 500 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:29:36] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:30:16] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:46:17] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html', greeting=greeting)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:30:23] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:49:24] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 761, in admin_content_page
-    return render_template('admin/content.html')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 9, in template
-    {{ include "#greeting.html" }}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got 'string'
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:31:15] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:31:57] "GET /admin/server HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:31:59] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:14] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:15] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:16] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:19] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:39] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:32:51] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:33:28] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:54:32] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:33:39] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:33:54] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:34:10] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:34:10] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:34:15] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:34:24] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:34:27] "GET /login HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:35:46] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:06] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:11] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:11] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:13] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:13] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] User attempting login: username', 'aaa', '|| Password:', 'aaa')
-INFO:app:	|- Login successfull
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:18] "[32mPOST /login HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:36:18] "GET /routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:55:37] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:37:33] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:37:36] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:37:36] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:37:39] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:56:55] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:04] "[32mGET /logout HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:04] "GET /login HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:06] "GET /login HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:10] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:10] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:12] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:40:15] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 21:57:19] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:19] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:25] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:27] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:27] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:29] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:30] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 22:01:47] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:41:52] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:06] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:07] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:10] "GET /login HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:42] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:42] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:44] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:44] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:50] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:50] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:42:52] "GET /admin/content HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 22:02:12] "GET /leaderboard HTTP/1.1" 200 -
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:35] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:37] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:37] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:39] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:39] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:45:42] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:01] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:03] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:03] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:06] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:06] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:08] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:26] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:27] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:27] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:42] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:42] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:47] "GET /admin/content HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:48] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:53] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:46:53] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:47:20] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:47:20] "GET /admin/routes HTTP/1.1" 200 -
-ERROR:app:Exception on /admin/content [GET]
-Traceback (most recent call last):
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask_basicauth.py", line 108, in wrapper
-    return view_func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\app.py", line 764, in admin_content_page
-    @app.route('/admin/content', methods=['POST'])
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\templating.py", line 151, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\loaders.py", line 137, in load
-    code = environment.compile(source, name, filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 768, in compile
-    self.handle_exception(source=source_hint)
-  File "C:\Users\ham-d\AppData\Local\Programs\Python\Python311\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "E:\ProgrammingProjects\BotR_ClimbingCompetition\templates\admin\content.html", line 18, in template
-    {% else %}
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'else'. Jinja was looking for the following tags: 'endif'. The innermost block that needs to be closed is 'if'.
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:11] "[35m[1mGET /admin/content HTTP/1.1[0m" 500 -
-INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:37] "GET /admin/server HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:38] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:41] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:41] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:49:43] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:40] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:40] "GET /admin/routes HTTP/1.1" 200 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:43] "GET /admin/content HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#greeting')
-INFO:app:	|-> File written:#greeting.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:44] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:44] "GET /admin/routes HTTP/1.1" 200 -
-INFO:app:('[+] Updating content:', '#rules')
-INFO:app:	|-> File written:#rules.html
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:46] "[32mPOST /admin/content HTTP/1.1[0m" 302 -
-INFO:werkzeug:127.0.0.1 - - [20/Dec/2025 00:50:46] "GET /admin/routes HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [14/Jan/2026 22:02:28] "GET /leaderboard HTTP/1.1" 200 -

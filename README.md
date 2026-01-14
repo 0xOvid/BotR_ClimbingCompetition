@@ -208,6 +208,9 @@ deleting has been tested.
 - fixed and rearranged modals in comp settings
 - fixed missing factor when adding individual routes
 
+2025-12-28
+- removed references to dashboard page since not implemented yet
+- fixed the enabeling and disabeling of pages when initially loaded
 
 # Credits
 Mark for making everything

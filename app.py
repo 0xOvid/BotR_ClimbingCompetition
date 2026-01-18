@@ -193,7 +193,11 @@ def routes():
                     if route_uuid == climber_route_uuid :
                         # route_uuid, nr, name, max_score, area, grade
                         #print("Route match, replacing: index: ", i , "| score:", ur[2] )
-                        routes_list[i][6] = ur[2]
+                        if ur[2] != "Top":
+                            score = int(ur[2])
+                        else:
+                            score = ur[2]
+                        routes_list[i][6] = score
                         #print(routes_list[i])
                         continue
                         #routes[i] = routes[i] + (climber_route_uuid[2])
@@ -1186,10 +1190,11 @@ def calculate_score(user_uuid, user_info, routes, results):
 
     dict_routes_below_level_factors = {
         "0": 0.14,
-        "6": 0.083, #0.13,
-        "18": 0.04,# 0.05,
+        "6": 0.08, #0.13,
+        "13": 0.04,# 0.05,
         "999": 0,
     }
+
     f_routes_below = 0
     for key in dict_routes_below_level_factors:
         if not flash_level:
@@ -1198,7 +1203,45 @@ def calculate_score(user_uuid, user_info, routes, results):
         if int(route_category[flash_level]) < int(key):
             f_routes_below = dict_routes_below_level_factors[key]
             break
+
+
+
+    dict_routes_below_level_factors_factors = {
+        "0": 2.5,
+        "6": 1.8, #0.13,
+        "13": 1.3,# 0.05,
+        "999": 1.1,
+    }
+
+    
+    f_routes_below_f = 0
+    next_lvl = 0
+    for key in dict_routes_below_level_factors_factors:
+        if not flash_level:
+            break
+        # flash_level score = route_category[flash_level]
+        if next_lvl != 0:
+            next_lvl = int(key)-1
+            f_routes_below_f = dict_routes_below_level_factors_factors[key]
+            break
+        if int(route_category[flash_level]) < int(key):
+            next_lvl = 1
+            
+    print("-----------------------------------")
     print("\t|-> Routes below level factor:", f_routes_below)
+    print("\t|- Ruter under eget niveau:", int(route_category[flash_level]) + 3)
+    print("\t|- Y/Z/AA$32:", next_lvl)
+    print("Y/Z/AA$32 - Ruter under eget niveau", (next_lvl - (int(route_category[flash_level]) + 3)))
+    print("--------")
+    print("\t|- f_routes_below_f:", f_routes_below_f)
+    print("f_routes_below + f_routes_below_f ", f_routes_below + f_routes_below_f )
+    print("\t|- begynder factor:", f_routes_below_f +( f_routes_below * (next_lvl - (int(route_category[flash_level]) + 3))))
+
+    begynder_factor = f_routes_below_f +( f_routes_below * (next_lvl - (int(route_category[flash_level]) + 3)))
+
+    if begynder_factor > 0 :
+        total_route_score = begynder_factor * total_route_score
+
     # iterate through results and calculate score
     # MAngler team factor
     f_korigeret_score = total_route_score * f_days * 1 * 1
@@ -1329,6 +1372,39 @@ def leaderboard():
     print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
     print("expected: 4.7")
 
+    # thomas 7a
+    user = ["3"]
+    user_info = [("user_uuid2", "thomas 7a", "M", "hhjj", "7a", "50")]
+    results = [
+        ("user_uuid", "route_uuid1", "Top", "time"),
+        ("user_uuid", "route_uuid5", "Top", "time"),
+        ("user_uuid", "route_uuid6", "Top", "time"),
+    ]
+    routes = [
+        ("route_uuid1", "15", "", "5", "area", "4a"),
+        ("route_uuid5", "nr", "", "7", "area", "4c"),
+        ("route_uuid6", "nr", "", "6", "area", "5a+")
+    ]
+    print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    print("expected: 3.45")
+
+
+    # thomas 5a
+    user = ["4"]
+    user_info = [("user_uuid3", "test2", "M", "hhjj", "5a", "50")]
+    results = [
+        ("user_uuid", "route_uuid1", "Top", "time")
+    ]
+    routes = [
+        ("route_uuid1", "15", "", "5", "area", "4a")
+    ]
+
+    noob_factor = 1
+
+
+
+    print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    print("expected: 27.45")
 
     return render_template('leaderboard.html', leaderboard=sorted_leaderboard[::-1])
 

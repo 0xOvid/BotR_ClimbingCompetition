@@ -192,12 +192,13 @@ def routes():
                     climber_route_uuid = ur[1]
                     if route_uuid == climber_route_uuid :
                         # route_uuid, nr, name, max_score, area, grade
-                        #print("Route match, replacing: index: ", i , "| score:", ur[2] )
-                        if ur[2] != "Top":
-                            score = int(ur[2])
-                        else:
+                        print("Route match, replacing: index: ", i , "| score:", ur[2] )
+                        if ur[2] == 'Top' or  ur[2] == '-':
                             score = ur[2]
+                        else:
+                            score = int(ur[2])
                         routes_list[i][6] = score
+                        
                         #print(routes_list[i])
                         continue
                         #routes[i] = routes[i] + (climber_route_uuid[2])
@@ -206,7 +207,7 @@ def routes():
                         #routes[i] = routes[i] + ("-",)
                 i += 1
 
-            print(routes_list)
+            #print(routes_list)
             return render_template('routes.html', user_info=u_info, routes=routes_list)
     return redirect("/login")
 

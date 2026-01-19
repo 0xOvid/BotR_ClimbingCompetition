@@ -340,10 +340,15 @@
                     <select  id="slynger" class="slynger" oninput="updateRoute('{{ route.0 }}')">
                         {% if route.6 == "-" %}
                             <option value="-" selected>-</option>
+                        {% else %}
+                            <option value="-">-</option>
                         {% endif %}
+
                         {% for s in range (1, route.3) %}
+
                             {% if s == route.6 %}
                                 <option value="{{ route.6 }}" selected>{{ route.6 }}</option>
+                            {% elif s == 1 %}
                             {% else %}
                                 <option value="{{ s }}">{{ s }}</option>
                             {% endif %}
@@ -351,6 +356,8 @@
                         
                         {% if route.6 == "Top" %}
                             <option value="Top" selected>Top</option>
+                        {% else %}
+                            <option value="Top">Top</option>
                         {% endif %}
                     </select>
                 </td>
@@ -358,13 +365,6 @@
             {% endfor %}
         </table>
     </div>
-    <script>
-        // Lazy version for removing the "1" from the list of possible slings
-        const arr = document.getElementsByClassName("slynger")
-        Array.prototype.forEach.call(arr, function(el) {
-            el.remove(2);
-        });
-    </script>
 
     <script>
         // Get the dropdown and modal elements

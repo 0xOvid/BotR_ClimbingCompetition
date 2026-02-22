@@ -686,21 +686,11 @@ def admin_routes_update(uuid):
     if request.get_json()["action"] == "delete":
         cursor.execute('''DELETE FROM routes WHERE route_uuid = \"''' + uuid + "\"")
     else: 
-        """
         cursor.execute('''UPDATE routes SET 
             name = ?,
             max_score = ?,
             area = ?,
-            grade = ?,
-            factor = ?
-            WHERE route_uuid = ?''', 
-            (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], request.get_json()["factor"], uuid)
-            )"""
-        cursor.execute('''UPDATE routes SET 
-            name = ?,
-            max_score = ?,
-            area = ?,
-            grade = ?,
+            grade = ?
             WHERE route_uuid = ?''', 
             (request.get_json()["name"], request.get_json()["max_score"], request.get_json()["area"], request.get_json()["grade"], uuid)
             )
@@ -1091,7 +1081,7 @@ def calculate_score(user_uuid, user_info, routes, results):
             #print(route_)
             if route_[0] == r[1]:
                 route = route_
-            
+        print("================== New route calc ===================")
         #route = cursor.execute("SELECT * FROM routes where route_uuid = \"" + r[1] + "\"").fetchall()
         print(route)
         # calc for route
@@ -1115,9 +1105,11 @@ def calculate_score(user_uuid, user_info, routes, results):
         # route factor
         std_top_point = 19
         route_factor =route_category[route_grade] + std_top_point
-        print("route factor", route_factor)
+        print("\t|- route factor:", route_factor)
 
         # Elseif >= 2 (alt over 1), routepoint = 0.8 * (gradpoint/ max slynger) * resultat * flashpoint
+        route_max = route_max - 1
+        print("\t|- point pr slynge:", float(route_factor * 0.8)/ (float(route_max)))
         if route_score == 'None':
             continue
         if route_score == '-':
@@ -1154,6 +1146,8 @@ def calculate_score(user_uuid, user_info, routes, results):
             total_route_score = total_route_score + r_dict[a][t]
         
     print("\t|-> Total score", total_route_score)
+
+    """
     dict_climbing_days_factors = {
         "3": 1,
         "8": 0.98,
@@ -1251,6 +1245,7 @@ def calculate_score(user_uuid, user_info, routes, results):
     #leaderboard[i][1]=f_korigeret_score
     # get "x" highest scores
     #i += 1
+    """
     return total_route_score
 
 
@@ -1300,6 +1295,7 @@ def leaderboard():
     conn.close()
     sorted_leaderboard = sorted(leaderboard, key=lambda x:x[1])
 
+    """
     # Test: col:BM
     #
     user = ["1"]
@@ -1406,7 +1402,36 @@ def leaderboard():
 
     print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
     print("expected: 27.45")
+    """
 
+    # yula test
+
+    user = ["1"]
+    user_info = [("user_uuid2", "Yula", "K", "bbbb", "6a", "50")]
+    # antal ruter 9
+
+    print("\t\t|- User info:", user_info)
+    results = [
+        ("user_uuid", "c62e36ac78224381a6088286c46ecfb7", "Top", "time"),
+        ("user_uuid", "ec7f38e8b13849f685719afbe3b3e755", "Top", "time"),
+        ("user_uuid", "9c87cfb5dc0246fc967732398d910ced", "Top", "time"),
+        ("user_uuid", "6c1bde094a7e455f896bd1457e2cbb9c", "Top", "time"),
+        ("user_uuid", "5d6e1e264eb84091ae3d00f16ff5144a", "Top", "time"),
+        ("user_uuid", "25b3dbfee9b34a55b2155a18a61c2cbc", "Top", "time"),
+        ("user_uuid", "db6bdf8f7d1840abb22600345b200bca", "Top", "time"),
+        ("user_uuid", "c05ff5b3fea34607a5e0720d68e155f7", "Top", "time"),
+        ("user_uuid", "f9db2babdbc14e158ec2cbb816ca3ad6", "Top", "time"),
+        ("user_uuid", "6d4a062dd8ec4b6d8a7780ccfdc06c00", "Top", "time"),
+        ("user_uuid", "aa777efadfaa477d91dd86c3d0acb315", "Top", "time"),
+        ("user_uuid", "566e9ce3223643bf9ea70329d5add215", "Top", "time"),
+        ("user_uuid", "b1cff6ea6d7d4ef691dabd7695ebb0d8", "Top", "time"),
+        ("user_uuid", "61716cecdf7c42ecb1c902429c858a9b", "Top", "time"),
+        ("user_uuid", "3e2ee036ca7b4252ab4d0943f9cd5937", "Top", "time"),
+        ("user_uuid", "5b769c6a52b844a0b7630c7be65fc75d", "9", "time")
+    ]
+
+    #print([user_info[0][1], calculate_score(user[0], user_info, routes, results)])
+    #print("expected: 389,8")
     return render_template('leaderboard.html', leaderboard=sorted_leaderboard[::-1])
 
 

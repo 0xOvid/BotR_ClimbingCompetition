@@ -212,6 +212,12 @@ deleting has been tested.
 - removed references to dashboard page since not implemented yet
 - fixed the enabeling and disabeling of pages when initially loaded
 
+2026-02-20
+- fixed issue with editing routes
+- fixed point calc, had 1 to many on "max_route_point" since the update in accordance w. thomas
+also calcs in the 2026 climbing comp did not include any factors so for now these were commented out
+
+
 # Credits
 Mark for making everything
 

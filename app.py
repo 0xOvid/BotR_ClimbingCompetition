@@ -1513,18 +1513,42 @@ def render_matrix():
         if matrix_status[0][1] != "enabled":
             return "page disabled"
 
+
+    
+    
+
+    routes = cursor.execute("SELECT * FROM routes").fetchall()
+
+    """
+    i = 0
+    
+    #user_info = [("user_uuid1", "Lars B", "M", "team", "6c", "50")]
+    for user in users:
+        climber_info = cursor.execute("SELECT * FROM climber_id where uuid = \"" + user[0] + "\"").fetchall()
+        # skip users with no name
+        if climber_info[0][1] == None:
+            continue
+        print("\t|-> Calculating result for:", climber_info)
+        results = cursor.execute("SELECT * FROM competition where uuid = \"" + user[0] + "\"").fetchall()
+        # round for nice number
+        leaderboard.append([climber_info[0][1], round(calculate_score(user[0], climber_info, routes, results),2)])
+    """
+
+
     # Get all user uuids
     users = cursor.execute("SELECT * FROM users").fetchall()
-    sql_climbers = cursor.execute("SELECT * FROM climber_id").fetchall()
+    sql_climbers = cursor.execute("SELECT * FROM climber_id WHERE name IS NOT NULL").fetchall()
     climbers = []
     for climber in sql_climbers:
+        climber_info = cursor.execute("SELECT * FROM climber_id where uuid = \"" + climber[0] + "\"").fetchall()
         # username
         user = cursor.execute("SELECT username FROM users WHERE uuid ='" + climber[0] + "'").fetchall()
         if len(user) > 0 :
             username = user[0][0]
         else:
             username = "N/A"
-        
+
+        results = cursor.execute("SELECT * FROM competition where uuid = \"" + climber[0] + "\"").fetchall()
         
         climbers.append((
             climber[0], # uuid
@@ -1532,29 +1556,49 @@ def render_matrix():
             climber[2], # gender 
             climber[3], # team
             climber[4], # max flash
-            username)
+            username,
+            len(results), # antal router
+            round(calculate_score(climber[0], climber_info, routes, results),2)
+            )
         )
 
 
 
-    users = cursor.execute("SELECT * FROM climber_id").fetchall()
+    users = cursor.execute("SELECT * FROM climber_id WHERE name IS NOT NULL").fetchall()
     routes = cursor.execute("SELECT * FROM routes").fetchall()
     # create header row
 
+
+    # pointtop
+    # samletscore
     routes_w_res = []
+
+    # Loop through all of the routes
     for route in routes:
-        comp_route_res = cursor.execute("SELECT * FROM competition WHERE route_uuid ='" + route[0] + "'").fetchall()
+        # get the competition results for the route
+        route_uuid = route[0]
+        # array for the results, pr user
         route_results = []
+        route_grade = route[5]
+        route_max_score = route[3]
+        
+        # calc additional info
+        # route factor
+        std_top_point = 19
+        route_factor = route_category[route_grade] + std_top_point
+        samletscore = (route_factor*0.8) / route_max_score
+
         for user in users:
-            try:
-                if user[0] == comp_route_res[0][0]:
-                    route_results.append(comp_route_res[0][2])
-                else:
-                    route_results.append("-")
-            except:
+            user_uuid = user[0]
+            competition_results_pr_user = cursor.execute("SELECT * FROM competition WHERE route_uuid ='" + route_uuid + "' AND uuid ='" + user_uuid + "'").fetchall()
+            if competition_results_pr_user:
+                route_results.append(competition_results_pr_user[0][2])
+            else:
                 route_results.append("-")
-        #print(route + (route_results,))
-        routes_w_res.append(route + (route_results,))
+
+
+        #print(route + (route_factor, route_results,))
+        routes_w_res.append(route + (route_factor, round(samletscore, 2), route_results,))
     #print(routes_w_res)
     cursor.close()
     conn.close()

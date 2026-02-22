@@ -35,13 +35,11 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         th,
         td {
-            padding: 12px;
+            padding: 6px;
             text-align: left;
             /* Align text to the left */
             border-bottom: 1px solid #ddd;
@@ -58,10 +56,10 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
+        /*
         tr:hover {
             background-color: #e1f5fe;
-        }
+        }*/
 
 
         .successModal {
@@ -172,12 +170,32 @@
                     <th>Grade</th>
                     <th>Max score</th>
                     <th>Point top</th>
-                    <th>Total score</th>
+                    <th>
+                        <table>
+                            <tr><td>Team</td></tr>
+                            <tr><td>ID</td></tr>
+                            <tr><td>Navn</td></tr>
+                            <tr><td>Køn</td></tr>
+                            <tr><td>MaxFlash</td></tr>
+                            <tr><td>Klatredage</td></tr>
+                            <tr><td>AntalRuter</td></tr>
+                            <tr><td>Samletscore</td></tr>
+                        </table>
+                    </th>
+                    <!-- Climbers -->
                     {% for c in climbers %}
                         <th>
-                            {{ c.1 }}
-                            @team:{{ c.3 }}
-                            ({{ c.2 }})
+                            
+                            <table>
+                                <tr><td>-</td></tr>
+                                <tr><td>{{ c.5 }}</td></tr>
+                                <tr><td>{{ c.1 }}</td></tr>
+                                <tr><td>{{ c.2 }}</td></tr>
+                                <tr><td>{{ c.4 }}</td></tr>
+                                <tr><td>-</td></tr>
+                                <tr><td>{{ c.6 }}</td></tr>
+                                <tr><td>{{ c.7 }}</td></tr>
+                            </table>
                         </th>
                     {% endfor %}
                 </tr>
@@ -191,9 +209,10 @@
                     <td>{{ route.2 }}</td>
                     <td>{{ route.5 }}</td>
                     <td>{{ route.3 }}</td>
-                    <td>-/-</td>
-                    <td>-/-</td>
-                    {% for r in route.7 %}  
+                    <td>{{ route.6 }}</td>
+                    <td>{{ route.7 }}</td>
+                    <!-- Scores for the individual routes by climber -->
+                    {% for r in route.8 %}  
                     <td>{{ r }}</td>
                     {% endfor %}
                 </tr>

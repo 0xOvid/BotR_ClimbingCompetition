@@ -3,3 +3,4 @@ Flask-BasicAuth
 flask-htmx
 pytest
 requests
+gunicorn 

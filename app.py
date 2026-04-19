@@ -13,6 +13,7 @@ import random
 import string
 from dataclasses import dataclass
 
+
 """
 Setup flask app variables
 """

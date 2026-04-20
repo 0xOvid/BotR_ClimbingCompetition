@@ -250,7 +250,7 @@
                 value="{{ user_info.3 }}" />
         </div>
         <div style="padding: 10px">
-            <label style="font-size: larger;">Max flash</label>
+            <label style="font-size: larger;">Max red-point</label>
             <select style="font-size: larger;float: right;" hx-post="/climber_id" hx-trigger="change" name="max_flash" id="max_flash">
                 <option value="{{ user_info.4 }}" selected>{{ user_info.4 }}</option>
                 <option value="3g">3g</option>
@@ -288,7 +288,7 @@
                 <option value="8c+">8.c+</option>
             </select>
         </div>
-        <div style="padding: 10px">
+        <div style="padding: 10px; display: none;">
             <label style="font-size: larger;" >Klatre dage i Moselykken</label>
                    <select style="font-size: larger;float: right;" hx-post="/climber_id" hx-trigger="change" name="dage_i_moselykken" id="dage_i_moselykken">
                 <option value="{{ user_info.5 }}" selected>{{ user_info.5 }}</option>
